@@ -3,7 +3,6 @@ using System;
 
 public partial class PlayerTest : CharacterBody2D
 {
-    // Mozgási sebesség beállítása
     [Export]
     public float Speed = 300.0f;
 
