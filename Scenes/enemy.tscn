@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cohiqpndtgam"]
+
+[ext_resource type="Script" uid="uid://k0k8sg5ktqjs" path="res://Scripts/Enemy.cs" id="1_1f0kj"]
+[ext_resource type="Texture2D" uid="uid://c0r6y7vxwf170" path="res://ConceptArt/Sorcerer.png" id="1_hghv2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hghv2"]
+size = Vector2(16, 14)
+
+[node name="Area2D" type="Area2D" unique_id=1217826392 groups=["enemy"]]
+collision_mask = 2
+script = ExtResource("1_1f0kj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=824110784]
+shape = SubResource("RectangleShape2D_hghv2")
+
+[node name="Sorcerer" type="Sprite2D" parent="." unique_id=1648175540]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_hghv2")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
