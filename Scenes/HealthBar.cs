@@ -42,4 +42,6 @@ public partial class HealthBar : ProgressBar
 	{
 		TakeDamage(damage);	
 	}
+
+	//MILF : Man I Love Frogs
 }
