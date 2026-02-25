@@ -6,6 +6,13 @@ public partial class Seeker : CharacterBody2D
 {
 	[Export] public float moveSpeed = 50.0f;
 	
+	public float CurrentHealth = 100.0f;
+	public float MaxHealth = 100.0f;
+	public float damage = 2.0f;
+
+	[Signal] public delegate void DealDamageEventHandler(float damage);
+	
+	
 	private Node2D _target = null;
 	
 	private NavigationAgent2D _navigationAgent = null;
@@ -80,6 +87,9 @@ public partial class Seeker : CharacterBody2D
 	{
 		
 	}
-	
+	public void OnEnemyBodyEntered(Node2D body)
+	{
+		EmitSignal(nameof(DealDamage), damage);
+	}
 	
 }

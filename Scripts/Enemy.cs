@@ -3,8 +3,19 @@ using System;
 
 public partial class Enemy : Area2D
 {
-	private void OnBodyEntered(Node2D body)
+	public float CurrentHealth = 100.00f;
+	public float MaxHealth = 100.0f;
+
+	[Signal] public delegate void DamageEventHandler(float damage);
+	
+	public override void _Ready()
 	{
-		QueueFree();
+		
+	}
+
+	public void OnDamageDealt(float damage)
+	{
+		CurrentHealth -= damage;
+		EmitSignal(nameof(Damage), damage);
 	}
 }
