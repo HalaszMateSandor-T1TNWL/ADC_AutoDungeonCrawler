@@ -1,8 +1,9 @@
-[gd_scene format=4 uid="uid://155xx7s6y6ta"]
+[gd_scene format=3 uid="uid://155xx7s6y6ta"]
 
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://jiuv3q88s6yi" path="res://Scripts/WalkerGenerator.cs" id="1_kry3j"]
 [ext_resource type="PackedScene" uid="uid://be8qbmt0fe144" path="res://Scenes/Player.tscn" id="2_bo1nx"]
-[ext_resource type="Script" uid="uid://c7mmr22asbq0d" path="res://Scenes/TileMapLayer.cs" id="2_jjvhh"]
+[ext_resource type="Script" uid="uid://c7mmr22asbq0d" path="res://Scripts/TileMapLayer.cs" id="2_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://cohiqpndtgam" path="res://Scenes/enemy.tscn" id="3_8gbba"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8gbba"]
@@ -94,16 +95,20 @@ sources/0 = SubResource("TileSetAtlasSource_jjvhh")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1359272859]
 position = Vector2(1, 0)
-tile_map_data = PackedByteArray("AAACAAAAAAADAAAAAAADAAAAAAADAAAAAAAEAAAAAAADAAAAAAAFAAAAAAADAAAAAAAGAAAAAAADAAAAAAAHAAAAAAAGAAAAAAAAAAMAAAAAAAYAAAAAAAIAAAAAAAMAAAAAAAAAAAAAAAAAAAABAAUAAAAAAAMAAAADAAUAAAABAAEAAAAEAAUAAAABAAEAAAAFAAUAAAABAAEAAAABAAYAAAAAAAYAAAABAAAAAAADAAAAAAAAAAEAAAAAAAMAAAABAAQAAAABAAEAAAAGAAIAAAABAAEAAAACAAIAAAABAAEAAAADAAIAAAABAAEAAAADAAMAAAABAAEAAAADAAQAAAABAAEAAAAEAAIAAAABAAEAAAAEAAMAAAABAAEAAAAEAAQAAAABAAEAAAAFAAIAAAABAAEAAAAFAAMAAAABAAEAAAAFAAQAAAABAAEAAAAAAAQAAAAAAAcAAAAIAAAAAAAHAAAAAAAIAAEAAAAHAAEAAAAIAAIAAAAHAAEAAAAIAAMAAAAHAAEAAAAIAAQAAAAHAAcAAAAHAAQAAAABAAEAAAAHAAUAAAAHAAEAAAABAAcAAAAAAAcAAAAHAAcAAAAHAAcAAAACAAcAAAABAAcAAAADAAcAAAABAAcAAAAEAAcAAAABAAcAAAAFAAcAAAABAAcAAAAGAAcAAAABAAcAAAAHAAYAAAAHAAEAAAAGAAMAAAABAAEAAAAGAAQAAAABAAEAAAAGAAUAAAABAAEAAAAGAAYAAAABAAEAAAAFAAYAAAABAAEAAAAEAAYAAAABAAEAAAADAAYAAAABAAEAAAACAAYAAAABAAEAAAACAAUAAAABAAEAAAACAAQAAAABAAEAAAACAAMAAAABAAEAAAABAAMAAAABAAEAAAABAAIAAAABAAEAAAAHAAIAAAABAAEAAAAHAAMAAAABAAEAAAAHAAEAAAABAAEAAAAGAAEAAAABAAEAAAAFAAEAAAABAAEAAAAEAAEAAAABAAEAAAADAAEAAAABAAEAAAACAAEAAAABAAEAAAABAAEAAAABAAEAAAA=")
 tile_set = SubResource("TileSet_kry3j")
 script = ExtResource("2_jjvhh")
 
 [node name="Player" parent="." unique_id=28115319 instance=ExtResource("2_bo1nx")]
+visible = false
 position = Vector2(16, 16)
 
 [node name="Enemy" parent="." unique_id=457126724 instance=ExtResource("3_8gbba")]
+visible = false
 position = Vector2(64.25, 96.25)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1139282717]
 anchor_mode = 0
-zoom = Vector2(2, 2)
+
+[node name="WalkerGenerator" type="Node" parent="." unique_id=1014205626]
+script = ExtResource("1_kry3j")
+wallTileTop = Vector2i(7, 0)
