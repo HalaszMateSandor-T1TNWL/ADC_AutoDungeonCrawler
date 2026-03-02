@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 
 [Tool]
@@ -8,14 +9,23 @@ public partial class WalkerGenerator : Node
 {
   [Export] public Vector2 mapDimensions = new Vector2(40, 60);
   [Export] public int totalSteps = 600;
-  [ExportToolButton("GenerateMap")] public Callable GenerateMapButton => Callable.From(GenerateMap);
+  [ExportToolButton("GenerateMap")] public Callable GenerateMapButton => Callable.From(ReGenerate);
 
   [Export] public Vector2I wallTileTop = new Vector2I(8, 0);
+<<<<<<< Updated upstream
   [Export] public Vector2I wallTileBottom = new Vector2I(0, 1);
   [Export] public Vector2I floorTile = new Vector2I(1, 1);
   private TileMapLayer _tileMapLayer;
 
   private int _roomSize = 20;
+=======
+  [Export] public Vector2I wallTileBottom = new Vector2I(0, 0);
+  [Export] public Vector2I floorTile = new Vector2I(1, 0);
+  private TileMapLayer _tileMapLayer;
+
+  private int _roomSize = 20;
+  private int _minRoomSize = 10;
+>>>>>>> Stashed changes
   private const int _width = 100;
   private const int _height = 100;
   private const int _maxRooms = 10;
@@ -32,11 +42,49 @@ public partial class WalkerGenerator : Node
 	grid = new List<List<int>>();
 
 	InitializeGrid();
+<<<<<<< Updated upstream
 
 	GenerateMap();
 
+=======
+	
+	GenerateMap();
+	
+>>>>>>> Stashed changes
 	DrawMap();
   }
+	
+	public void FlushDungeon()
+	{
+		grid = new List<List<int>>();
+		
+		InitializeGrid();
+		
+		rooms = new List<Rect2>();
+		
+		for (int x = 0; x < _width; x++)
+		{
+	  		for (int y = 0; y < _height; y++)
+			{
+				Vector2I tiles = new Vector2I(x, y);
+				_tileMapLayer.SetCell(tiles, 0, new Vector2I(-1, -1));
+			}
+		}
+	}
+	
+	public void OnRegenerate()
+	{
+		FlushDungeon();
+		
+		ReGenerate();
+	}
+	
+	public void ReGenerate()
+	{
+		GenerateMap();
+		
+		DrawMap();
+	}
 
   public void InitializeGrid()
   {
@@ -61,7 +109,11 @@ public partial class WalkerGenerator : Node
 	  {
 		if (rooms.Count > 0)
 		{
+<<<<<<< Updated upstream
 		  ConnectRooms(rooms[^1], room);
+=======
+		  ConnectRooms(rooms[rooms.Count - 1], room, 3);
+>>>>>>> Stashed changes
 		}
 		rooms.Add(room);
 		GD.Print(rooms.Count);
@@ -69,14 +121,21 @@ public partial class WalkerGenerator : Node
 	}
   }
 
-
   public Rect2 GenerateRoom()
   {
+<<<<<<< Updated upstream
 	int width = (int)_random.Next(10, _roomSize);
 	int height = (int)_random.Next(10, _roomSize);
 
 	int x = (int)(_random.NextInt64() % (_width - width - 1) + 1);
 	int y = (int)(_random.NextInt64() % (_height - height - 1) + 1);
+=======
+	int width = _random.Next(_minRoomSize, _roomSize);
+	int height = _random.Next(_minRoomSize, _roomSize);
+
+	int x = _random.Next() % (_width - width - 1) + 1;
+	int y = _random.Next() % (_height - height - 1) + 1;
+>>>>>>> Stashed changes
 
 	return new Rect2(x, y, width, height);
   }
@@ -173,12 +232,17 @@ public partial class WalkerGenerator : Node
 		Vector2I tiles = new Vector2I(x, y);
 		if (grid[x][y] == 0)
 		{
+<<<<<<< Updated upstream
 		  _tileMapLayer.SetCell(tiles, 0, floorTile);
+=======
+		  _tileMapLayer.SetCell(tiles, 1, floorTile);
+>>>>>>> Stashed changes
 		}
 		else if (grid[x][y] == 1)
 		{
 		  if (y < _height - 1 && grid[x][y + 1] == 0)
 		  {
+<<<<<<< Updated upstream
 			_tileMapLayer.SetCell(tiles, 0, wallTileBottom);
 		  }
 		  else if (y > 0 && grid[x][y - 1] == 0)
@@ -188,11 +252,26 @@ public partial class WalkerGenerator : Node
 		  else
 		  {
 			_tileMapLayer.SetCell(tiles, 0, new Vector2I(-1, -1));
+=======
+			_tileMapLayer.SetCell(tiles, 1, wallTileBottom);
+		  }
+		  else if (y > 0 && grid[x][y - 1] == 0)
+		  {
+			_tileMapLayer.SetCell(tiles, 1, wallTileTop);
+		  }
+		  else
+		  {
+			_tileMapLayer.SetCell(tiles, 1, new Vector2I(-1, -1));
+>>>>>>> Stashed changes
 		  }
 		}
 		else
 		{
+<<<<<<< Updated upstream
 		  _tileMapLayer.SetCell(tiles, 0, new Vector2I(-1, -1));
+=======
+		  _tileMapLayer.SetCell(tiles, 1, new Vector2I(-1, -1));
+>>>>>>> Stashed changes
 		}
 	  }
 	}
