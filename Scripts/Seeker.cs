@@ -75,11 +75,4 @@ public partial class Seeker : CharacterBody2D
 	{
 		Velocity = safeVelocity;
 	}
-	
-	public void OnCharacterCreation(Sprite2D ch)
-	{
-		
-	}
-	
-	
 }

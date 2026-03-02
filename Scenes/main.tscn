@@ -23,28 +23,8 @@ texture = ExtResource("1_jjgbg")
 5:0/0 = 0
 6:0/0 = 0
 7:0/0 = 0
-7:0/0/terrain_set = 0
-7:0/0/terrain = 1
-7:0/0/terrains_peering_bit/right_side = 1
-7:0/0/terrains_peering_bit/bottom_right_corner = 1
-7:0/0/terrains_peering_bit/bottom_side = 1
-7:0/0/terrains_peering_bit/bottom_left_corner = 1
-7:0/0/terrains_peering_bit/left_side = 1
-7:0/0/terrains_peering_bit/top_left_corner = 1
-7:0/0/terrains_peering_bit/top_side = 1
-7:0/0/terrains_peering_bit/top_right_corner = 1
 0:1/0 = 0
 1:1/0 = 0
-1:1/0/terrain_set = 0
-1:1/0/terrain = 0
-1:1/0/terrains_peering_bit/right_side = 0
-1:1/0/terrains_peering_bit/bottom_right_corner = 0
-1:1/0/terrains_peering_bit/bottom_side = 0
-1:1/0/terrains_peering_bit/bottom_left_corner = 0
-1:1/0/terrains_peering_bit/left_side = 0
-1:1/0/terrains_peering_bit/top_left_corner = 0
-1:1/0/terrains_peering_bit/top_side = 0
-1:1/0/terrains_peering_bit/top_right_corner = 0
 1:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_8gbba")
 2:1/0 = 0
 3:1/0 = 0
@@ -102,11 +82,38 @@ texture = ExtResource("1_jjgbg")
 6:7/0 = 0
 7:7/0 = 0
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_21xkr"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
+agent_radius = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6bp64"]
 texture = ExtResource("2_21xkr")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 1
+0:0/0/terrains_peering_bit/right_side = 1
+0:0/0/terrains_peering_bit/bottom_right_corner = 1
+0:0/0/terrains_peering_bit/bottom_side = 1
+0:0/0/terrains_peering_bit/bottom_left_corner = 1
+0:0/0/terrains_peering_bit/left_side = 1
+0:0/0/terrains_peering_bit/top_left_corner = 1
+0:0/0/terrains_peering_bit/top_side = 1
+0:0/0/terrains_peering_bit/top_right_corner = 1
 1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/terrains_peering_bit/right_side = 0
+1:0/0/terrains_peering_bit/bottom_right_corner = 0
+1:0/0/terrains_peering_bit/bottom_side = 0
+1:0/0/terrains_peering_bit/bottom_left_corner = 0
+1:0/0/terrains_peering_bit/left_side = 0
+1:0/0/terrains_peering_bit/top_left_corner = 0
+1:0/0/terrains_peering_bit/top_side = 0
+1:0/0/terrains_peering_bit/top_right_corner = 0
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_21xkr")
 2:0/0 = 0
 3:0/0 = 0
 0:1/0 = 0
@@ -139,7 +146,6 @@ position = Vector2(16, 16)
 position = Vector2(64.25, 96.25)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1139282717]
-visible = false
 anchor_mode = 0
 
 [node name="WalkerGenerator" type="Node" parent="." unique_id=1014205626]
