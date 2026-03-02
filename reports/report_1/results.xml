@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites id="2026-03-02" name="report_1" tests="5" failures="0" skipped="0" flaky="0" time="0.000">
+	<testsuite id="0" name="SeekerTest" package="test" timestamp="2026-03-02T19:33:56" hostname="localhost" tests="5" failures="0" errors="0" skipped="0" flaky="0" time="0.082">
+		<testcase name="TestAcquireTarget_Logic" classname="ADC.Tests.SeekerTest" time="0.039">
+		</testcase>
+		<testcase name="TestMovement_VelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.005">
+		</testcase>
+		<testcase name="TestMovement2_VelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.000">
+		</testcase>
+		<testcase name="testWhatIfThereIsNoTarget" classname="ADC.Tests.SeekerTest" time="0.000">
+		</testcase>
+		<testcase name="testWhatIfTheTargetPosIsTheCurrentPos" classname="ADC.Tests.SeekerTest" time="0.000">
+		</testcase>
+	</testsuite>
+</testsuites>
