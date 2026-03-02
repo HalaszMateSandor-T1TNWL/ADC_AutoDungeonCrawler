@@ -22,9 +22,28 @@ texture = ExtResource("1_jjgbg")
 5:0/0 = 0
 6:0/0 = 0
 7:0/0 = 0
+7:0/0/terrain_set = 0
+7:0/0/terrain = 1
+7:0/0/terrains_peering_bit/right_side = 1
+7:0/0/terrains_peering_bit/bottom_right_corner = 1
+7:0/0/terrains_peering_bit/bottom_side = 1
+7:0/0/terrains_peering_bit/bottom_left_corner = 1
+7:0/0/terrains_peering_bit/left_side = 1
+7:0/0/terrains_peering_bit/top_left_corner = 1
+7:0/0/terrains_peering_bit/top_side = 1
+7:0/0/terrains_peering_bit/top_right_corner = 1
 0:1/0 = 0
 1:1/0 = 0
 1:1/0/terrain_set = 0
+1:1/0/terrain = 0
+1:1/0/terrains_peering_bit/right_side = 0
+1:1/0/terrains_peering_bit/bottom_right_corner = 0
+1:1/0/terrains_peering_bit/bottom_side = 0
+1:1/0/terrains_peering_bit/bottom_left_corner = 0
+1:1/0/terrains_peering_bit/left_side = 0
+1:1/0/terrains_peering_bit/top_left_corner = 0
+1:1/0/terrains_peering_bit/top_side = 0
+1:1/0/terrains_peering_bit/top_right_corner = 0
 1:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_8gbba")
 2:1/0 = 0
 3:1/0 = 0
@@ -99,11 +118,9 @@ tile_set = SubResource("TileSet_kry3j")
 script = ExtResource("2_jjvhh")
 
 [node name="Player" parent="." unique_id=28115319 instance=ExtResource("2_bo1nx")]
-visible = false
 position = Vector2(16, 16)
 
 [node name="Enemy" parent="." unique_id=457126724 instance=ExtResource("3_8gbba")]
-visible = false
 position = Vector2(64.25, 96.25)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1139282717]

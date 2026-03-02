@@ -12,7 +12,7 @@ public partial class WalkerGenerator : Node
 
   [Export] public Vector2I wallTileTop = new Vector2I(8, 0);
   [Export] public Vector2I wallTileBottom = new Vector2I(0, 1);
-  [Export] public Vector2I floorTile = new Vector2I(2, 3);
+  [Export] public Vector2I floorTile = new Vector2I(1, 1);
   private TileMapLayer _tileMapLayer;
 
   private int _roomSize = 20;
@@ -72,8 +72,8 @@ public partial class WalkerGenerator : Node
 
   public Rect2 GenerateRoom()
   {
-	int width = (int)_random.NextInt64() % _roomSize;
-	int height = (int)_random.NextInt64() % _roomSize;
+	int width = (int)_random.Next(10, _roomSize);
+	int height = (int)_random.Next(10, _roomSize);
 
 	int x = (int)(_random.NextInt64() % (_width - width - 1) + 1);
 	int y = (int)(_random.NextInt64() % (_height - height - 1) + 1);
