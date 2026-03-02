@@ -7,6 +7,8 @@ public partial class Seeker : CharacterBody2D
 	[Export] public float moveSpeed = 50.0f;
 	
 	private Node2D _target = null;
+	//needed for testing
+	public Node2D CurrentTarget => _target;
 	
 	private NavigationAgent2D _navigationAgent = null;
 	
@@ -23,22 +25,36 @@ public partial class Seeker : CharacterBody2D
 			_navigationAgent.TargetPosition = _target.GlobalPosition;
 	}
 	
-	public void AcquireTarget()
+	// Martin: I changed it bc thats the only way I could make the tests work
+	public void AcquireTarget(Node customTargetContainer = null)
 	{
-		if(GetTree().GetNodesInGroup("enemy").Count != 0)
+		Node targetContainer = customTargetContainer;
+
+		if (targetContainer == null)
 		{
-			var targetContainer = GetTree().GetNodesInGroup("enemy")[0];
-		
+			var tree = GetTree();
+			if (tree != null && tree.GetNodesInGroup("enemy").Count > 0)
+			{
+				targetContainer = tree.GetNodesInGroup("enemy")[0];
+			}
+		}
+		if (targetContainer != null)
+		{
 			var targets = targetContainer.GetChildren();
-			
-			if(!(targets == null) || !(targets.Count == 0))
+			if (targets != null && targets.Count > 0)
 			{
 				var newTarget = targets[0];
 				_target = (Node2D)newTarget;
 			}
 		}
 	}
-	
+
+	//for testing again
+	public Vector2 CalculateVelocityToTarget(Vector2 currentPosition, Vector2 targetPosition)
+	{
+		return currentPosition.DirectionTo(targetPosition) * moveSpeed;
+	}
+
 	public override void _PhysicsProcess(double delta)
 	{
 		if(IsInstanceValid(_target))
@@ -57,9 +73,10 @@ public partial class Seeker : CharacterBody2D
 		
 		var currentAgentPosition = this.GlobalPosition;
 		var nextPathPosition = _navigationAgent.GetNextPathPosition();
-		Vector2 newVelocity = currentAgentPosition.DirectionTo(nextPathPosition) * moveSpeed;
-		
-		if(_navigationAgent.AvoidanceEnabled)
+		//this way the test actually shows if there is a problem
+		Vector2 newVelocity = CalculateVelocityToTarget(currentAgentPosition, nextPathPosition);
+
+		if (_navigationAgent.AvoidanceEnabled)
 		{
 			_navigationAgent.SetVelocity(newVelocity);
 		}
@@ -80,6 +97,6 @@ public partial class Seeker : CharacterBody2D
 	{
 		
 	}
-	
-	
+
+
 }
