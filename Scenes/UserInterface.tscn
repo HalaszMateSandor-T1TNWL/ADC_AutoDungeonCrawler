@@ -1,0 +1,393 @@
+[gd_scene format=3 uid="uid://dvxdainfr70kf"]
+
+[ext_resource type="Texture2D" uid="uid://day8lvp3djji6" path="res://ConceptArt/UI/background_test.jpg" id="1_ofew4"]
+[ext_resource type="Texture2D" uid="uid://b8shlwi2ucfoi" path="res://ConceptArt/UI/undo.png" id="2_guah6"]
+[ext_resource type="Texture2D" uid="uid://3kwku2ttdfrh" path="res://ConceptArt/UI/DragonIcon.png" id="3_ug47o"]
+[ext_resource type="Texture2D" uid="uid://5xq58xjhvhr7" path="res://ConceptArt/UI/setting-lines.png" id="4_ug47o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofew4"]
+bg_color = Color(0.14901961, 0.02745098, 0.10980392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ty2sy"]
+bg_color = Color(0.11764706, 0.0627451, 0.09803922, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_guah6"]
+bg_color = Color(0.14901961, 0.02745098, 0.10980392, 0.85490197)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ug47o"]
+bg_color = Color(0.11764706, 0.0627451, 0.09803922, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k4v2d"]
+bg_color = Color(0.14901961, 0.02745098, 0.10980392, 0.85490197)
+
+[node name="Control" type="Control" unique_id=1326013840]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -576.0
+offset_bottom = -324.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackGround" type="TextureRect" parent="." unique_id=1116219982]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ofew4")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1060952502]
+anchor_mode = 0
+zoom = Vector2(2, 2)
+
+[node name="BuyLevelButtonAndLevelViewer" type="Button" parent="." unique_id=2074687564]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -54.0
+offset_right = 54.0
+grow_vertical = 0
+
+[node name="LevelButtonBox" type="VBoxContainer" parent="BuyLevelButtonAndLevelViewer" unique_id=491799517]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CurrentLevelViewer" type="Label" parent="BuyLevelButtonAndLevelViewer/LevelButtonBox" unique_id=2048694593]
+layout_mode = 2
+text = "10"
+horizontal_alignment = 1
+
+[node name="ToNextLevelProgress" type="ProgressBar" parent="BuyLevelButtonAndLevelViewer/LevelButtonBox" unique_id=705657243]
+layout_mode = 2
+
+[node name="OpenCloseShopButton" type="Button" parent="." unique_id=1897564802]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -54.0
+offset_top = -54.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Shop"
+
+[node name="StartNextLevelButton" type="Button" parent="." unique_id=504075143]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -102.0
+offset_bottom = -66.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Next Level"
+
+[node name="OwnedEquipment" type="Panel" parent="." unique_id=1300860266]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 54.0
+offset_top = -54.0
+offset_right = -54.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ofew4")
+
+[node name="EquipmentMargin" type="MarginContainer" parent="OwnedEquipment" unique_id=949779741]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="OwnedEquipment/EquipmentMargin" unique_id=1115776514]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Equipment1" type="Panel" parent="OwnedEquipment/EquipmentMargin/HBoxContainer" unique_id=1012412497]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ty2sy")
+
+[node name="Equipment2" type="Panel" parent="OwnedEquipment/EquipmentMargin/HBoxContainer" unique_id=1998624448]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ty2sy")
+
+[node name="Equipment3" type="Panel" parent="OwnedEquipment/EquipmentMargin/HBoxContainer" unique_id=287387881]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ty2sy")
+
+[node name="Equipment4" type="Panel" parent="OwnedEquipment/EquipmentMargin/HBoxContainer" unique_id=2063496792]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ty2sy")
+
+[node name="Equipment5" type="Panel" parent="OwnedEquipment/EquipmentMargin/HBoxContainer" unique_id=208147520]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ty2sy")
+
+[node name="Equipment6" type="Panel" parent="OwnedEquipment/EquipmentMargin/HBoxContainer" unique_id=266253455]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ty2sy")
+
+[node name="Equipment7" type="Panel" parent="OwnedEquipment/EquipmentMargin/HBoxContainer" unique_id=1972688266]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ty2sy")
+
+[node name="Equipment8" type="Panel" parent="OwnedEquipment/EquipmentMargin/HBoxContainer" unique_id=80548259]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ty2sy")
+
+[node name="Equipment9" type="Panel" parent="OwnedEquipment/EquipmentMargin/HBoxContainer" unique_id=1195201639]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ty2sy")
+
+[node name="Shop" type="PopupPanel" parent="." unique_id=1633052337]
+oversampling_override = 1.0
+size = Vector2i(576, 120)
+theme_override_styles/panel = SubResource("StyleBoxFlat_guah6")
+
+[node name="MarginContainer" type="MarginContainer" parent="Shop" unique_id=1372352686]
+offset_right = 576.0
+offset_bottom = 120.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/MarginContainer" unique_id=1843948447]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Shop/MarginContainer/VBoxContainer" unique_id=2005059164]
+layout_mode = 2
+text = "Shop"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Shop/MarginContainer/VBoxContainer" unique_id=1598181278]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="ShopItem1" type="Panel" parent="Shop/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1163565455]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ug47o")
+
+[node name="ShopItem2" type="Panel" parent="Shop/MarginContainer/VBoxContainer/HBoxContainer" unique_id=821951644]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ug47o")
+
+[node name="ShopItem3" type="Panel" parent="Shop/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2070510719]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ug47o")
+
+[node name="ShopItem4" type="Panel" parent="Shop/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2028531040]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ug47o")
+
+[node name="ShopItem5" type="Panel" parent="Shop/MarginContainer/VBoxContainer/HBoxContainer" unique_id=385410166]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ug47o")
+
+[node name="ShopItem6" type="Panel" parent="Shop/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1153055597]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ug47o")
+
+[node name="ResetLockPopupShopButton" type="PopupPanel" parent="." unique_id=511558280]
+oversampling_override = 1.0
+position = Vector2i(468, 120)
+size = Vector2i(108, 59)
+theme_override_styles/panel = SubResource("StyleBoxFlat_k4v2d")
+
+[node name="ResetLockPopupShopMargin" type="MarginContainer" parent="ResetLockPopupShopButton" unique_id=875125322]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResetLockPopupBox" type="HBoxContainer" parent="ResetLockPopupShopButton/ResetLockPopupShopMargin" unique_id=273048067]
+layout_mode = 2
+
+[node name="LockShopBox" type="VBoxContainer" parent="ResetLockPopupShopButton/ResetLockPopupShopMargin/ResetLockPopupBox" unique_id=1988841843]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LockShop" type="Label" parent="ResetLockPopupShopButton/ResetLockPopupShopMargin/ResetLockPopupBox/LockShopBox" unique_id=2045101127]
+layout_mode = 2
+text = "Lock"
+horizontal_alignment = 1
+
+[node name="LockShopButton" type="CheckButton" parent="ResetLockPopupShopButton/ResetLockPopupShopMargin/ResetLockPopupBox/LockShopBox" unique_id=472771251]
+layout_mode = 2
+
+[node name="ResetShopButton" type="Button" parent="ResetLockPopupShopButton/ResetLockPopupShopMargin/ResetLockPopupBox" unique_id=1819873373]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ResetShopIcon" type="TextureRect" parent="ResetLockPopupShopButton/ResetLockPopupShopMargin/ResetLockPopupBox/ResetShopButton" unique_id=1184500620]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_guah6")
+expand_mode = 1
+
+[node name="SetBonusViewer" type="Panel" parent="." unique_id=1952810635]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 48.0
+offset_right = 54.0
+offset_bottom = -66.0
+grow_vertical = 2
+
+[node name="SetBonusMargin" type="MarginContainer" parent="SetBonusViewer" unique_id=880963389]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SetBonusScroll" type="ScrollContainer" parent="SetBonusViewer/SetBonusMargin" unique_id=1206247746]
+layout_mode = 2
+
+[node name="SetBonusBox" type="VBoxContainer" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll" unique_id=1447799752]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Icon1" type="Button" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox" unique_id=381458469]
+custom_minimum_size = Vector2(46, 46)
+layout_mode = 2
+
+[node name="DragonIcon" type="TextureRect" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox/Icon1" unique_id=975075047]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ug47o")
+expand_mode = 1
+
+[node name="Icon2" type="Button" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox" unique_id=541741373]
+custom_minimum_size = Vector2(46, 46)
+layout_mode = 2
+
+[node name="DragonIcon" type="TextureRect" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox/Icon2" unique_id=1328761347]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ug47o")
+expand_mode = 1
+
+[node name="Icon3" type="Button" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox" unique_id=1486026187]
+custom_minimum_size = Vector2(46, 46)
+layout_mode = 2
+
+[node name="DragonIcon" type="TextureRect" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox/Icon3" unique_id=534568973]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ug47o")
+expand_mode = 1
+
+[node name="Icon4" type="Button" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox" unique_id=416988902]
+custom_minimum_size = Vector2(46, 46)
+layout_mode = 2
+
+[node name="DragonIcon" type="TextureRect" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox/Icon4" unique_id=979635292]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ug47o")
+expand_mode = 1
+
+[node name="Icon5" type="Button" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox" unique_id=397301855]
+custom_minimum_size = Vector2(46, 46)
+layout_mode = 2
+
+[node name="DragonIcon" type="TextureRect" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox/Icon5" unique_id=1595442495]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ug47o")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=869831275]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -54.0
+offset_bottom = 54.0
+grow_horizontal = 0
+texture = ExtResource("4_ug47o")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="TextureRect" unique_id=471802880]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=1253903376]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.33331
+offset_top = -103.125
+offset_right = 183.33331
+offset_bottom = 103.125
+grow_horizontal = 2
+grow_vertical = 2
