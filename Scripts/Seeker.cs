@@ -1,28 +1,70 @@
 using Godot;
+using Godot.Collections;
 using System;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 public partial class Seeker : CharacterBody2D
 {
-	[Export] public float moveSpeed = 50.0f;
+	[Export] public float moveSpeed = 1.0f;
+	
+	private AStarGrid2D _astar;
+	private TileMapLayer _tileMap;
+	private bool _isMoving;
+	private Vector2 _targetPosition;
+	
+	private Array<Vector2I> _currentIdPath; 
 	
 	private Node2D _target = null;
 	//needed for testing
 	public Node2D CurrentTarget => _target;
 	
-	private NavigationAgent2D _navigationAgent = null;
+	//private NavigationAgent2D _navigationAgent = null;
 	
 	public override void _Ready()
 	{
-		_navigationAgent = GetNode<NavigationAgent2D>($"NavigationAgent2D");
-		SeekerSetup();
+		_tileMap = GetNode<TileMapLayer>($"../TileMapLayer");
+		if(_tileMap == null)
+		{
+			GD.Print("Whoops! No tilemap for some reason!");
+			return;
+		}
+		
+		_currentIdPath = new Array<Vector2I>();
+		
+		_astar = new AStarGrid2D();
+		_astar.Region = _tileMap.GetUsedRect();
+		_astar.CellSize = new Vector2I(32, 32);
+		_astar.DiagonalMode = AStarGrid2D.DiagonalModeEnum.Never;
+		_astar.Update();
+
+		if(!_astar.Region.HasPoint(_tileMap.LocalToMap(this.GlobalPosition)))
+		{
+			QueueFree();
+		}
+		SetTileMapData();
 	}
 	
-	public async Task SeekerSetup()
+	public void SetTileMapData()
 	{
-		await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
-		if(_target != null)
-			_navigationAgent.TargetPosition = _target.GlobalPosition;
+		for(int x = 0; x < _tileMap.GetUsedRect().Size.X; x++)
+		{
+			for(int y = 0; y < _tileMap.GetUsedRect().Size.Y; y++)
+			{	
+				Vector2I tilePosition = new Vector2I(
+					x + _tileMap.GetUsedRect().Position.X,
+					y + _tileMap.GetUsedRect().Position.Y
+				);
+
+				//TileData tileData = _tileMap.GetCellTileData(tilePosition);
+
+				if(_tileMap.GetCellTileData(tilePosition) == null || (bool)_tileMap.GetCellTileData(tilePosition).GetCustomData("Walkable") == false)
+				{
+					_astar.SetPointSolid(tilePosition);
+				}
+			}
+		}
 	}
 	
 	// Martin: I changed it bc thats the only way I could make the tests work
@@ -30,18 +72,18 @@ public partial class Seeker : CharacterBody2D
 	{
 		Node targetContainer = customTargetContainer;
 
-		if (targetContainer == null)
+		if(targetContainer == null)
 		{
-			var tree = GetTree();
-			if (tree != null && tree.GetNodesInGroup("enemy").Count > 0)
+			SceneTree tree = GetTree();
+			if(tree != null && tree.GetNodesInGroup("enemy").Count > 0)
 			{
-				targetContainer = tree.GetNodesInGroup("enemy")[0];
+				targetContainer = tree.GetFirstNodeInGroup("enemy");
 			}
 		}
-		if (targetContainer != null)
+		if(targetContainer != null)
 		{
 			var targets = targetContainer.GetChildren();
-			if (targets != null && targets.Count > 0)
+			if(targets != null && targets.Count > 0)
 			{
 				var newTarget = targets[0];
 				_target = (Node2D)newTarget;
@@ -55,41 +97,63 @@ public partial class Seeker : CharacterBody2D
 		return currentPosition.DirectionTo(targetPosition) * moveSpeed;
 	}
 
-	public override void _PhysicsProcess(double delta)
+	public override void _Process(double delta)
 	{
-		if(IsInstanceValid(_target))
+		Array<Vector2I> idPath = new Array<Vector2I>();
+
+		if(IsInstanceValid(_target) && _isMoving == false)
 		{
-			_navigationAgent.TargetPosition = _target.GlobalPosition;
+			Vector2I currentAgentPosition = _tileMap.LocalToMap(this.GlobalPosition);
+			Vector2I targetPosition = _tileMap.LocalToMap(_target.GlobalPosition);
+
+			idPath = _astar.GetIdPath(currentAgentPosition, targetPosition, true).Slice(0);
+		}
+		else if(IsInstanceValid(_target) && _isMoving == true)
+		{
+			AcquireTarget();
+
+			Vector2I currentAgentPosition = _tileMap.LocalToMap(this.GlobalPosition);
+			Vector2I targetPosition = _tileMap.LocalToMap(_target.GlobalPosition);
+
+			idPath = _astar.GetIdPath(currentAgentPosition, targetPosition);
 		}
 		else
 		{
 			AcquireTarget();
 		}
-		
-		if(_navigationAgent.IsNavigationFinished())
-		{
-			return;
-		}
-		
-		var currentAgentPosition = this.GlobalPosition;
-		var nextPathPosition = _navigationAgent.GetNextPathPosition();
-		//this way the test actually shows if there is a problem
-		Vector2 newVelocity = CalculateVelocityToTarget(currentAgentPosition, nextPathPosition);
 
-		if (_navigationAgent.AvoidanceEnabled)
+		if(idPath.Count > 0)
 		{
-			_navigationAgent.SetVelocity(newVelocity);
+			_currentIdPath = idPath;
 		}
-		else
-		{
-			OnNavigationAgent2DVelocityComputed(newVelocity);
-		}
-		
-		MoveAndSlide();
 	}
-	
-	public void OnNavigationAgent2DVelocityComputed(Vector2 safeVelocity)
+
+	public override void _PhysicsProcess(double delta)
 	{
-		Velocity = safeVelocity;
+		if(_currentIdPath.Count <= 0)
+			return;
+
+		if(_isMoving == false)
+		{
+			_targetPosition = _tileMap.MapToLocal(_currentIdPath.First());
+			_isMoving = true;
+		}
+
+		//this way the test actually shows if there is a problem
+		this.GlobalPosition = this.GlobalPosition.MoveToward(_targetPosition, moveSpeed * (float)delta);
+		
+
+		if(this.GlobalPosition == _targetPosition)
+		{
+			_currentIdPath.Remove(_currentIdPath.First());
+
+			if(_currentIdPath.Count > 0)
+			{
+
+				_targetPosition = _tileMap.MapToLocal(_currentIdPath.First());
+			}
+			else
+				_isMoving = false;
+		}
 	}
 }

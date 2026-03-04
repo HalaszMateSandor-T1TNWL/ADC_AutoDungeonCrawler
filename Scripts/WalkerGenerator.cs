@@ -4,14 +4,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 
-[Tool]
 public partial class WalkerGenerator : Node
 {
   [Export] public Vector2 mapDimensions = new Vector2(40, 60);
   [Export] public int totalSteps = 600;
-  [ExportToolButton("GenerateMap")] public Callable GenerateMapButton => Callable.From(ReGenerate);
 
-  [Export] public Vector2I wallTileTop = new Vector2I(8, 0);
+  [Export] public Vector2I wallTileTop = new Vector2I(-1, -1);
   [Export] public Vector2I wallTileBottom = new Vector2I(0, 0);
   [Export] public Vector2I floorTile = new Vector2I(1, 0);
   private TileMapLayer _tileMapLayer;
@@ -230,7 +228,4 @@ public partial class WalkerGenerator : Node
 	  }
 	}
   }
-
-
-
 }
