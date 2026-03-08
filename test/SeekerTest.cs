@@ -165,7 +165,6 @@ namespace ADC.Tests
 
 			AssertThat(seeker.CurrentTarget).IsNull();
 
-			// Takarítás
 			testRoot.QueueFree();
 		}
 	}

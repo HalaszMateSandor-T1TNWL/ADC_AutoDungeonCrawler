@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites id="2026-03-02" name="report_1" tests="5" failures="0" skipped="0" flaky="0" time="0.000">
-<<<<<<< HEAD
-	<testsuite id="0" name="SeekerTest" package="test" timestamp="2026-03-02T18:18:24" hostname="localhost" tests="5" failures="0" errors="0" skipped="0" flaky="0" time="0.295">
-		<testcase name="TestAcquireTarget_Logic" classname="ADC.Tests.SeekerTest" time="0.165">
+<testsuites id="2026-03-08" name="report_1" tests="7" failures="2" skipped="0" flaky="0" time="0.000">
+	<testsuite id="0" name="SeekerTest" package="test" timestamp="2026-03-08T21:30:42" hostname="localhost" tests="7" failures="2" errors="0" skipped="0" flaky="0" time="0.163">
+		<testcase name="TestAcquireTargetLogic" classname="ADC.Tests.SeekerTest" time="0.054">
 		</testcase>
-		<testcase name="TestMovement_VelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.012">
+		<testcase name="TestMovementVelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.001">
 		</testcase>
-		<testcase name="TestMovement2_VelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.003">
+		<testcase name="TestMovement2VelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.000">
 		</testcase>
-		<testcase name="testWhatIfThereIsNoTarget" classname="ADC.Tests.SeekerTest" time="0.004">
-=======
-	<testsuite id="0" name="SeekerTest" package="test" timestamp="2026-03-02T19:33:56" hostname="localhost" tests="5" failures="0" errors="0" skipped="0" flaky="0" time="0.082">
-		<testcase name="TestAcquireTarget_Logic" classname="ADC.Tests.SeekerTest" time="0.039">
+		<testcase name="testWhatIfThereIsNoTarget" classname="ADC.Tests.SeekerTest" time="0.006">
 		</testcase>
-		<testcase name="TestMovement_VelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.005">
+		<testcase name="testWhatIfTheTargetPosIsTheCurrentPos" classname="ADC.Tests.SeekerTest" time="0.002">
 		</testcase>
-		<testcase name="TestMovement2_VelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.000">
+		<testcase name="testTargetSelectionByDistance" classname="ADC.Tests.SeekerTest" time="0.025">
+			<failure message="FAILED: res://test/SeekerTest.cs:123" type="FAILURE">
+<![CDATA[
+Expecting be equal:
+    <Godot.Node2D> (objId: 113564976868) but is <Godot.Node2D> (objId: 113548199651)
+]]>
+			</failure>
 		</testcase>
-		<testcase name="testWhatIfThereIsNoTarget" classname="ADC.Tests.SeekerTest" time="0.000">
->>>>>>> main
-		</testcase>
-		<testcase name="testWhatIfTheTargetPosIsTheCurrentPos" classname="ADC.Tests.SeekerTest" time="0.001">
+		<testcase name="testTargetSelectionIgnoresEnemyBehindWall" classname="ADC.Tests.SeekerTest" time="0.025">
+			<failure message="FAILED: res://test/SeekerTest.cs:166" type="FAILURE">
+<![CDATA[
+Expecting be <Null>:
+ but is
+    <Godot.Node2D> (objId: 113850189547)
+]]>
+			</failure>
 		</testcase>
 	</testsuite>
 </testsuites>
