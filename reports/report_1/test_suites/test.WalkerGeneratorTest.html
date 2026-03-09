@@ -34,12 +34,12 @@
 		<div class="report-container">
 			<h1>Testsuite Report</h1>
 			<div>
-				<span class="label">res://test/SeekerTest.cs</span>
+				<span class="label">res://test/WalkerGeneratorTest.cs</span>
 			</div>
 			<div class="summary">
 				<div class="summary-item">
 					<span class="label">Tests</span>
-					<span class="value">7</span>
+					<span class="value">6</span>
 				</div>
 				<div class="summary-item">
 					<span class="label">Skipped</span>
@@ -51,7 +51,7 @@
 				</div>
 				<div class="summary-item">
 					<span class="label">Failures</span>
-					<span class="value">2</span>
+					<span class="value">0</span>
 				</div>
 				<div class="summary-item">
 					<span class="label">Orphans</span>
@@ -59,13 +59,13 @@
 				</div>
 				<div class="summary-item">
 					<span class="label">Duration</span>
-					<span class="value">156ms</span>
+					<span class="value">16ms</span>
 				</div>
 				<div class="success-rate">
-					<div class="check-icon status-failed">✓</div>
+					<div class="check-icon status-passed">✓</div>
 					<div class="rate-text">
 						<span class="label">Success Rate</span>
-						<span class="value">71%</span>
+						<span class="value">100%</span>
 					</div>
 				</div>
 			</div>
@@ -73,7 +73,7 @@
 		<div class="breadcrumb">
 			<a href="../index.html"><span>All</span></a>
 			<a href="../path/test.html"><span>test</span></a>
-			<a class="active" href="#"><span>SeekerTest</span></a>
+			<a class="active" href="#"><span>WalkerGeneratorTest</span></a>
 		</div>
 	</header>
 
@@ -94,11 +94,11 @@
 					<tbody>
 						
 								<tr class="testcase-group">
-									<td>TestAcquireTargetLogic</td>
+									<td>TestIfInitializeGridGeneratesCorrectDimensions</td>
 									<td><span class="status status-passed">PASSED</span></td>
 									<td>0</td>
 									<td>0</td>
-									<td>50ms</td>
+									<td>8ms</td>
 									<td class="report-column">
 										<pre>
 
@@ -108,7 +108,21 @@
 
 
 								<tr class="testcase-group">
-									<td>TestMovementVelocityPointsToTarget</td>
+									<td>TestIfGenerateRoomRespectsSizeBoundaries</td>
+									<td><span class="status status-passed">PASSED</span></td>
+									<td>0</td>
+									<td>0</td>
+									<td>1ms</td>
+									<td class="report-column">
+										<pre>
+
+										</pre>
+									</td>
+								</tr>
+
+
+								<tr class="testcase-group">
+									<td>TestIfPlaceRoomMakesValidRoom</td>
 									<td><span class="status status-passed">PASSED</span></td>
 									<td>0</td>
 									<td>0</td>
@@ -122,7 +136,7 @@
 
 
 								<tr class="testcase-group">
-									<td>TestMovement2VelocityPointsToTarget</td>
+									<td>TestIfPlaceRoomGivesFalseToOverlappingRooms</td>
 									<td><span class="status status-passed">PASSED</span></td>
 									<td>0</td>
 									<td>0</td>
@@ -136,21 +150,7 @@
 
 
 								<tr class="testcase-group">
-									<td>testWhatIfThereIsNoTarget</td>
-									<td><span class="status status-passed">PASSED</span></td>
-									<td>0</td>
-									<td>0</td>
-									<td>5ms</td>
-									<td class="report-column">
-										<pre>
-
-										</pre>
-									</td>
-								</tr>
-
-
-								<tr class="testcase-group">
-									<td>testWhatIfTheTargetPosIsTheCurrentPos</td>
+									<td>TestPlaceRoomIfExactNumberOfCellsAreCarved</td>
 									<td><span class="status status-passed">PASSED</span></td>
 									<td>0</td>
 									<td>0</td>
@@ -164,32 +164,13 @@
 
 
 								<tr class="testcase-group">
-									<td>testTargetSelectionByDistance</td>
-									<td><span class="status status-failed">FAILED</span></td>
+									<td>TestConnectRoomsCreatesFloorPathBetweenRooms</td>
+									<td><span class="status status-passed">PASSED</span></td>
 									<td>0</td>
 									<td>0</td>
-									<td>23ms</td>
+									<td>0ms</td>
 									<td class="report-column">
 										<pre>
-line 123: Expecting be equal:
-    <Godot.Node2D> (objId: 113967630054) but is <Godot.Node2D> (objId: 113950852842)
-
-										</pre>
-									</td>
-								</tr>
-
-
-								<tr class="testcase-group">
-									<td>testTargetSelectionIgnoresEnemyBehindWall</td>
-									<td><span class="status status-failed">FAILED</span></td>
-									<td>0</td>
-									<td>0</td>
-									<td>21ms</td>
-									<td class="report-column">
-										<pre>
-line 166: Expecting be <Null>:
- but is
-    <Godot.Node2D> (objId: 114252842743)
 
 										</pre>
 									</td>

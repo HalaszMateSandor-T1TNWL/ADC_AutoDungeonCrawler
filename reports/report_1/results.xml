@@ -1,15 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites id="2026-03-02" name="report_1" tests="5" failures="0" skipped="0" flaky="0" time="0.000">
-	<testsuite id="0" name="SeekerTest" package="test" timestamp="2026-03-02T19:33:56" hostname="localhost" tests="5" failures="0" errors="0" skipped="0" flaky="0" time="0.082">
-		<testcase name="TestAcquireTarget_Logic" classname="ADC.Tests.SeekerTest" time="0.039">
+<testsuites id="2026-03-09" name="report_1" tests="13" failures="2" skipped="0" flaky="0" time="0.000">
+	<testsuite id="0" name="SeekerTest" package="test" timestamp="2026-03-09T12:15:24" hostname="localhost" tests="7" failures="2" errors="0" skipped="0" flaky="0" time="0.156">
+		<testcase name="TestAcquireTargetLogic" classname="ADC.Tests.SeekerTest" time="0.050">
 		</testcase>
-		<testcase name="TestMovement_VelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.005">
+		<testcase name="TestMovementVelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.002">
 		</testcase>
-		<testcase name="TestMovement2_VelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.000">
+		<testcase name="TestMovement2VelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.000">
 		</testcase>
-		<testcase name="testWhatIfThereIsNoTarget" classname="ADC.Tests.SeekerTest" time="0.000">
+		<testcase name="testWhatIfThereIsNoTarget" classname="ADC.Tests.SeekerTest" time="0.005">
 		</testcase>
 		<testcase name="testWhatIfTheTargetPosIsTheCurrentPos" classname="ADC.Tests.SeekerTest" time="0.000">
+		</testcase>
+		<testcase name="testTargetSelectionByDistance" classname="ADC.Tests.SeekerTest" time="0.023">
+			<failure message="FAILED: res://test/SeekerTest.cs:123" type="FAILURE">
+<![CDATA[
+Expecting be equal:
+    <Godot.Node2D> (objId: 113967630054) but is <Godot.Node2D> (objId: 113950852842)
+]]>
+			</failure>
+		</testcase>
+		<testcase name="testTargetSelectionIgnoresEnemyBehindWall" classname="ADC.Tests.SeekerTest" time="0.021">
+			<failure message="FAILED: res://test/SeekerTest.cs:166" type="FAILURE">
+<![CDATA[
+Expecting be <Null>:
+ but is
+    <Godot.Node2D> (objId: 114252842743)
+]]>
+			</failure>
+		</testcase>
+	</testsuite>
+	<testsuite id="1" name="WalkerGeneratorTest" package="test" timestamp="2026-03-09T12:15:24" hostname="localhost" tests="6" failures="0" errors="0" skipped="0" flaky="0" time="0.016">
+		<testcase name="TestIfInitializeGridGeneratesCorrectDimensions" classname="ADC.Tests.WalkerGeneratorTest" time="0.008">
+		</testcase>
+		<testcase name="TestIfGenerateRoomRespectsSizeBoundaries" classname="ADC.Tests.WalkerGeneratorTest" time="0.001">
+		</testcase>
+		<testcase name="TestIfPlaceRoomMakesValidRoom" classname="ADC.Tests.WalkerGeneratorTest" time="0.002">
+		</testcase>
+		<testcase name="TestIfPlaceRoomGivesFalseToOverlappingRooms" classname="ADC.Tests.WalkerGeneratorTest" time="0.000">
+		</testcase>
+		<testcase name="TestPlaceRoomIfExactNumberOfCellsAreCarved" classname="ADC.Tests.WalkerGeneratorTest" time="0.000">
+		</testcase>
+		<testcase name="TestConnectRoomsCreatesFloorPathBetweenRooms" classname="ADC.Tests.WalkerGeneratorTest" time="0.000">
 		</testcase>
 	</testsuite>
 </testsuites>
