@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://be8qbmt0fe144" path="res://Scenes/Player.tscn" id="2_bo1nx"]
 [ext_resource type="Script" uid="uid://c7mmr22asbq0d" path="res://Scenes/TileMapLayer.cs" id="2_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://cohiqpndtgam" path="res://Scenes/enemy.tscn" id="3_8gbba"]
-[ext_resource type="PackedScene" uid="uid://dfof51i28i8qr" path="res://Scenes/HealthBar.tscn" id="4_kry3j"]
+[ext_resource type="Script" uid="uid://co8popaokgwjj" path="res://Scenes/EnemyHealthBar.cs" id="6_344ge"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8gbba"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -102,23 +102,14 @@ script = ExtResource("2_jjvhh")
 [node name="Player" parent="." unique_id=28115319 instance=ExtResource("2_bo1nx")]
 position = Vector2(16, 16)
 
-[node name="HealthBar" parent="Player" unique_id=1211753225 instance=ExtResource("4_kry3j")]
-value = 100.0
-
 [node name="Enemy" parent="." unique_id=457126724 instance=ExtResource("3_8gbba")]
 position = Vector2(64.25, 96.25)
-
-[node name="HealthBar" parent="Enemy" unique_id=1045836829 instance=ExtResource("4_kry3j")]
-offset_left = -14.25
-offset_top = 10.75
-offset_right = 12.75
-offset_bottom = 16.75
-value = 100.0
+script = ExtResource("6_344ge")
+MaxHealth = 100.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1139282717]
 anchor_mode = 0
 zoom = Vector2(2, 2)
 
 [connection signal="DealDamage" from="Player" to="Enemy" method="OnDamageDealt"]
-[connection signal="Damage" from="Enemy" to="Enemy/HealthBar" method="OnDamageTaken"]
 [connection signal="body_entered" from="Enemy" to="Player" method="OnEnemyBodyEntered"]
