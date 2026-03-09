@@ -1,17 +1,14 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 
-[Tool]
 public partial class WalkerGenerator : Node
 {
   [Export] public Vector2 mapDimensions = new Vector2(40, 60);
   [Export] public int totalSteps = 600;
-  [ExportToolButton("GenerateMap")] public Callable GenerateMapButton => Callable.From(ReGenerate);
 
-  [Export] public Vector2I wallTileTop = new Vector2I(8, 0);
+  [Export] public Vector2I wallTileTop = new Vector2I(-1, -1);
   [Export] public Vector2I wallTileBottom = new Vector2I(0, 0);
   [Export] public Vector2I floorTile = new Vector2I(1, 0);
   private TileMapLayer _tileMapLayer;
@@ -21,17 +18,19 @@ public partial class WalkerGenerator : Node
   private const int _width = 100;
   private const int _height = 100;
   private const int _maxRooms = 10;
-  private Random _random;
 
-  private List<List<int>> grid;
+  //had to rewrite 2 lines for testing
+  //basicly just give value to the lists in the beginning without the _Ready func
+  private Random _random = new Random();
+  public List<List<int>> grid = new List<List<int>>();
+
   private List<Rect2> rooms;
 
   public override void _Ready()
   {
-	_random = new Random();
+	//changed bc the the new code on line 27,28
 	_tileMapLayer = GetNode<TileMapLayer>($"../TileMapLayer");
 	rooms = new List<Rect2>();
-	grid = new List<List<int>>();
 
 	InitializeGrid();
 
@@ -42,8 +41,9 @@ public partial class WalkerGenerator : Node
 	
 	public void FlushDungeon()
 	{
-		grid = new List<List<int>>();
-		
+		//slight change
+		grid.Clear();
+
 		InitializeGrid();
 		
 		rooms = new List<Rect2>();
@@ -57,9 +57,44 @@ public partial class WalkerGenerator : Node
 			}
 		}
 	}
+
+	public void FlushEntities()
+	{
+		Godot.Collections.Array<Node> enemyContainer = new Godot.Collections.Array<Node>();
+		Godot.Collections.Array<Node> playerContainer = new Godot.Collections.Array<Node>();
+
+		SceneTree tree = GetTree();
+
+		if(enemyContainer != null)
+		{
+			if(tree != null && tree.GetNodesInGroup("enemy").Count > 0)
+			{
+				enemyContainer = tree.GetNodesInGroup("enemy");
+			}
+			foreach(Node node in enemyContainer)
+			{
+				node.QueueFree();
+			}
+		}
+
+		if(playerContainer != null)
+		{
+			if(tree != null && tree.GetNodesInGroup("player").Count > 0)
+			{
+				playerContainer = tree.GetNodesInGroup("player");
+			}
+			foreach(Node node in playerContainer)
+			{
+				node.QueueFree();
+			}
+		}
+
+	}
 	
 	public void OnRegenerate()
 	{
+		FlushEntities();
+		
 		FlushDungeon();
 		
 		ReGenerate();
@@ -230,7 +265,4 @@ public partial class WalkerGenerator : Node
 	  }
 	}
   }
-
-
-
 }

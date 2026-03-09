@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dfof51i28i8qr"]
 
-[ext_resource type="Script" uid="uid://co8popaokgwjj" path="res://Scenes/HealthBar.cs" id="1_1f0m8"]
+[ext_resource type="Script" uid="uid://co8popaokgwjj" path="res://Scripts/EnemyHealthBar.cs" id="1_1f0m8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqqik"]
 bg_color = Color(0.95686275, 0, 0.2, 1)
@@ -8,7 +8,7 @@ bg_color = Color(0.95686275, 0, 0.2, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gsm4l"]
 bg_color = Color(0.03529412, 0.9019608, 0, 1)
 
-[node name="HealthBar" type="ProgressBar" unique_id=1211753225]
+[node name="EnemyHealthBar" type="ProgressBar" unique_id=1211753225]
 visible = false
 offset_left = -3.0
 offset_top = -8.0

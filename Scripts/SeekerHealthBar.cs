@@ -1,16 +1,19 @@
 using Godot;
 using System;
 
-public partial class HealthBar : ProgressBar
+public partial class SeekerHealthBar : ProgressBar
 {
 	[Export] public float MaxHealth = 100.0f;
 	public float CurrentHealth;
+	public CharacterBody2D Current;
 
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
-	{
-		CurrentHealth = MaxHealth;
+	{	
+		Current = GetNode<CharacterBody2D>($"..");
+		
+		CurrentHealth = new Seeker().CurrentHealth;
 
 		this.MaxValue = MaxHealth;
 		UpdateHealthBar();
