@@ -16,7 +16,11 @@ public partial class Enemy : Area2D
 		_astar.DiagonalMode = AStarGrid2D.DiagonalModeEnum.Never;
 		_astar.Update();
 
-		if(_astar.Region.HasPoint(_tileMap.LocalToMap(this.GlobalPosition)) == false)
+		if(
+			_astar.Region.HasPoint(_tileMap.LocalToMap(this.GlobalPosition)) == false || 
+			_tileMap.GetCellTileData(_tileMap.LocalToMap(this.GlobalPosition)) == null || 
+			(bool)_tileMap.GetCellTileData(_tileMap.LocalToMap(this.GlobalPosition)).GetCustomData("Walkable") == false
+		) 
 		{
 			QueueFree();
 		}

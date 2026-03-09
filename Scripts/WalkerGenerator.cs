@@ -1,7 +1,6 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 
 public partial class WalkerGenerator : Node
@@ -55,9 +54,44 @@ public partial class WalkerGenerator : Node
 			}
 		}
 	}
+
+	public void FlushEntities()
+	{
+		Godot.Collections.Array<Node> enemyContainer = new Godot.Collections.Array<Node>();
+		Godot.Collections.Array<Node> playerContainer = new Godot.Collections.Array<Node>();
+
+		SceneTree tree = GetTree();
+
+		if(enemyContainer != null)
+		{
+			if(tree != null && tree.GetNodesInGroup("enemy").Count > 0)
+			{
+				enemyContainer = tree.GetNodesInGroup("enemy");
+			}
+			foreach(Node node in enemyContainer)
+			{
+				node.QueueFree();
+			}
+		}
+
+		if(playerContainer != null)
+		{
+			if(tree != null && tree.GetNodesInGroup("player").Count > 0)
+			{
+				playerContainer = tree.GetNodesInGroup("player");
+			}
+			foreach(Node node in playerContainer)
+			{
+				node.QueueFree();
+			}
+		}
+
+	}
 	
 	public void OnRegenerate()
 	{
+		FlushEntities();
+		
 		FlushDungeon();
 		
 		ReGenerate();

@@ -1,9 +1,6 @@
 using Godot;
 using Godot.Collections;
-using System;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 
 public partial class Seeker : CharacterBody2D
 {
@@ -14,13 +11,11 @@ public partial class Seeker : CharacterBody2D
 	private bool _isMoving;
 	private Vector2 _targetPosition;
 	
-	private Array<Vector2I> _currentIdPath; 
+	private Array<Vector2I> _currentIdPath;
 	
 	private Node2D _target = null;
 	//needed for testing
 	public Node2D CurrentTarget => _target;
-	
-	//private NavigationAgent2D _navigationAgent = null;
 	
 	public override void _Ready()
 	{
@@ -39,7 +34,7 @@ public partial class Seeker : CharacterBody2D
 		_astar.DiagonalMode = AStarGrid2D.DiagonalModeEnum.Never;
 		_astar.Update();
 
-		if(!_astar.Region.HasPoint(_tileMap.LocalToMap(this.GlobalPosition)))
+		if(!_astar.Region.HasPoint(_tileMap.LocalToMap(this.GlobalPosition)) || _tileMap.GetCellTileData(_tileMap.LocalToMap(this.GlobalPosition)) == null || (bool)_tileMap.GetCellTileData(_tileMap.LocalToMap(this.GlobalPosition)).GetCustomData("Walkable") == false)
 		{
 			QueueFree();
 		}
@@ -68,27 +63,47 @@ public partial class Seeker : CharacterBody2D
 	}
 	
 	// Martin: I changed it bc thats the only way I could make the tests work
-	public void AcquireTarget(Node customTargetContainer = null)
+	public void AcquireTarget(Array<Node> customTargetContainer = null)
 	{
-		Node targetContainer = customTargetContainer;
+		Array<Node> targetContainer = customTargetContainer;
 
 		if(targetContainer == null)
 		{
 			SceneTree tree = GetTree();
 			if(tree != null && tree.GetNodesInGroup("enemy").Count > 0)
 			{
-				targetContainer = tree.GetFirstNodeInGroup("enemy");
+				targetContainer = tree.GetNodesInGroup("enemy");
 			}
 		}
 		if(targetContainer != null)
 		{
-			var targets = targetContainer.GetChildren();
+			Array<Node> targets = targetContainer;
+			
+			Node2D bestCandidate = null;
+			float shortestDistance = 10000000000.0f;
 			if(targets != null && targets.Count > 0)
 			{
-				var newTarget = targets[0];
-				_target = (Node2D)newTarget;
+				foreach(Node target in targets)
+				{
+					float currentDistance = CalcDistance((Node2D)target);
+					if(currentDistance < shortestDistance)
+					{
+						shortestDistance = currentDistance;
+						bestCandidate = (Node2D)target;
+					}
+				}
+			}
+			
+			if(bestCandidate != null)
+			{
+				_target = bestCandidate;
 			}
 		}
+	}
+
+	public float CalcDistance(Node2D target)
+	{
+		return Mathf.Sqrt(Mathf.Pow(this.GlobalPosition.X - target.GlobalPosition.X, 2.0f) + Mathf.Pow(this.GlobalPosition.Y - target.GlobalPosition.Y, 2.0f));
 	}
 
 	//for testing again
@@ -142,18 +157,23 @@ public partial class Seeker : CharacterBody2D
 		//this way the test actually shows if there is a problem
 		this.GlobalPosition = this.GlobalPosition.MoveToward(_targetPosition, moveSpeed * (float)delta);
 		
-
 		if(this.GlobalPosition == _targetPosition)
 		{
 			_currentIdPath.Remove(_currentIdPath.First());
 
-			if(_currentIdPath.Count > 0)
+			if(_currentIdPath.Count > 1)
 			{
-
 				_targetPosition = _tileMap.MapToLocal(_currentIdPath.First());
 			}
-			else
-				_isMoving = false;
 		}
 	}
+
+	public void OnAreaEntered(Area2D area)
+	{
+		if(area.IsInGroup("enemy"))
+		{
+			GD.Print(area.GlobalPosition);
+		}
+	}
+
 }
