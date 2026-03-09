@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites id="2026-03-08" name="report_1" tests="7" failures="2" skipped="0" flaky="0" time="0.000">
-	<testsuite id="0" name="SeekerTest" package="test" timestamp="2026-03-08T21:30:42" hostname="localhost" tests="7" failures="2" errors="0" skipped="0" flaky="0" time="0.163">
-		<testcase name="TestAcquireTargetLogic" classname="ADC.Tests.SeekerTest" time="0.054">
+<testsuites id="2026-03-09" name="report_1" tests="9" failures="2" skipped="0" flaky="0" time="0.000">
+	<testsuite id="0" name="SeekerTest" package="test" timestamp="2026-03-09T11:29:33" hostname="localhost" tests="7" failures="2" errors="0" skipped="0" flaky="0" time="0.200">
+		<testcase name="TestAcquireTargetLogic" classname="ADC.Tests.SeekerTest" time="0.077">
 		</testcase>
-		<testcase name="TestMovementVelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.001">
+		<testcase name="TestMovementVelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.006">
 		</testcase>
-		<testcase name="TestMovement2VelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.000">
+		<testcase name="TestMovement2VelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.003">
 		</testcase>
-		<testcase name="testWhatIfThereIsNoTarget" classname="ADC.Tests.SeekerTest" time="0.006">
+		<testcase name="testWhatIfThereIsNoTarget" classname="ADC.Tests.SeekerTest" time="0.001">
 		</testcase>
-		<testcase name="testWhatIfTheTargetPosIsTheCurrentPos" classname="ADC.Tests.SeekerTest" time="0.002">
+		<testcase name="testWhatIfTheTargetPosIsTheCurrentPos" classname="ADC.Tests.SeekerTest" time="0.000">
 		</testcase>
-		<testcase name="testTargetSelectionByDistance" classname="ADC.Tests.SeekerTest" time="0.025">
+		<testcase name="testTargetSelectionByDistance" classname="ADC.Tests.SeekerTest" time="0.027">
 			<failure message="FAILED: res://test/SeekerTest.cs:123" type="FAILURE">
 <![CDATA[
 Expecting be equal:
-    <Godot.Node2D> (objId: 113564976868) but is <Godot.Node2D> (objId: 113548199651)
+    <Godot.Node2D> (objId: 113699194603) but is <Godot.Node2D> (objId: 113682417386)
 ]]>
 			</failure>
 		</testcase>
@@ -24,9 +24,15 @@ Expecting be equal:
 <![CDATA[
 Expecting be <Null>:
  but is
-    <Godot.Node2D> (objId: 113850189547)
+    <Godot.Node2D> (objId: 113984407279)
 ]]>
 			</failure>
+		</testcase>
+	</testsuite>
+	<testsuite id="1" name="WalkerGeneratorTest" package="test" timestamp="2026-03-09T11:29:33" hostname="localhost" tests="2" failures="0" errors="0" skipped="0" flaky="0" time="0.011">
+		<testcase name="TestIfInitializeGridGeneratesCorrectDimensions" classname="ADC.Tests.WalkerGeneratorTest" time="0.008">
+		</testcase>
+		<testcase name="TestIfGenerateRoomRespectsSizeBoundaries" classname="ADC.Tests.WalkerGeneratorTest" time="0.001">
 		</testcase>
 	</testsuite>
 </testsuites>
