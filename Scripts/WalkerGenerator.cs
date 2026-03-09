@@ -18,17 +18,19 @@ public partial class WalkerGenerator : Node
   private const int _width = 100;
   private const int _height = 100;
   private const int _maxRooms = 10;
-  private Random _random;
 
-  private List<List<int>> grid;
+  //had to rewrite 2 lines for testing
+  //basicly just give value to the lists in the beginning without the _Ready func
+  private Random _random = new Random();
+  public List<List<int>> grid = new List<List<int>>();
+
   private List<Rect2> rooms;
 
   public override void _Ready()
   {
-	_random = new Random();
+	//changed bc the the new code on line 27,28
 	_tileMapLayer = GetNode<TileMapLayer>($"../TileMapLayer");
 	rooms = new List<Rect2>();
-	grid = new List<List<int>>();
 
 	InitializeGrid();
 
@@ -39,9 +41,10 @@ public partial class WalkerGenerator : Node
 	
 	public void FlushDungeon()
 	{
-		grid = new List<List<int>>();
-		
-		InitializeGrid();
+		//slight change
+        grid.Clear();
+
+        InitializeGrid();
 		
 		rooms = new List<Rect2>();
 		
