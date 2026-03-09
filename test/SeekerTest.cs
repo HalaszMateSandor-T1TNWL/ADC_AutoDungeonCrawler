@@ -16,9 +16,9 @@ namespace ADC.Tests
 			//establishing the test field 
 			var seeker = new Seeker();
 
-			var enemyContainer = new Node2D();
+			var enemyContainer = new Godot.Collections.Array<Node>();
 			var actualEnemy = new Node2D();
-			enemyContainer.AddChild(actualEnemy);
+			enemyContainer.Add(actualEnemy);
 
 			seeker.AcquireTarget(enemyContainer);
 
@@ -27,7 +27,10 @@ namespace ADC.Tests
 			AssertThat(seeker.CurrentTarget).IsEqual(actualEnemy);
 
 			seeker.QueueFree();
-			enemyContainer.QueueFree();
+			foreach(Node node in enemyContainer)
+			{
+				node.QueueFree();
+			}
 		}
 		[TestCase]
 		public void TestMovementVelocityPointsToTarget()
@@ -68,7 +71,7 @@ namespace ADC.Tests
 		public void testWhatIfThereIsNoTarget()
 		{
 			var seeker = new Seeker();
-			var enemyContainer = new Node2D();
+			var enemyContainer = new Godot.Collections.Array<Node>();
 
 			seeker.AcquireTarget(enemyContainer);
 
@@ -76,7 +79,10 @@ namespace ADC.Tests
 			AssertThat(seeker.CurrentTarget).IsNull();
 
 			seeker.QueueFree();
-			enemyContainer.QueueFree();
+			foreach(Node node in enemyContainer)
+			{
+				node.QueueFree();
+			}
 		}
 
 		[TestCase]
