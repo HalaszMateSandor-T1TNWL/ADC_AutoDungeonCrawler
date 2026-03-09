@@ -3,6 +3,11 @@ using System;
 
 public partial class Enemy : Area2D
 {
+	[Signal] public delegate void DamageEventHandler(float damage);
+	
+	public float CurrentHealth = 2.0f;
+	public float MaxHealth = 100.0f;
+
 	private TileMapLayer _tileMap;
 	private AStarGrid2D _astar;
 	public float health = 100.0f;
@@ -30,16 +35,8 @@ public partial class Enemy : Area2D
 	public void OnBodyEntered(Node2D area)
 	{
 		this.QueueFree();
-	public float CurrentHealth = 2.0f;
-	public float MaxHealth = 100.0f;
-
-	[Signal] public delegate void DamageEventHandler(float damage);
-	
-	public override void _Ready()
-	{
-		
 	}
-
+	
 	public void OnDamageDealt(float damage)
 	{
 		CurrentHealth -= damage;

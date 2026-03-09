@@ -42,9 +42,9 @@ public partial class WalkerGenerator : Node
 	public void FlushDungeon()
 	{
 		//slight change
-        grid.Clear();
+		grid.Clear();
 
-        InitializeGrid();
+		InitializeGrid();
 		
 		rooms = new List<Rect2>();
 		

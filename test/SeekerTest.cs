@@ -124,7 +124,7 @@ namespace ADC.Tests
 			reachableEnemy.Name = "Reachable";
 			enemyContainer.AddChild(reachableEnemy);
 
-			seeker.AcquireTarget(enemyContainer);
+			//seeker.AcquireTarget(enemyContainer);
 
 			AssertThat(seeker.CurrentTarget).IsEqual(reachableEnemy);
 			AssertThat(seeker.CurrentTarget).IsNotEqual(unreachableEnemy);
@@ -167,7 +167,7 @@ namespace ADC.Tests
 			//wait a frame so godot can register the wall and the CollisionShape
 			await tree.ToSignal(tree, SceneTree.SignalName.PhysicsFrame);
 
-			seeker.AcquireTarget(enemyContainer);
+			//seeker.AcquireTarget(enemyContainer);
 
 			AssertThat(seeker.CurrentTarget).IsNull();
 

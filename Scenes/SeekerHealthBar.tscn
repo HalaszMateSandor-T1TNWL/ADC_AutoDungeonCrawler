@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d3sc0ttc2ado8"]
 
-[ext_resource type="Script" uid="uid://bw4e3d60vcxkb" path="res://Scenes/SeekerHealthBar.cs" id="1_v2dyf"]
+[ext_resource type="Script" uid="uid://bw4e3d60vcxkb" path="res://Scripts/SeekerHealthBar.cs" id="1_v2dyf"]
 
 [node name="SeekerHealthBar" type="ProgressBar" unique_id=2040899174]
 offset_right = 4.0

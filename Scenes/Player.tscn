@@ -26,4 +26,8 @@ texture = ExtResource("2_gntrk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=894029902]
 shape = SubResource("RectangleShape2D_kyqiw")
 
+[node name="SeekerHealthBar" parent="." unique_id=2040899174 instance=ExtResource("3_gntrk")]
+visible = false
+show_percentage = false
+
 [connection signal="area_entered" from="Area2D" to="." method="OnAreaEntered"]
