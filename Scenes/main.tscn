@@ -1,109 +1,78 @@
-[gd_scene format=4 uid="uid://155xx7s6y6ta"]
+[gd_scene format=3 uid="uid://155xx7s6y6ta"]
 
-[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="1_jjgbg"]
-[ext_resource type="PackedScene" uid="uid://be8qbmt0fe144" path="res://Scenes/Player.tscn" id="2_bo1nx"]
-[ext_resource type="Script" uid="uid://c7mmr22asbq0d" path="res://Scenes/TileMapLayer.cs" id="2_jjvhh"]
-[ext_resource type="PackedScene" uid="uid://cohiqpndtgam" path="res://Scenes/enemy.tscn" id="3_8gbba"]
+[ext_resource type="Script" uid="uid://jiuv3q88s6yi" path="res://Scripts/WalkerGenerator.cs" id="1_kry3j"]
+[ext_resource type="Texture2D" uid="uid://b7g3oaha3sphx" path="res://Textures/Atlas.png" id="2_21xkr"]
+[ext_resource type="Script" uid="uid://c7mmr22asbq0d" path="res://Scripts/TileMapLayer.cs" id="2_jjvhh"]
+[ext_resource type="Script" uid="uid://ec6ke1v33dxp" path="res://Scripts/CameraController.cs" id="4_jjvhh"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_8gbba"]
-vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_21xkr"]
+vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
 agent_radius = 0.0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jjvhh"]
-texture = ExtResource("1_jjgbg")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6bp64"]
+texture = ExtResource("2_21xkr")
+texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 1
+0:0/0/terrains_peering_bit/right_side = 1
+0:0/0/terrains_peering_bit/bottom_right_corner = 1
+0:0/0/terrains_peering_bit/bottom_side = 1
+0:0/0/terrains_peering_bit/bottom_left_corner = 1
+0:0/0/terrains_peering_bit/left_side = 1
+0:0/0/terrains_peering_bit/top_left_corner = 1
+0:0/0/terrains_peering_bit/top_side = 1
+0:0/0/terrains_peering_bit/top_right_corner = 1
 1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-6:0/0 = 0
-7:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-1:1/0/terrain_set = 0
-1:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_8gbba")
-2:1/0 = 0
-3:1/0 = 0
-4:1/0 = 0
-5:1/0 = 0
-6:1/0 = 0
-6:1/0/terrain_set = 0
-7:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-5:2/0 = 0
-6:2/0 = 0
-7:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-4:3/0 = 0
-5:3/0 = 0
-6:3/0 = 0
-7:3/0 = 0
-0:4/0 = 0
-1:4/0 = 0
-2:4/0 = 0
-3:4/0 = 0
-4:4/0 = 0
-5:4/0 = 0
-6:4/0 = 0
-7:4/0 = 0
-0:5/0 = 0
-1:5/0 = 0
-2:5/0 = 0
-3:5/0 = 0
-4:5/0 = 0
-5:5/0 = 0
-6:5/0 = 0
-7:5/0 = 0
-0:6/0 = 0
-1:6/0 = 0
-2:6/0 = 0
-3:6/0 = 0
-4:6/0 = 0
-5:6/0 = 0
-6:6/0 = 0
-7:6/0 = 0
-0:7/0 = 0
-1:7/0 = 0
-2:7/0 = 0
-3:7/0 = 0
-4:7/0 = 0
-5:7/0 = 0
-6:7/0 = 0
-7:7/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/terrains_peering_bit/right_side = 0
+1:0/0/terrains_peering_bit/bottom_right_corner = 0
+1:0/0/terrains_peering_bit/bottom_side = 0
+1:0/0/terrains_peering_bit/bottom_left_corner = 0
+1:0/0/terrains_peering_bit/left_side = 0
+1:0/0/terrains_peering_bit/top_left_corner = 0
+1:0/0/terrains_peering_bit/top_side = 0
+1:0/0/terrains_peering_bit/top_right_corner = 0
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_21xkr")
+1:0/0/custom_data_0 = true
 
 [sub_resource type="TileSet" id="TileSet_kry3j"]
+tile_size = Vector2i(32, 32)
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Walkable"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 terrain_set_0/terrain_1/name = "Terrain 1"
 terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
 navigation_layer_0/layers = 1
-sources/0 = SubResource("TileSetAtlasSource_jjvhh")
+custom_data_layer_0/name = "Walkable"
+custom_data_layer_0/type = 1
+sources/1 = SubResource("TileSetAtlasSource_6bp64")
 
-[node name="Node2D" type="Node2D" unique_id=2103418611]
+[node name="Main" type="Node2D" unique_id=2103418611]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1359272859]
 position = Vector2(1, 0)
-tile_map_data = PackedByteArray("AAACAAAAAAADAAAAAAADAAAAAAADAAAAAAAEAAAAAAADAAAAAAAFAAAAAAADAAAAAAAGAAAAAAADAAAAAAAHAAAAAAAGAAAAAAAAAAMAAAAAAAYAAAAAAAIAAAAAAAMAAAAAAAAAAAAAAAAAAAABAAUAAAAAAAMAAAADAAUAAAABAAEAAAAEAAUAAAABAAEAAAAFAAUAAAABAAEAAAABAAYAAAAAAAYAAAABAAAAAAADAAAAAAAAAAEAAAAAAAMAAAABAAQAAAABAAEAAAAGAAIAAAABAAEAAAACAAIAAAABAAEAAAADAAIAAAABAAEAAAADAAMAAAABAAEAAAADAAQAAAABAAEAAAAEAAIAAAABAAEAAAAEAAMAAAABAAEAAAAEAAQAAAABAAEAAAAFAAIAAAABAAEAAAAFAAMAAAABAAEAAAAFAAQAAAABAAEAAAAAAAQAAAAAAAcAAAAIAAAAAAAHAAAAAAAIAAEAAAAHAAEAAAAIAAIAAAAHAAEAAAAIAAMAAAAHAAEAAAAIAAQAAAAHAAcAAAAHAAQAAAABAAEAAAAHAAUAAAAHAAEAAAABAAcAAAAAAAcAAAAHAAcAAAAHAAcAAAACAAcAAAABAAcAAAADAAcAAAABAAcAAAAEAAcAAAABAAcAAAAFAAcAAAABAAcAAAAGAAcAAAABAAcAAAAHAAYAAAAHAAEAAAAGAAMAAAABAAEAAAAGAAQAAAABAAEAAAAGAAUAAAABAAEAAAAGAAYAAAABAAEAAAAFAAYAAAABAAEAAAAEAAYAAAABAAEAAAADAAYAAAABAAEAAAACAAYAAAABAAEAAAACAAUAAAABAAEAAAACAAQAAAABAAEAAAACAAMAAAABAAEAAAABAAMAAAABAAEAAAABAAIAAAABAAEAAAAHAAIAAAABAAEAAAAHAAMAAAABAAEAAAAHAAEAAAABAAEAAAAGAAEAAAABAAEAAAAFAAEAAAABAAEAAAAEAAEAAAABAAEAAAADAAEAAAABAAEAAAACAAEAAAABAAEAAAABAAEAAAABAAEAAAA=")
 tile_set = SubResource("TileSet_kry3j")
 script = ExtResource("2_jjvhh")
 
-[node name="Player" parent="." unique_id=28115319 instance=ExtResource("2_bo1nx")]
-position = Vector2(16, 16)
+[node name="WalkerGenerator" type="Node" parent="." unique_id=1014205626]
+script = ExtResource("1_kry3j")
 
-[node name="Enemy" parent="." unique_id=457126724 instance=ExtResource("3_8gbba")]
-position = Vector2(64.25, 96.25)
+[node name="CameraController" type="Node2D" parent="." unique_id=89044127]
+script = ExtResource("4_jjvhh")
+panningSpeed = 2.5
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1139282717]
+[node name="Camera2D" type="Camera2D" parent="CameraController" unique_id=1139282717]
 anchor_mode = 0
-zoom = Vector2(2, 2)
+
+[node name="Button" type="Button" parent="CameraController" unique_id=1816792966]
+offset_left = 5.0
+offset_top = 2.0
+offset_right = 175.0
+offset_bottom = 33.0
+text = "Regenerate dungeon"
+
+[connection signal="pressed" from="CameraController/Button" to="WalkerGenerator" method="OnRegenerate"]
