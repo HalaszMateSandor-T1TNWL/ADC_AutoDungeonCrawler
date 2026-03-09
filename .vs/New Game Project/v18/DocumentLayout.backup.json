@@ -3,16 +3,12 @@
   "WorkspaceRootPath": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FA6BA534-F380-4FCD-B154-B4F3D9349F2F}|New Game Project.csproj|c:\\suli\\szoft.tech.gyak\\projekt\\adc_autodungeoncrawler\\test\\seekertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA6BA534-F380-4FCD-B154-B4F3D9349F2F}|New Game Project.csproj|solutionrelative:test\\seekertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FA6BA534-F380-4FCD-B154-B4F3D9349F2F}|New Game Project.csproj|c:\\suli\\szoft.tech.gyak\\projekt\\adc_autodungeoncrawler\\test\\walkergeneratortest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA6BA534-F380-4FCD-B154-B4F3D9349F2F}|New Game Project.csproj|solutionrelative:test\\walkergeneratortest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FA6BA534-F380-4FCD-B154-B4F3D9349F2F}|New Game Project.csproj|c:\\suli\\szoft.tech.gyak\\projekt\\adc_autodungeoncrawler\\scripts\\seeker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA6BA534-F380-4FCD-B154-B4F3D9349F2F}|New Game Project.csproj|solutionrelative:scripts\\seeker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FA6BA534-F380-4FCD-B154-B4F3D9349F2F}|New Game Project.csproj|c:\\suli\\szoft.tech.gyak\\projekt\\adc_autodungeoncrawler\\scripts\\newscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FA6BA534-F380-4FCD-B154-B4F3D9349F2F}|New Game Project.csproj|solutionrelative:scripts\\newscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FA6BA534-F380-4FCD-B154-B4F3D9349F2F}|New Game Project.csproj|c:\\suli\\szoft.tech.gyak\\projekt\\adc_autodungeoncrawler\\scripts\\walkergenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA6BA534-F380-4FCD-B154-B4F3D9349F2F}|New Game Project.csproj|solutionrelative:scripts\\walkergenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -21,45 +17,40 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "DockedWidth": 291,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "WalkerGeneratorTest.cs",
+              "DocumentMoniker": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\test\\WalkerGeneratorTest.cs",
+              "RelativeDocumentMoniker": "test\\WalkerGeneratorTest.cs",
+              "ToolTip": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\test\\WalkerGeneratorTest.cs",
+              "RelativeToolTip": "test\\WalkerGeneratorTest.cs",
+              "ViewState": "AgIAAG0AAAAAAAAAAAAAwIEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-09T11:04:08.307Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 291,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Seeker.cs",
-              "DocumentMoniker": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\Scripts\\Seeker.cs",
-              "RelativeDocumentMoniker": "Scripts\\Seeker.cs",
-              "ToolTip": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\Scripts\\Seeker.cs",
-              "RelativeToolTip": "Scripts\\Seeker.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADcAAAACAAAAAAAAAA==",
+              "Title": "WalkerGenerator.cs",
+              "DocumentMoniker": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\Scripts\\WalkerGenerator.cs",
+              "RelativeDocumentMoniker": "Scripts\\WalkerGenerator.cs",
+              "ToolTip": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\Scripts\\WalkerGenerator.cs",
+              "RelativeToolTip": "Scripts\\WalkerGenerator.cs",
+              "ViewState": "AgIAAG0AAAAAAAAAAADwv3cAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-01T13:05:41.057Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SeekerTest.cs",
-              "DocumentMoniker": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\test\\SeekerTest.cs",
-              "RelativeDocumentMoniker": "test\\SeekerTest.cs",
-              "ToolTip": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\test\\SeekerTest.cs",
-              "RelativeToolTip": "test\\SeekerTest.cs",
-              "ViewState": "AgIAAJYAAAAAAAAAAAAcwKYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-01T07:23:38.464Z",
+              "WhenOpened": "2026-03-09T11:03:34.993Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "NewScript.cs",
-              "DocumentMoniker": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\Scripts\\NewScript.cs",
-              "RelativeDocumentMoniker": "Scripts\\NewScript.cs",
-              "ToolTip": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\Scripts\\NewScript.cs",
-              "RelativeToolTip": "Scripts\\NewScript.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAAwBMAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-01T12:57:30.963Z"
             }
           ]
         }
