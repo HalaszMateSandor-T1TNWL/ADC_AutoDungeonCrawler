@@ -139,6 +139,7 @@ public partial class Seeker : CharacterBody2D
 
 		if(idPath.Count > 0)
 		{
+			idPath.Remove(idPath.Last());
 			_currentIdPath = idPath;
 		}
 	}
@@ -161,10 +162,12 @@ public partial class Seeker : CharacterBody2D
 		{
 			_currentIdPath.Remove(_currentIdPath.First());
 
-			if(_currentIdPath.Count > 1)
+			if(_currentIdPath.Count > 0)
 			{
 				_targetPosition = _tileMap.MapToLocal(_currentIdPath.First());
 			}
+			else
+				_isMoving = false;
 		}
 	}
 
@@ -175,5 +178,4 @@ public partial class Seeker : CharacterBody2D
 			GD.Print(area.GlobalPosition);
 		}
 	}
-
 }

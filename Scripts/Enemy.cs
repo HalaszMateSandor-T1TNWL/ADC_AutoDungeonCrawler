@@ -5,6 +5,7 @@ public partial class Enemy : Area2D
 {
 	private TileMapLayer _tileMap;
 	private AStarGrid2D _astar;
+	public float health = 100.0f;
 
 	public override void _Ready()
 	{
@@ -25,10 +26,10 @@ public partial class Enemy : Area2D
 			QueueFree();
 		}
 	}
-
-
-	private void OnBodyEntered(Node2D body)
+	
+	public void OnBodyEntered(Node2D area)
 	{
-		QueueFree();
+		this.QueueFree();
 	}
+	
 }
