@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://k0k8sg5ktqjs" path="res://Scripts/Enemy.cs" id="1_1f0kj"]
 [ext_resource type="Texture2D" uid="uid://c0r6y7vxwf170" path="res://ConceptArt/Sorcerer.png" id="1_hghv2"]
+[ext_resource type="PackedScene" uid="uid://dfof51i28i8qr" path="res://Scenes/EnemyHealthBar.tscn" id="3_afpow"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hghv2"]
 size = Vector2(16, 14)
@@ -16,5 +17,7 @@ shape = SubResource("RectangleShape2D_hghv2")
 [node name="Sorcerer" type="Sprite2D" parent="." unique_id=1648175540]
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("1_hghv2")
+
+[node name="EnemyHealthBar" parent="." unique_id=1211753225 instance=ExtResource("3_afpow")]
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]

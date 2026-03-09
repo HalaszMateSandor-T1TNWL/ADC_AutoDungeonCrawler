@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://x1xgv0gq6md7" path="res://Scripts/Seeker.cs" id="1_kyqiw"]
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_gntrk"]
+[ext_resource type="PackedScene" uid="uid://d3sc0ttc2ado8" path="res://Scenes/SeekerHealthBar.tscn" id="3_gntrk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7u77a"]
 
@@ -25,5 +26,7 @@ avoidance_enabled = true
 radius = 14.0
 debug_enabled = true
 debug_path_custom_color = Color(0.9811644, 0, 0.100068696, 1)
+
+[node name="SeekerHealthBar" parent="." unique_id=2040899174 instance=ExtResource("3_gntrk")]
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="OnNavigationAgent2DVelocityComputed"]

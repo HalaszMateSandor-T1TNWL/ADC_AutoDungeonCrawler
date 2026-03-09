@@ -3,7 +3,7 @@ using System;
 
 public partial class Enemy : Area2D
 {
-	public float CurrentHealth = 100.00f;
+	public float CurrentHealth = 2.0f;
 	public float MaxHealth = 100.0f;
 
 	[Signal] public delegate void DamageEventHandler(float damage);
