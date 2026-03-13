@@ -3,9 +3,13 @@ using System;
 
 public partial class Enemy : Area2D
 {
+	[Signal] public delegate void DamageEventHandler(float damage);
+	
+	public float CurrentHealth = 2.0f;
+	public float MaxHealth = 100.0f;
+	
 	private TileMapLayer _tileMap;
 	private AStarGrid2D _astar;
-	public float health = 100.0f;
 
 	public override void _Ready()
 	{
@@ -17,29 +21,19 @@ public partial class Enemy : Area2D
 		_astar.DiagonalMode = AStarGrid2D.DiagonalModeEnum.Never;
 		_astar.Update();
 
-		if(
-			_astar.Region.HasPoint(_tileMap.LocalToMap(this.GlobalPosition)) == false || 
-			_tileMap.GetCellTileData(_tileMap.LocalToMap(this.GlobalPosition)) == null || 
-			(bool)_tileMap.GetCellTileData(_tileMap.LocalToMap(this.GlobalPosition)).GetCustomData("Walkable") == false
-		) 
+		if(IsSpawnValid())
 		{
 			QueueFree();
 		}
 	}
 	
-	public void OnBodyEntered(Node2D area)
+	public bool IsSpawnValid()
 	{
-		this.QueueFree();
-	public float CurrentHealth = 2.0f;
-	public float MaxHealth = 100.0f;
-
-	[Signal] public delegate void DamageEventHandler(float damage);
-	
-	public override void _Ready()
-	{
-		
+		return _astar.Region.HasPoint(_tileMap.LocalToMap(this.GlobalPosition)) == false || 
+			_tileMap.GetCellTileData(_tileMap.LocalToMap(this.GlobalPosition)) == null || 
+			(bool)_tileMap.GetCellTileData(_tileMap.LocalToMap(this.GlobalPosition)).GetCustomData("Walkable") == false;
 	}
-
+	
 	public void OnDamageDealt(float damage)
 	{
 		CurrentHealth -= damage;
