@@ -5,6 +5,7 @@ using System.Linq;
 public partial class Seeker : CharacterBody2D
 {
 	[Export] public float moveSpeed = 1.0f;
+	[Export] public int attackRange = 0;
 	
 	private AStarGrid2D _astar;
 	private TileMapLayer _tileMap;
@@ -169,7 +170,7 @@ public partial class Seeker : CharacterBody2D
 		{
 			_currentIdPath.Remove(_currentIdPath.First());
 
-			if(_currentIdPath.Count > 0)
+			if(_currentIdPath.Count > attackRange)
 			{
 				_targetPosition = _tileMap.MapToLocal(_currentIdPath.First());
 			}

@@ -26,6 +26,7 @@ public partial class TileMapLayer : Godot.TileMapLayer
 		_viewportWidth = (float)ProjectSettings.GetSetting("display/window/viewport_width");
 		_viewportHeight = (float)ProjectSettings.GetSetting("display/window/viewport_height");
 		
+		GD.Print("Viewport Resolution: " + GetViewport().GetVisibleRect().Size);
 	}
 	
 	public override void _Process(double delta)
@@ -45,11 +46,11 @@ public partial class TileMapLayer : Godot.TileMapLayer
 			switch(mouseEvent.ButtonIndex)
 			{
 				case MouseButton.Left:
-					instanceEnemy.Position = ((mouseEvent.GetGlobalPosition() - new Vector2(_viewportWidth/2, _viewportHeight/2)) / _camera.Zoom) + _cameraController.Position;
+					instanceEnemy.GlobalPosition = GetGlobalMousePosition();
 					GetNode<Node2D>("/root/Main").AddChild(instanceEnemy);
 					break;
 				case MouseButton.Right:
-					instancePlayer.Position = ((mouseEvent.GetGlobalPosition() - new Vector2(_viewportWidth/2, _viewportHeight/2)) / _camera.Zoom) + _cameraController.Position;
+					instancePlayer.GlobalPosition = GetGlobalMousePosition();
 					GetNode<Node2D>("/root/Main").AddChild(instancePlayer);
 					break;
 					

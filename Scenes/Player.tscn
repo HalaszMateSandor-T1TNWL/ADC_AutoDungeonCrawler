@@ -27,9 +27,9 @@ texture = ExtResource("2_gntrk")
 shape = SubResource("RectangleShape2D_kyqiw")
 
 [node name="SeekerHealthBar" parent="." unique_id=2040899174 instance=ExtResource("3_gntrk")]
-offset_left = -10.0
+offset_left = -11.0
 offset_top = 11.0
-offset_right = 12.0
+offset_right = 11.0
 offset_bottom = 17.0
 show_percentage = false
 
