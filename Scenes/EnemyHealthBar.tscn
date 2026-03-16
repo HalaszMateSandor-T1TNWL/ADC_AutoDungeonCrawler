@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dfof51i28i8qr"]
 
-[ext_resource type="Script" uid="uid://co8popaokgwjj" path="res://Scripts/EnemyHealthBar.cs" id="1_1f0m8"]
+[ext_resource type="Script" uid="uid://cdrqb7jkkvw7m" path="res://Scripts/EnemyHealthBar.cs" id="1_xibhk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqqik"]
 bg_color = Color(0.95686275, 0, 0.2, 1)
@@ -17,5 +17,5 @@ offset_bottom = -2.0
 theme_override_styles/background = SubResource("StyleBoxFlat_hqqik")
 theme_override_styles/fill = SubResource("StyleBoxFlat_gsm4l")
 show_percentage = false
-script = ExtResource("1_1f0m8")
+script = ExtResource("1_xibhk")
 metadata/_edit_use_anchors_ = true
