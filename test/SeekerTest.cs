@@ -106,14 +106,14 @@ namespace ADC.Tests
 
 		//TDD test cases for the target selection:
 
-		/*[TestCase]
+		[TestCase]
 		public void testTargetSelectionByDistance()
 		{
 			var seeker = new Seeker();
 
 			seeker.GlobalPosition = new Vector2(0, 0);
 
-			var enemyContainer = new Godot.Array<Node>();
+			var enemyContainer = new Godot.Collections.Array<Node>();
 
 			var unreachableEnemy = new Node2D();
 			unreachableEnemy.GlobalPosition = new Vector2(10000, 10000); //just put it far away
@@ -123,7 +123,7 @@ namespace ADC.Tests
 			var reachableEnemy = new Node2D();
 			reachableEnemy.GlobalPosition = new Vector2(50, 0);
 			reachableEnemy.Name = "Reachable";
-			enemyContainer.AddChild(reachableEnemy);
+			enemyContainer.Add(reachableEnemy);
 
 			//seeker.AcquireTarget(enemyContainer);
 
@@ -131,11 +131,14 @@ namespace ADC.Tests
 			AssertThat(seeker.CurrentTarget).IsNotEqual(unreachableEnemy);
 
 			seeker.QueueFree();
-			enemyContainer.QueueFree();
+			foreach(Node node in enemyContainer)
+			{
+				node.QueueFree();	
+			}
 
-		}*/
+		}
 
-		/*[TestCase]
+		[TestCase]
 		public async Task testTargetSelectionIgnoresEnemyBehindWall()
 		{
 			var tree = (SceneTree)Engine.GetMainLoop();
@@ -146,8 +149,7 @@ namespace ADC.Tests
 			seeker.GlobalPosition = new Vector2(0, 0);
 			testRoot.AddChild(seeker);
 
-			//var enemyContainer = new Godot.Array<Node>();
-			testRoot.AddChild(enemyContainer);
+			var enemyContainer = new Godot.Collections.Array<Node>();
 
 			var enemyBehindWall = new Node2D();
 			enemyBehindWall.GlobalPosition = new Vector2(100, 0);
@@ -168,12 +170,12 @@ namespace ADC.Tests
 			//wait a frame so godot can register the wall and the CollisionShape
 			await tree.ToSignal(tree, SceneTree.SignalName.PhysicsFrame);
 
-			//seeker.AcquireTarget(enemyContainer);
+			seeker.AcquireTarget(enemyContainer);
 
 			AssertThat(seeker.CurrentTarget).IsNull();
 
 			testRoot.QueueFree();
-		}*/
+		}
 
 	}
 }

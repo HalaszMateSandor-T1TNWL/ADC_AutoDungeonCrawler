@@ -84,6 +84,5 @@ text = "Regenerate dungeon"
 
 [connection signal="AddRoomToList" from="WalkerGenerator" to="CameraController" method="OnAddRoomToList"]
 [connection signal="ClearRoomsInList" from="WalkerGenerator" to="CameraController" method="OnClearRoomsInList"]
-[connection signal="DebugRoom" from="WalkerGenerator" to="WalkerGenerator/Node2D" method="OnDebugRoom"]
 [connection signal="pressed" from="CameraController/Button" to="WalkerGenerator" method="OnRegenerate"]
 [connection signal="pressed" from="CameraController/Button" to="WalkerGenerator/Node2D" method="OnDungeonFlushed"]

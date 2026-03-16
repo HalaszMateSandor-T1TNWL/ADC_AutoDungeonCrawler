@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -68,6 +67,7 @@ public partial class CameraController : Node2D
 			this.GlobalPosition = this.GlobalPosition.MoveToward(_motionVector, (float)delta * moveSpeed);
 		}
 		else
+			/* Use this for the camera to pan towards a room */
 			//this.GlobalPosition = this.GlobalPosition.MoveToward(_tilemap.MapToLocal((Vector2I)_roomFeed), (float)delta * 500.0f);
 			this.GlobalPosition = new Vector2(_tilemap.MapToLocal((Vector2I)_roomFeed).X, _tilemap.MapToLocal((Vector2I)_roomFeed).Y);
 	}
