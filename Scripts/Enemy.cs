@@ -3,10 +3,13 @@ using System;
 
 public partial class Enemy : Area2D
 {
-	[Signal] public delegate void DamageEventHandler(float damage);
+	[Signal] public delegate void HPChangedEventHandler(float currentHP);
 	
-	public float CurrentHealth = 2.0f;
 	public float MaxHealth = 100.0f;
+
+	public float CurrentHealth;
+
+	public float damage;
 	
 	private TileMapLayer _tileMap;
 	private AStarGrid2D _astar;
@@ -25,6 +28,8 @@ public partial class Enemy : Area2D
 		{
 			QueueFree();
 		}
+
+		HPChange(5);
 	}
 	
 	public bool IsSpawnValid()
@@ -34,10 +39,42 @@ public partial class Enemy : Area2D
 			(bool)_tileMap.GetCellTileData(_tileMap.LocalToMap(this.GlobalPosition)).GetCustomData("Walkable") == false;
 	}
 	
-	public void OnDamageDealt(float damage)
+	public void HPChange(float change)
 	{
-		CurrentHealth -= damage;
-		EmitSignal(nameof(Damage), damage);
+		CurrentHealth = MaxHealth;
+		if(change < 0)
+		{
+			DamageTaken(change);
+		}else if(change >= 0)
+		{
+			HealthGained(change);
+		}
+		EmitSignal(nameof(HPChanged), CurrentHealth);
 	}
 	
+	public void DamageTaken(float damage)
+	{
+			TakeDamage(damage);
+			if(CurrentHealth <= 0)
+			{
+				QueueFree();
+			}
+	}
+
+	public void HealthGained(float amount)
+	{
+		Heal(amount);
+	}
+	public void TakeDamage(float damage)
+	{
+		CurrentHealth -= damage;
+
+		CurrentHealth = Mathf.Clamp(CurrentHealth, 0, new Enemy().MaxHealth);
+	}
+	public void Heal(float amount)
+	{
+		CurrentHealth += amount;
+		CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
+	}
+
 }
