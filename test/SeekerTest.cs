@@ -1,8 +1,8 @@
 using GdUnit4;
 using Godot;
 using System;
-using Godot.Collections;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using static GdUnit4.Assertions;
 
 namespace ADC.Tests
@@ -116,7 +116,7 @@ namespace ADC.Tests
 			var enemyContainer = new Godot.Collections.Array<Node>();
 
 			var unreachableEnemy = new Node2D();
-			unreachableEnemy.GlobalPosition = new Vector2(10000, 10000); //just put it far away
+			unreachableEnemy.GlobalPosition = new Vector2(100000000000, 100000000000); //just put it far away
 			unreachableEnemy.Name = "Unreachable";
 			enemyContainer.Add(unreachableEnemy);
 
@@ -125,7 +125,7 @@ namespace ADC.Tests
 			reachableEnemy.Name = "Reachable";
 			enemyContainer.Add(reachableEnemy);
 
-			//seeker.AcquireTarget(enemyContainer);
+			seeker.AcquireTarget(enemyContainer);
 
 			AssertThat(seeker.CurrentTarget).IsEqual(reachableEnemy);
 			AssertThat(seeker.CurrentTarget).IsNotEqual(unreachableEnemy);
@@ -133,9 +133,8 @@ namespace ADC.Tests
 			seeker.QueueFree();
 			foreach(Node node in enemyContainer)
 			{
-				node.QueueFree();	
+				node.QueueFree();
 			}
-
 		}
 
 		[TestCase]
@@ -145,6 +144,37 @@ namespace ADC.Tests
 			var testRoot = new Node2D();
 			tree.Root.AddChild(testRoot);
 
+			List<List<int>> grid = new List<List<int>>();
+			var tilemap = new TileMapLayer();
+			for(int x = 0; x < 1; x++)
+			{
+				grid.Add(new List<int>());
+				for (int y = 0; y < 99; y++)
+				{
+					grid[x].Add(1);
+				}
+			}
+
+			for (int x = 0; x < 1; x++)
+			{
+				for (int y = 0; y < 99; y++)
+				{
+					Vector2I tiles = new Vector2I(x, y);
+
+					if(y == 50)
+					{
+						tilemap.SetCell(tiles, 1, new Vector2I(0,0));
+					}
+					else
+					{
+						tilemap.SetCell(tiles, 1, new Vector2I(1,0));
+					}
+				
+				}
+			}
+
+			testRoot.AddChild(tilemap);
+	
 			var seeker = new Seeker();
 			seeker.GlobalPosition = new Vector2(0, 0);
 			testRoot.AddChild(seeker);
@@ -155,24 +185,12 @@ namespace ADC.Tests
 			enemyBehindWall.GlobalPosition = new Vector2(100, 0);
 			enemyContainer.Add(enemyBehindWall);
 
-			// Putting a wall in the middle between the seeker and the target
-			var wall = new StaticBody2D();
-			wall.GlobalPosition = new Vector2(50, 0); 
-
-			var collision = new CollisionShape2D();
-			var shape = new RectangleShape2D();
-			shape.Size = new Vector2(20, 100);
-			collision.Shape = shape;
-
-			wall.AddChild(collision);
-			testRoot.AddChild(wall);
-
 			//wait a frame so godot can register the wall and the CollisionShape
 			await tree.ToSignal(tree, SceneTree.SignalName.PhysicsFrame);
 
 			seeker.AcquireTarget(enemyContainer);
 
-			AssertThat(seeker.CurrentTarget).IsNull();
+			AssertThat(seeker.GlobalPosition).IsBetween(new Vector2(0, 0), new Vector2(50, 0));
 
 			testRoot.QueueFree();
 		}

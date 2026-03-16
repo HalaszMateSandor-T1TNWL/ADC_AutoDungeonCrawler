@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites id="2026-03-16" name="report_1" tests="1" failures="0" skipped="0" flaky="0" time="0.000">
-	<testsuite id="0" name="SeekerTest" package="test" timestamp="2026-03-16T07:23:11" hostname="localhost" tests="1" failures="0" errors="0" skipped="0" flaky="0" time="0.189">
-		<testcase name="testTargetSelectionIgnoresEnemyBehindWall" classname="ADC.Tests.SeekerTest" time="0.142">
+<testsuites id="2026-03-16" name="report_1" tests="7" failures="0" skipped="0" flaky="0" time="0.000">
+	<testsuite id="0" name="SeekerTest" package="test" timestamp="2026-03-16T17:11:25" hostname="localhost" tests="7" failures="0" errors="0" skipped="0" flaky="0" time="0.113">
+		<testcase name="TestAcquireTargetLogic" classname="ADC.Tests.SeekerTest" time="0.037">
+		</testcase>
+		<testcase name="TestMovementVelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.004">
+		</testcase>
+		<testcase name="TestMovement2VelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.001">
+		</testcase>
+		<testcase name="testWhatIfThereIsNoTarget" classname="ADC.Tests.SeekerTest" time="0.000">
+		</testcase>
+		<testcase name="testWhatIfTheTargetPosIsTheCurrentPos" classname="ADC.Tests.SeekerTest" time="0.000">
+		</testcase>
+		<testcase name="testTargetSelectionByDistance" classname="ADC.Tests.SeekerTest" time="0.003">
+		</testcase>
+		<testcase name="testTargetSelectionIgnoresEnemyBehindWall" classname="ADC.Tests.SeekerTest" time="0.029">
 		</testcase>
 	</testsuite>
 </testsuites>

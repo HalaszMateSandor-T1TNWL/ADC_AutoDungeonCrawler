@@ -20,13 +20,12 @@ public partial class CameraController : Node2D
 	{
 		_camera = GetNode<Camera2D>($"Camera2D");
 		_tilemap = GetNode<TileMapLayer>($"../TileMapLayer");
-		_motionVector = new Vector2();
+		_motionVector = GetViewport().GetMousePosition();
 	}
 
 	public override void _Process(double delta)
 	{
 		_roomFeed = _rooms.First().GetCenter();
-		_motionVector = GetViewport().GetMousePosition();
 	}
 
 	public override void _PhysicsProcess(double delta)
