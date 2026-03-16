@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://b7g3oaha3sphx" path="res://Textures/Atlas.png" id="2_21xkr"]
 [ext_resource type="Script" uid="uid://c7mmr22asbq0d" path="res://Scripts/TileMapLayer.cs" id="2_jjvhh"]
 [ext_resource type="Script" uid="uid://ec6ke1v33dxp" path="res://Scripts/CameraController.cs" id="4_jjvhh"]
-[ext_resource type="Script" uid="uid://bbdauh386yrh6" path="res://Scripts/RoomDebug.cs" id="4_kry3j"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_21xkr"]
 vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
@@ -66,16 +65,13 @@ offset_bottom = 23.0
 [node name="WalkerGenerator" type="Node" parent="." unique_id=1014205626]
 script = ExtResource("1_kry3j")
 
-[node name="Node2D" type="Node2D" parent="WalkerGenerator" unique_id=1223764081]
-script = ExtResource("4_kry3j")
-
 [node name="CameraController" type="Node2D" parent="." unique_id=89044127]
 script = ExtResource("4_jjvhh")
 panningSpeed = 2.5
 
 [node name="Camera2D" type="Camera2D" parent="CameraController" unique_id=1139282717]
 
-[node name="Button" type="Button" parent="CameraController" unique_id=1816792966]
+[node name="Button" type="Button" parent="CameraController/Camera2D" unique_id=1816792966]
 offset_left = -639.0
 offset_top = -356.0
 offset_right = -469.0
@@ -84,5 +80,4 @@ text = "Regenerate dungeon"
 
 [connection signal="AddRoomToList" from="WalkerGenerator" to="CameraController" method="OnAddRoomToList"]
 [connection signal="ClearRoomsInList" from="WalkerGenerator" to="CameraController" method="OnClearRoomsInList"]
-[connection signal="pressed" from="CameraController/Button" to="WalkerGenerator" method="OnRegenerate"]
-[connection signal="pressed" from="CameraController/Button" to="WalkerGenerator/Node2D" method="OnDungeonFlushed"]
+[connection signal="pressed" from="CameraController/Camera2D/Button" to="WalkerGenerator" method="OnRegenerate"]
