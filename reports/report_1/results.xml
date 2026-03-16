@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites id="2026-03-09" name="report_1" tests="13" failures="2" skipped="0" flaky="0" time="0.000">
-	<testsuite id="0" name="SeekerTest" package="test" timestamp="2026-03-09T12:15:24" hostname="localhost" tests="7" failures="2" errors="0" skipped="0" flaky="0" time="0.156">
-		<testcase name="TestAcquireTargetLogic" classname="ADC.Tests.SeekerTest" time="0.050">
+<testsuites id="2026-03-09" name="report_1" tests="5" failures="0" skipped="0" flaky="0" time="0.000">
+	<testsuite id="0" name="SeekerTest" package="test" timestamp="2026-03-09T10:02:55" hostname="localhost" tests="5" failures="0" errors="0" skipped="0" flaky="0" time="0.075">
+		<testcase name="TestAcquireTarget_Logic" classname="ADC.Tests.SeekerTest" time="0.036">
 		</testcase>
-		<testcase name="TestMovementVelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.002">
+		<testcase name="TestMovement_VelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.002">
 		</testcase>
-		<testcase name="TestMovement2VelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.000">
+		<testcase name="TestMovement2_VelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.001">
 		</testcase>
-		<testcase name="testWhatIfThereIsNoTarget" classname="ADC.Tests.SeekerTest" time="0.005">
+		<testcase name="testWhatIfThereIsNoTarget" classname="ADC.Tests.SeekerTest" time="0.000">
 		</testcase>
 		<testcase name="testWhatIfTheTargetPosIsTheCurrentPos" classname="ADC.Tests.SeekerTest" time="0.000">
 		</testcase>
