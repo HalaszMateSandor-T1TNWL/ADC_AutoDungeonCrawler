@@ -11,7 +11,7 @@ namespace ADC.Tests
 	public class WalkerGeneratorTest
 	{
 		[TestCase]
-		public void TestIfInitializeGridGeneratesCorrectDimensions()
+		public void TestGridCorrectDimensions()
 		{
 			var generator = new WalkerGenerator();
 
