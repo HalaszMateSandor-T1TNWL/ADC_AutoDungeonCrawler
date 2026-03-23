@@ -28,4 +28,5 @@ offset_bottom = 14.0
 [node name="Node" type="Node" parent="." unique_id=607512107]
 script = ExtResource("4_287tu")
 
+[connection signal="HPChanged" from="." to="EnemyHealthBar" method="OnEnemyHPChanged"]
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]
