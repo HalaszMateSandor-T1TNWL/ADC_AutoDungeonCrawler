@@ -26,5 +26,5 @@ public partial class EnemyHealthBar : ProgressBar
 
 	
 
-	//MILF : Man I Love Frogs, GILF: Goodness, I Love Focaccia
+	//MILF : Man I Love Frogs
 }

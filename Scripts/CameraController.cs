@@ -11,9 +11,9 @@ public partial class CameraController : Node2D
 
 	private Vector2 _motionVector;
 	private Vector2 _roomFeed;
-	public List<Rect2> _rooms = new List<Rect2>(); //made it public for testing
+	private List<Rect2> _rooms = new List<Rect2>();
 
-	public Camera2D _camera; //same here
+	private Camera2D _camera;
 	private TileMapLayer _tilemap;
 
 	public override void _Ready()
@@ -85,15 +85,10 @@ public partial class CameraController : Node2D
 				case MouseButton.Middle:
 					Input.MouseMode = Input.MouseModeEnum.Confined;
 					break;
-				//added this so can't zoom forever (makes for a good test :))
-                case MouseButton.WheelUp:
-                    if (_camera.Zoom >= new Vector2(3.0f, 3.0f))
-                    {
-                        break;
-                    }
-                    _camera.Zoom += new Vector2(0.01f, 0.01f);
-                    break;
-                case MouseButton.WheelDown:
+				case MouseButton.WheelUp:
+					_camera.Zoom += new Vector2(0.01f, 0.01f);
+					break;
+				case MouseButton.WheelDown:
 					if(_camera.Zoom <= new Vector2(0.5f, 0.5f))
 					{
 						break;

@@ -1,99 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<<<<<<< Updated upstream
+<testsuites id="2026-03-16" name="report_1" tests="7" failures="0" skipped="0" flaky="0" time="0.000">
+	<testsuite id="0" name="SeekerTest" package="test" timestamp="2026-03-16T17:11:25" hostname="localhost" tests="7" failures="0" errors="0" skipped="0" flaky="0" time="0.113">
+		<testcase name="TestAcquireTargetLogic" classname="ADC.Tests.SeekerTest" time="0.037">
 <testsuites id="2026-03-09" name="report_1" tests="13" failures="2" skipped="0" flaky="0" time="0.000">
 	<testsuite id="0" name="SeekerTest" package="test" timestamp="2026-03-09T12:15:24" hostname="localhost" tests="7" failures="2" errors="0" skipped="0" flaky="0" time="0.156">
 		<testcase name="TestAcquireTargetLogic" classname="ADC.Tests.SeekerTest" time="0.050">
 		</testcase>
-		<testcase name="TestMovementVelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.002">
+		<testcase name="TestMovementVelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.004">
 		</testcase>
-		<testcase name="TestMovement2VelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.000">
+		<testcase name="TestMovement2VelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.001">
 		</testcase>
-		<testcase name="testWhatIfThereIsNoTarget" classname="ADC.Tests.SeekerTest" time="0.005">
-		</testcase>
-		<testcase name="testWhatIfTheTargetPosIsTheCurrentPos" classname="ADC.Tests.SeekerTest" time="0.000">
-		</testcase>
-		<testcase name="testTargetSelectionByDistance" classname="ADC.Tests.SeekerTest" time="0.023">
-			<failure message="FAILED: res://test/SeekerTest.cs:123" type="FAILURE">
-<![CDATA[
-Expecting be equal:
-    <Godot.Node2D> (objId: 113967630054) but is <Godot.Node2D> (objId: 113950852842)
-]]>
-			</failure>
-		</testcase>
-		<testcase name="testTargetSelectionIgnoresEnemyBehindWall" classname="ADC.Tests.SeekerTest" time="0.021">
-			<failure message="FAILED: res://test/SeekerTest.cs:166" type="FAILURE">
-<![CDATA[
-Expecting be <Null>:
- but is
-    <Godot.Node2D> (objId: 114252842743)
-]]>
-			</failure>
-		</testcase>
-	</testsuite>
-	<testsuite id="1" name="WalkerGeneratorTest" package="test" timestamp="2026-03-09T12:15:24" hostname="localhost" tests="6" failures="0" errors="0" skipped="0" flaky="0" time="0.016">
-=======
-<testsuites id="2026-03-23" name="report_1" tests="23" failures="0" skipped="0" flaky="0" time="0.000">
-	<testsuite id="0" name="CameraTest" package="test" timestamp="2026-03-23T08:45:05" hostname="localhost" tests="6" failures="0" errors="0" skipped="0" flaky="0" time="0.108">
-		<testcase name="TestOnAddAndClearRoomsInList" classname="ADC.Tests.CameraTest" time="0.028">
-		</testcase>
-		<testcase name="TestZoomDoesNotGoBelowMinimum" classname="ADC.Tests.CameraTest" time="0.015">
-		</testcase>
-		<testcase name="TestZoomIncreasesOnWheelUp" classname="ADC.Tests.CameraTest" time="0.001">
-		</testcase>
-		<testcase name="TestZoomDecreasesOnWheelDown" classname="ADC.Tests.CameraTest" time="0.000">
-		</testcase>
-		<testcase name="TestZoomIgnoresUnrelatedInput" classname="ADC.Tests.CameraTest" time="0.002">
-		</testcase>
-		<testcase name="TestZoomDoesNotGoAboveMaximum" classname="ADC.Tests.CameraTest" time="0.000">
-		</testcase>
-	</testsuite>
-	<testsuite id="1" name="HealthBarTest" package="test" timestamp="2026-03-23T08:45:05" hostname="localhost" tests="3" failures="0" errors="0" skipped="0" flaky="0" time="0.014">
-		<testcase name="TestTakeDamageDecreasesHealthAndClampsAtZero" classname="ADC.Tests.HealthBarTest" time="0.010">
-		</testcase>
-		<testcase name="TestHealIncreasesHealthAndClampsAtMax" classname="ADC.Tests.HealthBarTest" time="0.001">
-		</testcase>
-		<testcase name="TestVisibilityLogicBasedOnHealth" classname="ADC.Tests.HealthBarTest" time="0.001">
-		</testcase>
-	</testsuite>
-	<testsuite id="2" name="SeekerTest" package="test" timestamp="2026-03-23T08:45:05" hostname="localhost" tests="6" failures="0" errors="0" skipped="0" flaky="0" time="0.087">
-		<testcase name="TestAcquireTargetLogic" classname="ADC.Tests.SeekerTest" time="0.066">
-		</testcase>
-		<testcase name="TestMovementVelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.002">
-		</testcase>
-		<testcase name="TestMovement2VelocityPointsToTarget" classname="ADC.Tests.SeekerTest" time="0.000">
-		</testcase>
-		<testcase name="testWhatIfThereIsNoTarget" classname="ADC.Tests.SeekerTest" time="0.001">
+		<testcase name="testWhatIfThereIsNoTarget" classname="ADC.Tests.SeekerTest" time="0.000">
 		</testcase>
 		<testcase name="testWhatIfTheTargetPosIsTheCurrentPos" classname="ADC.Tests.SeekerTest" time="0.000">
 		</testcase>
-		<testcase name="testTargetSelectionByDistance" classname="ADC.Tests.SeekerTest" time="0.012">
+		<testcase name="testTargetSelectionByDistance" classname="ADC.Tests.SeekerTest" time="0.003">
 		</testcase>
-	</testsuite>
-	<testsuite id="3" name="WalkerGeneratorTest" package="test" timestamp="2026-03-23T08:45:05" hostname="localhost" tests="8" failures="0" errors="0" skipped="0" flaky="0" time="0.019">
->>>>>>> Stashed changes
+		<testcase name="testTargetSelectionIgnoresEnemyBehindWall" classname="ADC.Tests.SeekerTest" time="0.029">
 		<testcase name="TestIfInitializeGridGeneratesCorrectDimensions" classname="ADC.Tests.WalkerGeneratorTest" time="0.008">
 		</testcase>
 		<testcase name="TestIfGenerateRoomRespectsSizeBoundaries" classname="ADC.Tests.WalkerGeneratorTest" time="0.001">
 		</testcase>
-<<<<<<< Updated upstream
 		<testcase name="TestIfPlaceRoomMakesValidRoom" classname="ADC.Tests.WalkerGeneratorTest" time="0.002">
-=======
-		<testcase name="TestIfPlaceRoomMakesValidRoom" classname="ADC.Tests.WalkerGeneratorTest" time="0.001">
->>>>>>> Stashed changes
 		</testcase>
 		<testcase name="TestIfPlaceRoomGivesFalseToOverlappingRooms" classname="ADC.Tests.WalkerGeneratorTest" time="0.000">
 		</testcase>
 		<testcase name="TestPlaceRoomIfExactNumberOfCellsAreCarved" classname="ADC.Tests.WalkerGeneratorTest" time="0.000">
 		</testcase>
-<<<<<<< Updated upstream
 		<testcase name="TestConnectRoomsCreatesFloorPathBetweenRooms" classname="ADC.Tests.WalkerGeneratorTest" time="0.000">
-=======
-		<testcase name="TestConnectRoomsCreatesFloorPathBetweenRooms" classname="ADC.Tests.WalkerGeneratorTest" time="0.002">
-		</testcase>
-		<testcase name="TestPlaceRoomPlacesMultipleRoomsSuccessfully" classname="ADC.Tests.WalkerGeneratorTest" time="0.001">
-		</testcase>
-		<testcase name="TestFlushEntitiesClearsEntitiesFromGroups" classname="ADC.Tests.WalkerGeneratorTest" time="0.001">
->>>>>>> Stashed changes
 		</testcase>
 	</testsuite>
 </testsuites>
