@@ -32,7 +32,7 @@ public partial class TileMapLayer : Godot.TileMapLayer
 	public override void _Process(double delta)
 	{
 		Vector2 tile = LocalToMap(GetGlobalMousePosition());
-		_debugCoords.Position = GetGlobalMousePosition() + new Vector2(5,5);
+		_debugCoords.Position = GetGlobalMousePosition() + new Vector2(10,-5);
 		_debugCoords.Text = tile.ToString();
 	}
 	
@@ -53,7 +53,6 @@ public partial class TileMapLayer : Godot.TileMapLayer
 					instancePlayer.GlobalPosition = GetGlobalMousePosition();
 					GetNode<Node2D>("/root/Main").AddChild(instancePlayer);
 					break;
-					
 			}
 		}
 	}
