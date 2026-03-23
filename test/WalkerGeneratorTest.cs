@@ -131,5 +131,59 @@ namespace ADC.Tests
 			generator.QueueFree();
 		}
 
+		[TestCase]
+		public void TestPlaceRoomPlacesMultipleRoomsSuccessfully()
+		{
+			var generator = new WalkerGenerator();
+			generator.InitializeGrid();
+
+			var room1 = new Rect2(5, 5, 5, 5);
+			var room2 = new Rect2(15, 15, 10, 5);
+			var room3 = new Rect2(30, 30, 8, 8);
+
+			bool placed1 = generator.PlaceRoom(room1);
+			bool placed2 = generator.PlaceRoom(room2);
+			bool placed3 = generator.PlaceRoom(room3);
+
+			AssertThat(placed1).IsTrue();
+			AssertThat(placed2).IsTrue();
+			AssertThat(placed3).IsTrue();
+
+			int totalExpectedFloor = 25 + 50 + 64;
+			int actualFloorCount = 0;
+
+			for (int x = 0; x < 100; x++)
+			{
+				for (int y = 0; y < 100; y++)
+				{
+					if (generator.grid[x][y] == 0)
+					{
+						actualFloorCount++;
+					}
+				}
+			}
+
+			AssertThat(actualFloorCount).IsEqual(totalExpectedFloor);
+
+			generator.QueueFree();
+		}
+
+		[TestCase]
+		public void TestFlushEntitiesClearsEntitiesFromGroups()
+		{
+			//not finished, needs to be fixed
+			var generator = new WalkerGenerator();
+
+			Node enemy = new Node();
+			enemy.AddToGroup("enemy");
+
+			Node player = new Node();
+			player.AddToGroup("player");
+
+			generator.QueueFree();
+			enemy.QueueFree();
+			player.QueueFree();
+		}
+
 	}
 }
