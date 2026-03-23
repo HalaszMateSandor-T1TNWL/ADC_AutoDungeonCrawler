@@ -18,26 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 291,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "WalkerGeneratorTest.cs",
-              "DocumentMoniker": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\test\\WalkerGeneratorTest.cs",
-              "RelativeDocumentMoniker": "test\\WalkerGeneratorTest.cs",
-              "ToolTip": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\test\\WalkerGeneratorTest.cs",
-              "RelativeToolTip": "test\\WalkerGeneratorTest.cs",
-              "ViewState": "AgIAAG0AAAAAAAAAAADwv4IAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-09T11:04:08.307Z",
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 291,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
@@ -47,9 +28,21 @@
               "RelativeDocumentMoniker": "Scripts\\WalkerGenerator.cs",
               "ToolTip": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\Scripts\\WalkerGenerator.cs",
               "RelativeToolTip": "Scripts\\WalkerGenerator.cs",
-              "ViewState": "AgIAAG0AAAAAAAAAAADwv3cAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-09T11:03:34.993Z",
+              "WhenOpened": "2026-03-23T18:14:39.287Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "WalkerGeneratorTest.cs",
+              "DocumentMoniker": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\test\\WalkerGeneratorTest.cs",
+              "RelativeDocumentMoniker": "test\\WalkerGeneratorTest.cs",
+              "ToolTip": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\test\\WalkerGeneratorTest.cs",
+              "RelativeToolTip": "test\\WalkerGeneratorTest.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwBIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-23T18:14:39.391Z",
               "EditorCaption": ""
             }
           ]
