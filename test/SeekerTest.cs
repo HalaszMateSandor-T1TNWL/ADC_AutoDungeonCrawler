@@ -4,6 +4,7 @@ using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using static GdUnit4.Assertions;
+using System.IO;
 
 namespace ADC.Tests
 {
@@ -16,16 +17,21 @@ namespace ADC.Tests
 		{
 			//establishing the test field 
 			var seeker = new Seeker();
+			var pathfinder = new Pathfinder();
+			seeker.AddChild(pathfinder);
+			pathfinder._parent = pathfinder.GetParent<Seeker>();
 
 			var enemyContainer = new Godot.Collections.Array<Node>();
 			var actualEnemy = new Node2D();
+			actualEnemy.AddToGroup("enemy");
+
 			enemyContainer.Add(actualEnemy);
 
-			seeker.AcquireTarget(enemyContainer);
+			pathfinder.AcquireTarget(enemyContainer);
 
 			//finally testing
-			AssertThat(seeker.CurrentTarget).IsNotNull();
-			AssertThat(seeker.CurrentTarget).IsEqual(actualEnemy);
+			AssertThat(pathfinder.CurrentTarget).IsNotNull();
+			AssertThat(pathfinder.CurrentTarget).IsEqual(actualEnemy);
 
 			seeker.QueueFree();
 			foreach(Node node in enemyContainer)
@@ -33,75 +39,24 @@ namespace ADC.Tests
 				node.QueueFree();
 			}
 		}
-		[TestCase]
-		public void TestMovementVelocityPointsToTarget()
-		{
-			var seeker = new Seeker();
 
-			seeker.GlobalPosition = new Vector2(0, 0);
-			Vector2 dummyTargetPosition = new Vector2(50, 0);
-
-			//this way I don't have to play with Godot's engine
-			seeker.Velocity = seeker.CalculateVelocityToTarget(seeker.GlobalPosition, dummyTargetPosition);
-			
-			//testing
-			AssertThat(seeker.Velocity.X).IsGreater(0);
-			AssertThat(seeker.Velocity.Y).IsEqual(0);
-
-			seeker.QueueFree();
-		}
-		[TestCase]
-		public void TestMovement2VelocityPointsToTarget()
-		{
-			var seeker = new Seeker();
-
-			seeker.GlobalPosition = new Vector2(0, 0);
-			Vector2 dummyTargetPosition = new Vector2(-50, -50);
-
-			//this way I don't have to play with Godot's engine
-			seeker.Velocity = seeker.CalculateVelocityToTarget(seeker.GlobalPosition, dummyTargetPosition);
-
-			//testing
-			AssertThat(seeker.Velocity.X).IsLess(0);
-			AssertThat(seeker.Velocity.Y).IsLess(0);
-
-			seeker.QueueFree();
-		}
 		//edge case? muhaha
 		[TestCase]
 		public void testWhatIfThereIsNoTarget()
 		{
-			var seeker = new Seeker();
+			var pathfinder = new Pathfinder();
 			var enemyContainer = new Godot.Collections.Array<Node>();
 
-			seeker.AcquireTarget(enemyContainer);
+			pathfinder.AcquireTarget(enemyContainer);
 
 			//testing
-			AssertThat(seeker.CurrentTarget).IsNull();
+			AssertThat(pathfinder.CurrentTarget).IsNull();
 
-			seeker.QueueFree();
+			pathfinder.QueueFree();
 			foreach(Node node in enemyContainer)
 			{
 				node.QueueFree();
 			}
-		}
-
-		[TestCase]
-		public void testWhatIfTheTargetPosIsTheCurrentPos()
-		{
-			var seeker = new Seeker();
-
-			seeker.GlobalPosition = new Vector2(10, 10);
-			Vector2 dummyTargetPosition = new Vector2(10, 10);
-
-			seeker.Velocity = seeker.CalculateVelocityToTarget(seeker.GlobalPosition, dummyTargetPosition);
-
-			//testing
-			AssertThat(seeker.Velocity.X).IsEqual(0);
-			AssertThat(seeker.Velocity.Y).IsEqual(0);
-
-			seeker.QueueFree();
-
 		}
 
 		//TDD test cases for the target selection:
@@ -110,31 +65,76 @@ namespace ADC.Tests
 		public void testTargetSelectionByDistance()
 		{
 			var seeker = new Seeker();
+			var pathfinder = new Pathfinder();
 
-			seeker.GlobalPosition = new Vector2(0, 0);
+			seeker.AddChild(pathfinder);
+			pathfinder._parent = pathfinder.GetParent<Seeker>();
+
+			pathfinder._parent.GlobalPosition = new Vector2(0, 0);
 
 			var enemyContainer = new Godot.Collections.Array<Node>();
 
-			var unreachableEnemy = new Node2D();
-			unreachableEnemy.GlobalPosition = new Vector2(100000000000, 100000000000); //just put it far away
-			unreachableEnemy.Name = "Unreachable";
+			var unreachableEnemy = new Node2D
+			{
+				GlobalPosition = new Vector2(float.MaxValue, float.MaxValue), //just put it far away
+				Name = "Unreachable"
+			};
+			unreachableEnemy.AddToGroup("enemy");
+
 			enemyContainer.Add(unreachableEnemy);
 
-			var reachableEnemy = new Node2D();
-			reachableEnemy.GlobalPosition = new Vector2(50, 0);
-			reachableEnemy.Name = "Reachable";
+			var reachableEnemy = new Node2D
+			{
+				GlobalPosition = new Vector2(50, 0),
+				Name = "Reachable"	
+			};
+			reachableEnemy.AddToGroup("enemy");
 			enemyContainer.Add(reachableEnemy);
 
-			seeker.AcquireTarget(enemyContainer);
+			pathfinder.AcquireTarget(enemyContainer);
 
-			AssertThat(seeker.CurrentTarget).IsEqual(reachableEnemy);
-			AssertThat(seeker.CurrentTarget).IsNotEqual(unreachableEnemy);
+			AssertThat(pathfinder.CurrentTarget).IsEqual(reachableEnemy);
+			AssertThat(pathfinder.CurrentTarget).IsNotEqual(unreachableEnemy);
 
 			seeker.QueueFree();
 			foreach(Node node in enemyContainer)
 			{
 				node.QueueFree();
 			}
+		}
+
+		[TestCase]
+		public async Task testWhatIfTheTargetPosIsTheCurrentPos()
+		{
+			var seeker = new Seeker
+			{
+				GlobalPosition = new Vector2(10, 10)
+			};
+			var pathfinder = new Pathfinder();
+
+			seeker.AddChild(pathfinder);
+			pathfinder._parent = pathfinder.GetParent<Seeker>();
+
+			Node2D dummyTarget = new Node2D
+            {
+				GlobalPosition = new Vector2(10, 10)
+			};
+			dummyTarget.AddToGroup("enemy");
+
+			var enemyContainer = new Godot.Collections.Array<Node>
+            {
+                dummyTarget
+            };
+
+			pathfinder.AcquireTarget(enemyContainer);
+			pathfinder._PhysicsProcess(0.16528);
+
+			//testing
+			AssertThat(seeker.GlobalPosition.X).IsEqual(0);
+			AssertThat(seeker.GlobalPosition.Y).IsEqual(0);
+
+			seeker.QueueFree();
+			dummyTarget.QueueFree();
 		}
 
 		[TestCase]
@@ -176,21 +176,31 @@ namespace ADC.Tests
 			testRoot.AddChild(tilemap);
 	
 			var seeker = new Seeker();
-			seeker.GlobalPosition = new Vector2(0, 0);
-			testRoot.AddChild(seeker);
+			var pathfinder = new Pathfinder();
+
+			seeker.AddChild(pathfinder);
+			pathfinder._parent = pathfinder.GetParent<Seeker>();
+
+			pathfinder._parent.GlobalPosition = new Vector2(0, 0);
+			testRoot.AddChild(pathfinder);
 
 			var enemyContainer = new Godot.Collections.Array<Node>();
 
-			var enemyBehindWall = new Node2D();
-			enemyBehindWall.GlobalPosition = new Vector2(100, 0);
+			var enemyBehindWall = new Node2D
+			{
+				GlobalPosition = new Vector2(100, 0)	
+			};
+			enemyBehindWall.AddToGroup("enemy");
 			enemyContainer.Add(enemyBehindWall);
 
 			//wait a frame so godot can register the wall and the CollisionShape
 			await tree.ToSignal(tree, SceneTree.SignalName.PhysicsFrame);
 
-			seeker.AcquireTarget(enemyContainer);
+			pathfinder.AcquireTarget(enemyContainer);
+			
+			await tree.ToSignal(tree, SceneTree.SignalName.PhysicsFrame);
 
-			AssertThat(seeker.GlobalPosition).IsBetween(new Vector2(0, 0), new Vector2(50, 0));
+			AssertThat(pathfinder._parent.GlobalPosition).IsBetween(new Vector2(0, 0), new Vector2(50, 0));
 
 			testRoot.QueueFree();
 		}
