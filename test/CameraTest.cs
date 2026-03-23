@@ -124,5 +124,11 @@ namespace ADC.Tests
 			controller._camera.QueueFree();
 			controller.QueueFree();
 		}
+
+		[TestCase]
+		public void TestCameraFloat()
+		{
+			
+		}
 	}
 }

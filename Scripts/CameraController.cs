@@ -11,9 +11,9 @@ public partial class CameraController : Node2D
 
 	private Vector2 _motionVector;
 	private Vector2 _roomFeed;
-	private List<Rect2> _rooms = new List<Rect2>();
+	public List<Rect2> _rooms = new List<Rect2>();
 
-	private Camera2D _camera;
+	public Camera2D _camera;
 	private TileMapLayer _tilemap;
 
 	public override void _Ready()
@@ -86,6 +86,10 @@ public partial class CameraController : Node2D
 					Input.MouseMode = Input.MouseModeEnum.Confined;
 					break;
 				case MouseButton.WheelUp:
+					if (_camera.Zoom >= new Vector2(3.0f, 3.0f))
+					{
+						break;
+					}
 					_camera.Zoom += new Vector2(0.01f, 0.01f);
 					break;
 				case MouseButton.WheelDown:
