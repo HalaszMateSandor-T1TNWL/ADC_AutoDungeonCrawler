@@ -10,10 +10,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kyqiw"]
 size = Vector2(96, 96)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=28115319 groups=["player"]]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=28115319]
 collision_layer = 2
 script = ExtResource("1_kyqiw")
-moveSpeed = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=288653415]
 shape = SubResource("RectangleShape2D_7u77a")
@@ -37,4 +36,4 @@ show_percentage = false
 [node name="Pathfinder" type="Node" parent="." unique_id=334829096]
 script = ExtResource("4_dewec")
 
-[connection signal="area_entered" from="Area2D" to="." method="OnAreaEntered"]
+[connection signal="body_entered" from="Area2D" to="." method="OnBodyEntered"]
