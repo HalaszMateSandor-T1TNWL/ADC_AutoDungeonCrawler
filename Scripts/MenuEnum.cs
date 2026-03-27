@@ -4,4 +4,5 @@ public enum UserInterfaceActions
 	StartNextLevel,
 	ResetShop,
 	LockShop,
+	MainMenu,
 }

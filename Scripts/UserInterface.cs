@@ -7,36 +7,59 @@ public partial class UserInterface : Control
 	public delegate void UIActionEventHandler(int action);
 	private PopupPanel shop;
 	private PopupPanel resetShop;
+	private PopupPanel settings;
+	private PopupPanel savePopup;
+	private PopupPanel loadPopup;
 	
 	public override void _Ready()
 	{
 		shop = GetNode<PopupPanel>("Shop");
 		resetShop = GetNode<PopupPanel>("ResetLockPopupShopButton");
+		settings = GetNode<PopupPanel>("SettingsPopup");
+		savePopup = GetNode<PopupPanel>("SavePopup");
+		loadPopup = GetNode<PopupPanel>("LoadPopup");
+		
+		
 	}
 
 	public override void _Process(double delta)
 	{
 	}
-	private void _On_Open_Close_Shop_Button_Pressed()
+	private void OnOpenCloseShopButtonPressed()
 	{
 		shop.Popup();
 		resetShop.Popup();
 	}
-	private void _On_Buy_Level_Button_And_Level_Viewer_Pressed()
+	private void OnSettingTexturesButtonPressed()
+	{
+		settings.Popup();
+	}
+	private void OnSettingsSaveButtonPressed()
+	{
+		savePopup.Popup();
+	}
+	private void OnSettingsLoadButtonPressed()
+	{
+		loadPopup.Popup();
+	}
+	private void OnBuyLevelButtonAndLevelViewerPressed()
 	{
 		EmitSignal(SignalName.UIAction,(int)UserInterfaceActions.BuyLevel );
 	}
-	private void _On_Start_Next_Level_Button_Pressed()
+	private void OnStartNextLevelButtonPressed()
 	{
 		EmitSignal(SignalName.UIAction,(int) UserInterfaceActions.StartNextLevel);
 	}
-	private void _On_Reset_Shop_Button_Pressed()
+	private void OnResetShopButtonPressed()
 	{
 		EmitSignal(SignalName.UIAction,(int) UserInterfaceActions.ResetShop);
 	}
-	private void _On_Lock_Shop_Button_Toggled(bool toggledOn)
+	private void OnLockShopButtonToggled(bool toggledOn)
 	{
 		EmitSignal(SignalName.UIAction,(int) UserInterfaceActions.LockShop);
+	}
+	private void OnSettingsMainMenuButtonPressed(){
+		EmitSignal(SignalName.UIAction,(int) UserInterfaceActions.MainMenu);
 	}
 	
 }

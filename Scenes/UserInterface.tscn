@@ -21,6 +21,15 @@ bg_color = Color(0.11764706, 0.0627451, 0.09803922, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k4v2d"]
 bg_color = Color(0.14901961, 0.02745098, 0.10980392, 0.85490197)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k5w2u"]
+bg_color = Color(0.14901961, 0.02745098, 0.10980392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_356oj"]
+bg_color = Color(0.48235294, 0.14509805, 0.28235295, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7bke"]
+bg_color = Color(0.48235294, 0.14509805, 0.28235295, 1)
+
 [node name="Control" type="Control" unique_id=1326013840]
 layout_mode = 3
 anchors_preset = 15
@@ -49,8 +58,8 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -54.0
-offset_right = 54.0
+offset_top = -108.0
+offset_right = 108.0
 grow_vertical = 0
 
 [node name="LevelButtonBox" type="VBoxContainer" parent="BuyLevelButtonAndLevelViewer" unique_id=491799517]
@@ -62,11 +71,13 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CurrentLevelViewer" type="Label" parent="BuyLevelButtonAndLevelViewer/LevelButtonBox" unique_id=2048694593]
+custom_minimum_size = Vector2(0, 54)
 layout_mode = 2
 text = "10"
 horizontal_alignment = 1
 
 [node name="ToNextLevelProgress" type="ProgressBar" parent="BuyLevelButtonAndLevelViewer/LevelButtonBox" unique_id=705657243]
+custom_minimum_size = Vector2(0, 54)
 layout_mode = 2
 
 [node name="OpenCloseShopButton" type="Button" parent="." unique_id=1897564802]
@@ -76,8 +87,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -54.0
-offset_top = -54.0
+offset_left = -108.0
+offset_top = -108.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "Shop"
@@ -89,22 +100,23 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -90.0
-offset_top = -102.0
-offset_bottom = -66.0
+offset_left = -168.0
+offset_top = -216.0
+offset_bottom = -144.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "Next Level"
 
 [node name="OwnedEquipment" type="Panel" parent="." unique_id=1300860266]
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 54.0
-offset_top = -54.0
-offset_right = -54.0
+offset_left = -512.0
+offset_top = -108.0
+offset_right = 512.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ofew4")
@@ -168,12 +180,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ty2sy")
 
 [node name="Shop" type="PopupPanel" parent="." unique_id=1633052337]
 oversampling_override = 1.0
-size = Vector2i(576, 120)
+size = Vector2i(1280, 270)
 theme_override_styles/panel = SubResource("StyleBoxFlat_guah6")
 
 [node name="MarginContainer" type="MarginContainer" parent="Shop" unique_id=1372352686]
-offset_right = 576.0
-offset_bottom = 120.0
+offset_right = 1280.0
+offset_bottom = 270.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -222,16 +234,16 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_ug47o")
 
 [node name="ResetLockPopupShopButton" type="PopupPanel" parent="." unique_id=511558280]
 oversampling_override = 1.0
-position = Vector2i(468, 120)
-size = Vector2i(108, 59)
+position = Vector2i(1064, 270)
+size = Vector2i(216, 124)
 theme_override_styles/panel = SubResource("StyleBoxFlat_k4v2d")
 
 [node name="ResetLockPopupShopMargin" type="MarginContainer" parent="ResetLockPopupShopButton" unique_id=875125322]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 108.0
-offset_bottom = 59.0
+offset_right = 216.0
+offset_bottom = 124.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -243,12 +255,16 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="LockShop" type="Label" parent="ResetLockPopupShopButton/ResetLockPopupShopMargin/ResetLockPopupBox/LockShopBox" unique_id=2045101127]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 text = "Lock"
 horizontal_alignment = 1
 
 [node name="LockShopButton" type="CheckButton" parent="ResetLockPopupShopButton/ResetLockPopupShopMargin/ResetLockPopupBox/LockShopBox" unique_id=472771251]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
+alignment = 1
+icon_alignment = 1
 
 [node name="ResetShopButton" type="Button" parent="ResetLockPopupShopButton/ResetLockPopupShopMargin/ResetLockPopupBox" unique_id=1819873373]
 clip_contents = true
@@ -267,11 +283,12 @@ expand_mode = 1
 
 [node name="SetBonusViewer" type="Panel" parent="." unique_id=1952810635]
 layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_top = 48.0
-offset_right = 54.0
-offset_bottom = -66.0
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -216.0
+offset_right = 108.0
+offset_bottom = 216.0
 grow_vertical = 2
 
 [node name="SetBonusMargin" type="MarginContainer" parent="SetBonusViewer" unique_id=880963389]
@@ -291,7 +308,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Icon1" type="Button" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox" unique_id=381458469]
-custom_minimum_size = Vector2(46, 46)
+custom_minimum_size = Vector2(92, 92)
 layout_mode = 2
 
 [node name="DragonIcon" type="TextureRect" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox/Icon1" unique_id=975075047]
@@ -304,11 +321,11 @@ grow_vertical = 2
 texture = ExtResource("3_ug47o")
 expand_mode = 1
 
-[node name="Icon2" type="Button" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox" unique_id=541741373]
-custom_minimum_size = Vector2(46, 46)
+[node name="Icon2" type="Button" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox" unique_id=421173090]
+custom_minimum_size = Vector2(92, 92)
 layout_mode = 2
 
-[node name="DragonIcon" type="TextureRect" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox/Icon2" unique_id=1328761347]
+[node name="DragonIcon" type="TextureRect" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox/Icon2" unique_id=331370998]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -318,11 +335,11 @@ grow_vertical = 2
 texture = ExtResource("3_ug47o")
 expand_mode = 1
 
-[node name="Icon3" type="Button" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox" unique_id=1486026187]
-custom_minimum_size = Vector2(46, 46)
+[node name="Icon3" type="Button" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox" unique_id=1290626724]
+custom_minimum_size = Vector2(92, 92)
 layout_mode = 2
 
-[node name="DragonIcon" type="TextureRect" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox/Icon3" unique_id=534568973]
+[node name="DragonIcon" type="TextureRect" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox/Icon3" unique_id=320972041]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -332,11 +349,11 @@ grow_vertical = 2
 texture = ExtResource("3_ug47o")
 expand_mode = 1
 
-[node name="Icon4" type="Button" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox" unique_id=416988902]
-custom_minimum_size = Vector2(46, 46)
+[node name="Icon4" type="Button" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox" unique_id=667182254]
+custom_minimum_size = Vector2(92, 92)
 layout_mode = 2
 
-[node name="DragonIcon" type="TextureRect" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox/Icon4" unique_id=979635292]
+[node name="DragonIcon" type="TextureRect" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox/Icon4" unique_id=2096465750]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -346,11 +363,11 @@ grow_vertical = 2
 texture = ExtResource("3_ug47o")
 expand_mode = 1
 
-[node name="Icon5" type="Button" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox" unique_id=397301855]
-custom_minimum_size = Vector2(46, 46)
+[node name="Icon5" type="Button" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox" unique_id=115848598]
+custom_minimum_size = Vector2(92, 92)
 layout_mode = 2
 
-[node name="DragonIcon" type="TextureRect" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox/Icon5" unique_id=1595442495]
+[node name="DragonIcon" type="TextureRect" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox/Icon5" unique_id=540401737]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -360,18 +377,46 @@ grow_vertical = 2
 texture = ExtResource("3_ug47o")
 expand_mode = 1
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=869831275]
+[node name="Icon6" type="Button" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox" unique_id=1211880976]
+custom_minimum_size = Vector2(92, 92)
+layout_mode = 2
+
+[node name="DragonIcon" type="TextureRect" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox/Icon6" unique_id=780662720]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ug47o")
+expand_mode = 1
+
+[node name="Icon7" type="Button" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox" unique_id=583492686]
+custom_minimum_size = Vector2(92, 92)
+layout_mode = 2
+
+[node name="DragonIcon" type="TextureRect" parent="SetBonusViewer/SetBonusMargin/SetBonusScroll/SetBonusBox/Icon7" unique_id=212576757]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ug47o")
+expand_mode = 1
+
+[node name="SettingsTexture" type="TextureRect" parent="." unique_id=869831275]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -54.0
-offset_bottom = 54.0
+offset_left = -108.0
+offset_bottom = 108.0
 grow_horizontal = 0
 texture = ExtResource("4_ug47o")
 expand_mode = 1
 
-[node name="Button" type="Button" parent="TextureRect" unique_id=471802880]
+[node name="SettingTexturesButton" type="Button" parent="SettingsTexture" unique_id=471802880]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -379,22 +424,263 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ScaneViewer" type="Panel" parent="." unique_id=1253903376]
+[node name="SceneViewer" type="Panel" parent="." unique_id=1253903376]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -183.33331
-offset_top = -103.125
-offset_right = 183.33331
-offset_bottom = 103.125
+offset_left = -320.00003
+offset_top = -180.0
+offset_right = 320.00003
+offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[connection signal="pressed" from="BuyLevelButtonAndLevelViewer" to="." method="_On_Buy_Level_Button_And_Level_Viewer_Pressed"]
-[connection signal="pressed" from="OpenCloseShopButton" to="." method="_On_Open_Close_Shop_Button_Pressed"]
-[connection signal="pressed" from="StartNextLevelButton" to="." method="_On_Start_Next_Level_Button_Pressed"]
-[connection signal="toggled" from="ResetLockPopupShopButton/ResetLockPopupShopMargin/ResetLockPopupBox/LockShopBox/LockShopButton" to="." method="_On_Lock_Shop_Button_Toggled"]
-[connection signal="pressed" from="ResetLockPopupShopButton/ResetLockPopupShopMargin/ResetLockPopupBox/ResetShopButton" to="." method="_On_Reset_Shop_Button_Pressed"]
+[node name="EquippedEquipment" type="Panel" parent="." unique_id=518707438]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -108.0
+offset_top = -216.0
+offset_bottom = 108.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_k5w2u")
+
+[node name="EquippedEquipmentMargin" type="MarginContainer" parent="EquippedEquipment" unique_id=98476753]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EquippedEquipment/EquippedEquipmentMargin" unique_id=1064137003]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="EquippedEquipment/EquippedEquipmentMargin/VBoxContainer" unique_id=1743899900]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="EquippedEquipment/EquippedEquipmentMargin/VBoxContainer" unique_id=1268004848]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="Panel3" type="Panel" parent="EquippedEquipment/EquippedEquipmentMargin/VBoxContainer" unique_id=1171661611]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="Panel4" type="Panel" parent="EquippedEquipment/EquippedEquipmentMargin/VBoxContainer" unique_id=990211957]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="SettingsPopup" type="PopupPanel" parent="." unique_id=615042146]
+oversampling_override = 1.0
+initial_position = 1
+size = Vector2i(600, 400)
+theme_override_styles/panel = SubResource("StyleBoxFlat_356oj")
+
+[node name="SettingsMargin" type="MarginContainer" parent="SettingsPopup" unique_id=871337142]
+offset_right = 600.0
+offset_bottom = 400.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SettingsBox" type="VBoxContainer" parent="SettingsPopup/SettingsMargin" unique_id=796708439]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="SettingsMainLabel" type="Label" parent="SettingsPopup/SettingsMargin/SettingsBox" unique_id=1576655161]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15686275, 0.047058824, 0.105882354, 1)
+theme_override_font_sizes/font_size = 40
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="SoundLabel" type="Label" parent="SettingsPopup/SettingsMargin/SettingsBox" unique_id=1546318101]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15686275, 0.047058824, 0.105882354, 1)
+theme_override_font_sizes/font_size = 25
+text = "Sound"
+horizontal_alignment = 1
+
+[node name="SoundSlider" type="HSlider" parent="SettingsPopup/SettingsMargin/SettingsBox" unique_id=59267654]
+layout_mode = 2
+
+[node name="SettingsSaveButton" type="Button" parent="SettingsPopup/SettingsMargin/SettingsBox" unique_id=1603470973]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "SAVE"
+
+[node name="SettingsLoadButton" type="Button" parent="SettingsPopup/SettingsMargin/SettingsBox" unique_id=249292355]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "		LOAD"
+
+[node name="MainMenuButton" type="Button" parent="SettingsPopup/SettingsMargin/SettingsBox" unique_id=336915794]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Return to Main Menu"
+
+[node name="SavePopup" type="PopupPanel" parent="." unique_id=1955252491]
+oversampling_override = 1.0
+initial_position = 1
+size = Vector2i(600, 420)
+theme_override_styles/panel = SubResource("StyleBoxFlat_c7bke")
+
+[node name="SaveContainer" type="MarginContainer" parent="SavePopup" unique_id=144948706]
+offset_right = 600.0
+offset_bottom = 420.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="SaveGridContainer" type="GridContainer" parent="SavePopup/SaveContainer" unique_id=2211433]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 3
+
+[node name="Button" type="Button" parent="SavePopup/SaveContainer/SaveGridContainer" unique_id=1534734926]
+custom_minimum_size = Vector2(180, 120)
+layout_mode = 2
+text = "Slot"
+
+[node name="Button2" type="Button" parent="SavePopup/SaveContainer/SaveGridContainer" unique_id=271182926]
+custom_minimum_size = Vector2(180, 120)
+layout_mode = 2
+text = "Slot"
+
+[node name="Button3" type="Button" parent="SavePopup/SaveContainer/SaveGridContainer" unique_id=788036440]
+custom_minimum_size = Vector2(180, 120)
+layout_mode = 2
+text = "Slot"
+
+[node name="Button4" type="Button" parent="SavePopup/SaveContainer/SaveGridContainer" unique_id=204017222]
+custom_minimum_size = Vector2(180, 120)
+layout_mode = 2
+text = "Slot"
+
+[node name="Button5" type="Button" parent="SavePopup/SaveContainer/SaveGridContainer" unique_id=292981439]
+custom_minimum_size = Vector2(180, 120)
+layout_mode = 2
+text = "Slot"
+
+[node name="Button6" type="Button" parent="SavePopup/SaveContainer/SaveGridContainer" unique_id=1518073313]
+custom_minimum_size = Vector2(180, 120)
+layout_mode = 2
+text = "Slot"
+
+[node name="Button7" type="Button" parent="SavePopup/SaveContainer/SaveGridContainer" unique_id=1606475037]
+custom_minimum_size = Vector2(180, 120)
+layout_mode = 2
+text = "Slot"
+
+[node name="Button8" type="Button" parent="SavePopup/SaveContainer/SaveGridContainer" unique_id=1519667130]
+custom_minimum_size = Vector2(180, 120)
+layout_mode = 2
+text = "Slot"
+
+[node name="Button9" type="Button" parent="SavePopup/SaveContainer/SaveGridContainer" unique_id=598659454]
+custom_minimum_size = Vector2(180, 120)
+layout_mode = 2
+text = "Slot"
+
+[node name="SaveLabel" type="Label" parent="SavePopup" unique_id=1737807571]
+offset_right = 600.0
+offset_bottom = 420.0
+text = "Save"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="LoadPopup" type="PopupPanel" parent="." unique_id=1012375935]
+oversampling_override = 1.0
+initial_position = 1
+size = Vector2i(600, 420)
+theme_override_styles/panel = SubResource("StyleBoxFlat_c7bke")
+
+[node name="LoadContainer" type="MarginContainer" parent="LoadPopup" unique_id=2028986163]
+offset_right = 600.0
+offset_bottom = 420.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="LoadGridContainer" type="GridContainer" parent="LoadPopup/LoadContainer" unique_id=1467904334]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 3
+
+[node name="Button" type="Button" parent="LoadPopup/LoadContainer/LoadGridContainer" unique_id=627044166]
+custom_minimum_size = Vector2(180, 120)
+layout_mode = 2
+text = "Slot"
+
+[node name="Button2" type="Button" parent="LoadPopup/LoadContainer/LoadGridContainer" unique_id=326993645]
+custom_minimum_size = Vector2(180, 120)
+layout_mode = 2
+text = "Slot"
+
+[node name="Button3" type="Button" parent="LoadPopup/LoadContainer/LoadGridContainer" unique_id=565863990]
+custom_minimum_size = Vector2(180, 120)
+layout_mode = 2
+text = "Slot"
+
+[node name="Button4" type="Button" parent="LoadPopup/LoadContainer/LoadGridContainer" unique_id=2040581484]
+custom_minimum_size = Vector2(180, 120)
+layout_mode = 2
+text = "Slot"
+
+[node name="Button5" type="Button" parent="LoadPopup/LoadContainer/LoadGridContainer" unique_id=986745128]
+custom_minimum_size = Vector2(180, 120)
+layout_mode = 2
+text = "Slot"
+
+[node name="Button6" type="Button" parent="LoadPopup/LoadContainer/LoadGridContainer" unique_id=945350958]
+custom_minimum_size = Vector2(180, 120)
+layout_mode = 2
+text = "Slot"
+
+[node name="Button7" type="Button" parent="LoadPopup/LoadContainer/LoadGridContainer" unique_id=2119782127]
+custom_minimum_size = Vector2(180, 120)
+layout_mode = 2
+text = "Slot"
+
+[node name="Button8" type="Button" parent="LoadPopup/LoadContainer/LoadGridContainer" unique_id=1101846580]
+custom_minimum_size = Vector2(180, 120)
+layout_mode = 2
+text = "Slot"
+
+[node name="Button9" type="Button" parent="LoadPopup/LoadContainer/LoadGridContainer" unique_id=958304544]
+custom_minimum_size = Vector2(180, 120)
+layout_mode = 2
+text = "Slot"
+
+[node name="LoadLabel" type="Label" parent="LoadPopup" unique_id=1568965039]
+offset_right = 600.0
+offset_bottom = 420.0
+text = "Load"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[connection signal="pressed" from="BuyLevelButtonAndLevelViewer" to="." method="OnBuyLevelButtonAndLevelViewerPressed"]
+[connection signal="pressed" from="OpenCloseShopButton" to="." method="OnOpenCloseShopButtonPressed"]
+[connection signal="pressed" from="StartNextLevelButton" to="." method="OnStartNextLevelButtonPressed"]
+[connection signal="toggled" from="ResetLockPopupShopButton/ResetLockPopupShopMargin/ResetLockPopupBox/LockShopBox/LockShopButton" to="." method="OnLockShopButtonToggled"]
+[connection signal="pressed" from="ResetLockPopupShopButton/ResetLockPopupShopMargin/ResetLockPopupBox/ResetShopButton" to="." method="OnResetShopButtonPressed"]
+[connection signal="pressed" from="SettingsTexture/SettingTexturesButton" to="." method="OnSettingTexturesButtonPressed"]
+[connection signal="pressed" from="SettingsPopup/SettingsMargin/SettingsBox/SettingsSaveButton" to="." method="OnSettingsSaveButtonPressed"]
+[connection signal="pressed" from="SettingsPopup/SettingsMargin/SettingsBox/SettingsLoadButton" to="." method="OnSettingsLoadButtonPressed"]
+[connection signal="pressed" from="SettingsPopup/SettingsMargin/SettingsBox/MainMenuButton" to="." method="OnSettingsMainMenuButtonPressed"]
