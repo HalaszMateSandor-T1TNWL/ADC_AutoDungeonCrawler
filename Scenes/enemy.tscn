@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://k0k8sg5ktqjs" path="res://Scripts/Enemy.cs" id="1_1f0kj"]
 [ext_resource type="Texture2D" uid="uid://c0r6y7vxwf170" path="res://ConceptArt/Sorcerer.png" id="1_hghv2"]
 [ext_resource type="PackedScene" uid="uid://dfof51i28i8qr" path="res://Scenes/EnemyHealthBar.tscn" id="3_afpow"]
+[ext_resource type="Script" uid="uid://ui7ygyh44m85" path="res://Scripts/Pathfinder.cs" id="4_287tu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hghv2"]
 size = Vector2(16, 14)
@@ -20,9 +21,12 @@ texture = ExtResource("1_hghv2")
 
 [node name="EnemyHealthBar" parent="." unique_id=1211753225 instance=ExtResource("3_afpow")]
 offset_left = -13.0
-offset_top = 9.0
+offset_top = 8.0
 offset_right = 14.0
-offset_bottom = 15.0
+offset_bottom = 14.0
+
+[node name="Node" type="Node" parent="." unique_id=607512107]
+script = ExtResource("4_287tu")
 
 [connection signal="HPChanged" from="." to="EnemyHealthBar" method="OnEnemyHPChanged"]
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]

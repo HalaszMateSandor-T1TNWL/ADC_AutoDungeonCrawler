@@ -61,6 +61,7 @@ script = ExtResource("2_jjvhh")
 [node name="Label" type="Label" parent="TileMapLayer" unique_id=1388630529]
 offset_right = 40.0
 offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
 
 [node name="WalkerGenerator" type="Node" parent="." unique_id=1014205626]
 script = ExtResource("1_kry3j")
@@ -70,12 +71,13 @@ script = ExtResource("4_jjvhh")
 panningSpeed = 2.5
 
 [node name="Camera2D" type="Camera2D" parent="CameraController" unique_id=1139282717]
+process_callback = 0
 
 [node name="Button" type="Button" parent="CameraController/Camera2D" unique_id=1816792966]
-offset_left = -639.0
-offset_top = -356.0
-offset_right = -469.0
-offset_bottom = -325.0
+offset_left = -641.0
+offset_top = -360.0
+offset_right = -471.0
+offset_bottom = -329.0
 text = "Regenerate dungeon"
 
 [connection signal="AddRoomToList" from="WalkerGenerator" to="CameraController" method="OnAddRoomToList"]
