@@ -3,14 +3,16 @@ using System;
 
 public partial class Enemy : Area2D
 {
-	[Signal] public delegate void DamageEventHandler(float damage);
+	[Signal] public delegate void HPChangedEventHandler(float currentHP);
 	
-	public float CurrentHealth = 2.0f;
 	public float MaxHealth = 100.0f;
 
+	public float CurrentHealth;
+
+	public float damage;
+	
 	private TileMapLayer _tileMap;
 	private AStarGrid2D _astar;
-	public float health = 100.0f;
 
 	public override void _Ready()
 	{
@@ -22,25 +24,57 @@ public partial class Enemy : Area2D
 		_astar.DiagonalMode = AStarGrid2D.DiagonalModeEnum.Never;
 		_astar.Update();
 
-		if(
-			_astar.Region.HasPoint(_tileMap.LocalToMap(this.GlobalPosition)) == false || 
-			_tileMap.GetCellTileData(_tileMap.LocalToMap(this.GlobalPosition)) == null || 
-			(bool)_tileMap.GetCellTileData(_tileMap.LocalToMap(this.GlobalPosition)).GetCustomData("Walkable") == false
-		) 
+		if(IsSpawnValid())
 		{
 			QueueFree();
 		}
+
+		HPChange(5);
 	}
 	
-	public void OnBodyEntered(Node2D area)
+	public bool IsSpawnValid()
 	{
-		this.QueueFree();
+		return _astar.Region.HasPoint(_tileMap.LocalToMap(this.GlobalPosition)) == false || 
+			_tileMap.GetCellTileData(_tileMap.LocalToMap(this.GlobalPosition)) == null || 
+			(bool)_tileMap.GetCellTileData(_tileMap.LocalToMap(this.GlobalPosition)).GetCustomData("Walkable") == false;
 	}
 	
-	public void OnDamageDealt(float damage)
+	public void HPChange(float change)
+	{
+		CurrentHealth = MaxHealth;
+		if(change < 0)
+		{
+			DamageTaken(change);
+		}else if(change >= 0)
+		{
+			HealthGained(change);
+		}
+		EmitSignal(nameof(HPChanged), CurrentHealth);
+	}
+	
+	public void DamageTaken(float damage)
+	{
+			TakeDamage(damage);
+			if(CurrentHealth <= 0)
+			{
+				QueueFree();
+			}
+	}
+
+	public void HealthGained(float amount)
+	{
+		Heal(amount);
+	}
+	public void TakeDamage(float damage)
 	{
 		CurrentHealth -= damage;
-		EmitSignal(nameof(Damage), damage);
+
+		CurrentHealth = Mathf.Clamp(CurrentHealth, 0, new Enemy().MaxHealth);
 	}
-	
+	public void Heal(float amount)
+	{
+		CurrentHealth += amount;
+		CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
+	}
+
 }

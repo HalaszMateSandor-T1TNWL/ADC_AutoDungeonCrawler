@@ -1,23 +1,32 @@
 using Godot;
-using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public partial class CameraController : Node2D
 {
-	[Export] public float moveSpeed = 100.0f;
+	[Export] public float moveSpeed = 200.0f;
 	[Export] public float panningSpeed = 1.0f;
 	private Variant _viewportWidth = ProjectSettings.GetSetting("display/window/size/viewport_width");
 	private Variant _viewportHeight = ProjectSettings.GetSetting("display/window/size/viewport_height");
 
 	private Vector2 _motionVector;
+	private Vector2 _roomFeed;
+	public List<Rect2> _rooms = new List<Rect2>();
 
-	private Camera2D _camera;
+	public Camera2D _camera;
+	private TileMapLayer _tilemap;
 
 	public override void _Ready()
 	{
 		_camera = GetNode<Camera2D>($"Camera2D");
-		_motionVector = Vector2.Zero;
+		_tilemap = GetNode<TileMapLayer>($"../TileMapLayer");
+		_motionVector = GetViewport().GetMousePosition();
 	}
 
+	public override void _Process(double delta)
+	{
+		_roomFeed = _rooms.First().GetCenter();
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -52,9 +61,14 @@ public partial class CameraController : Node2D
 			{
 				_motionVector.X -= panningSpeed;
 				_motionVector.Y -= panningSpeed;
-			}   
+			}
+
+			this.GlobalPosition = this.GlobalPosition.MoveToward(_motionVector, (float)delta * moveSpeed);
 		}
-		this.GlobalPosition = this.GlobalPosition.MoveToward(_motionVector, (float)delta * moveSpeed);
+		else
+			/* Use this for the camera to pan towards a room */
+			//this.GlobalPosition = this.GlobalPosition.MoveToward(_tilemap.MapToLocal((Vector2I)_roomFeed), (float)delta * 500.0f);
+			this.GlobalPosition = new Vector2(_tilemap.MapToLocal((Vector2I)_roomFeed).X, _tilemap.MapToLocal((Vector2I)_roomFeed).Y);
 	}
 
 	public override void _Input(InputEvent @event)
@@ -72,6 +86,10 @@ public partial class CameraController : Node2D
 					Input.MouseMode = Input.MouseModeEnum.Confined;
 					break;
 				case MouseButton.WheelUp:
+					if (_camera.Zoom >= new Vector2(3.0f, 3.0f))
+					{
+						break;
+					}
 					_camera.Zoom += new Vector2(0.01f, 0.01f);
 					break;
 				case MouseButton.WheelDown:
@@ -84,6 +102,14 @@ public partial class CameraController : Node2D
 			}
 		}
 	}
+	
+	public void OnClearRoomsInList()
+	{
+		_rooms.Clear();
+	}
 
-
+	public void OnAddRoomToList(Rect2 room)
+	{
+		_rooms.Add(room);
+	}
 }
