@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://b8shlwi2ucfoi" path="res://ConceptArt/UI/undo.png" id="2_guah6"]
 [ext_resource type="Texture2D" uid="uid://3kwku2ttdfrh" path="res://ConceptArt/UI/DragonIcon.png" id="3_ug47o"]
 [ext_resource type="Texture2D" uid="uid://5xq58xjhvhr7" path="res://ConceptArt/UI/setting-lines.png" id="4_ug47o"]
+[ext_resource type="Script" uid="uid://bpnano8dv0lmj" path="res://Scripts/SoundSettings.cs" id="5_k5w2u"]
+[ext_resource type="AudioStream" uid="uid://cdqf6hxrs1kx0" path="res://Audio/Music/domartistudios-magical-wizard-school-orchestral-fantasy-488126.mp3" id="6_356oj"]
+[ext_resource type="AudioStream" uid="uid://bvpuihp6grdrh" path="res://Audio/SFX/SwordSlice1.mp3" id="7_356oj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofew4"]
 bg_color = Color(0.14901961, 0.02745098, 0.10980392, 1)
@@ -27,6 +30,9 @@ bg_color = Color(0.14901961, 0.02745098, 0.10980392, 1)
 bg_color = Color(0.48235294, 0.14509805, 0.28235295, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7bke"]
+bg_color = Color(0.48235294, 0.14509805, 0.28235295, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k4eo3"]
 bg_color = Color(0.48235294, 0.14509805, 0.28235295, 1)
 
 [node name="Control" type="Control" unique_id=1326013840]
@@ -453,12 +459,13 @@ layout_mode = 2
 [node name="SettingsPopup" type="PopupPanel" parent="." unique_id=615042146]
 oversampling_override = 1.0
 initial_position = 1
-size = Vector2i(600, 408)
+size = Vector2i(600, 400)
+visible = true
 theme_override_styles/panel = SubResource("StyleBoxFlat_356oj")
 
 [node name="SettingsMargin" type="MarginContainer" parent="SettingsPopup" unique_id=871337142]
 offset_right = 600.0
-offset_bottom = 408.0
+offset_bottom = 400.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_left = 5
@@ -477,15 +484,10 @@ theme_override_font_sizes/font_size = 40
 text = "Settings"
 horizontal_alignment = 1
 
-[node name="SoundLabel" type="Label" parent="SettingsPopup/SettingsMargin/SettingsBox" unique_id=1546318101]
+[node name="SettingsSoundButton" type="Button" parent="SettingsPopup/SettingsMargin/SettingsBox" unique_id=2055114475]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.15686275, 0.047058824, 0.105882354, 1)
 theme_override_font_sizes/font_size = 25
 text = "Sound"
-horizontal_alignment = 1
-
-[node name="SoundSlider" type="HSlider" parent="SettingsPopup/SettingsMargin/SettingsBox" unique_id=59267654]
-layout_mode = 2
 
 [node name="SettingsSaveButton" type="Button" parent="SettingsPopup/SettingsMargin/SettingsBox" unique_id=1603470973]
 layout_mode = 2
@@ -685,15 +687,131 @@ text = "SAVE"
 horizontal_alignment = 1
 vertical_alignment = 2
 
+[node name="SoundPopup" type="PopupPanel" parent="." unique_id=165106046]
+oversampling_override = 1.0
+initial_position = 1
+size = Vector2i(600, 419)
+visible = true
+theme_override_styles/panel = SubResource("StyleBoxFlat_k4eo3")
+script = ExtResource("5_k5w2u")
+
+[node name="SoundMarginContainer" type="MarginContainer" parent="SoundPopup" unique_id=871070246]
+offset_right = 600.0
+offset_bottom = 419.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SoundVBoxContainer" type="VBoxContainer" parent="SoundPopup/SoundMarginContainer" unique_id=1165560828]
+layout_mode = 2
+
+[node name="SoundSettingsLabel" type="Label" parent="SoundPopup/SoundMarginContainer/SoundVBoxContainer" unique_id=498552674]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Sound Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MasterVolumeMargin" type="MarginContainer" parent="SoundPopup/SoundMarginContainer/SoundVBoxContainer" unique_id=1801066119]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="MasterVolumeBox" type="VBoxContainer" parent="SoundPopup/SoundMarginContainer/SoundVBoxContainer/MasterVolumeMargin" unique_id=1294172896]
+layout_mode = 2
+
+[node name="MasterVolumeLabel" type="Label" parent="SoundPopup/SoundMarginContainer/SoundVBoxContainer/MasterVolumeMargin/MasterVolumeBox" unique_id=10444711]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Master Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MasterVolumeSlider" type="HSlider" parent="SoundPopup/SoundMarginContainer/SoundVBoxContainer/MasterVolumeMargin/MasterVolumeBox" unique_id=709406744]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="MusicVolumeMargin" type="MarginContainer" parent="SoundPopup/SoundMarginContainer/SoundVBoxContainer" unique_id=2146851581]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="MusicVolumeBox" type="VBoxContainer" parent="SoundPopup/SoundMarginContainer/SoundVBoxContainer/MusicVolumeMargin" unique_id=1490573427]
+layout_mode = 2
+
+[node name="MusicVolumeLabel" type="Label" parent="SoundPopup/SoundMarginContainer/SoundVBoxContainer/MusicVolumeMargin/MusicVolumeBox" unique_id=2114993519]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Music Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicVolumeSlider" type="HSlider" parent="SoundPopup/SoundMarginContainer/SoundVBoxContainer/MusicVolumeMargin/MusicVolumeBox" unique_id=644036761]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="SFXVolumeMargin" type="MarginContainer" parent="SoundPopup/SoundMarginContainer/SoundVBoxContainer" unique_id=1231806857]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="SFXVolumeBox" type="VBoxContainer" parent="SoundPopup/SoundMarginContainer/SoundVBoxContainer/SFXVolumeMargin" unique_id=1265029575]
+layout_mode = 2
+
+[node name="SFXVolumLabel" type="Label" parent="SoundPopup/SoundMarginContainer/SoundVBoxContainer/SFXVolumeMargin/SFXVolumeBox" unique_id=1133554849]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Sound Effects Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXVolumeSlider" type="HSlider" parent="SoundPopup/SoundMarginContainer/SoundVBoxContainer/SFXVolumeMargin/SFXVolumeBox" unique_id=371964049]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="SoundSettingsExitButton" type="Button" parent="SoundPopup/SoundMarginContainer/SoundVBoxContainer" unique_id=2094661819]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Return to Settings"
+
+[node name="SoundSystemNode" type="Node" parent="." unique_id=518440321]
+
+[node name="BackgrondMusic" type="AudioStreamPlayer" parent="SoundSystemNode" unique_id=1668444026]
+stream = ExtResource("6_356oj")
+autoplay = true
+bus = &"Music"
+
+[node name="SwordSFXPlayer" type="AudioStreamPlayer" parent="SoundSystemNode" unique_id=825333206]
+stream = ExtResource("7_356oj")
+bus = &"SFX"
+
 [connection signal="pressed" from="BuyLevelButtonAndLevelViewer" to="." method="OnBuyLevelButtonAndLevelViewerPressed"]
 [connection signal="pressed" from="OpenCloseShopButton" to="." method="OnOpenCloseShopButtonPressed"]
 [connection signal="pressed" from="StartNextLevelButton" to="." method="OnStartNextLevelButtonPressed"]
 [connection signal="toggled" from="ResetLockPopupShopButton/ResetLockPopupShopMargin/ResetLockPopupBox/LockShopBox/LockShopButton" to="." method="OnLockShopButtonToggled"]
 [connection signal="pressed" from="ResetLockPopupShopButton/ResetLockPopupShopMargin/ResetLockPopupBox/ResetShopButton" to="." method="OnResetShopButtonPressed"]
 [connection signal="pressed" from="SettingsTexture/SettingTexturesButton" to="." method="OnSettingTexturesButtonPressed"]
+[connection signal="pressed" from="SettingsPopup/SettingsMargin/SettingsBox/SettingsSoundButton" to="." method="OnSettingsSoundButtonPressed"]
 [connection signal="pressed" from="SettingsPopup/SettingsMargin/SettingsBox/SettingsSaveButton" to="." method="OnSettingsSaveButtonPressed"]
 [connection signal="pressed" from="SettingsPopup/SettingsMargin/SettingsBox/SettingsLoadButton" to="." method="OnSettingsLoadButtonPressed"]
 [connection signal="pressed" from="SettingsPopup/SettingsMargin/SettingsBox/MainMenuButton" to="." method="OnSettingsMainMenuButtonPressed"]
 [connection signal="pressed" from="SettingsPopup/SettingsMargin/SettingsBox/SettingsPopupExit" to="." method="OnSettingsPopupExitPressed"]
 [connection signal="pressed" from="LoadPopup/MarginContainer/VBoxContainer/ReturnToSettingsButton" to="." method="OnLoadReturnToSettingsButtonPressed"]
 [connection signal="pressed" from="SavePopup/MarginContainer/VBoxContainer/ReturnToSettingsButton" to="." method="OnSaveReturnToSettingsButtonPressed"]
+[connection signal="value_changed" from="SoundPopup/SoundMarginContainer/SoundVBoxContainer/MasterVolumeMargin/MasterVolumeBox/MasterVolumeSlider" to="SoundPopup" method="OnMasterVolumeSliderValueChanged"]
+[connection signal="value_changed" from="SoundPopup/SoundMarginContainer/SoundVBoxContainer/MusicVolumeMargin/MusicVolumeBox/MusicVolumeSlider" to="SoundPopup" method="OnMusicVolumeSliderValueChanged"]
+[connection signal="value_changed" from="SoundPopup/SoundMarginContainer/SoundVBoxContainer/SFXVolumeMargin/SFXVolumeBox/SFXVolumeSlider" to="SoundPopup" method="OnSFXVolumeSliderValueChanged"]
+[connection signal="pressed" from="SoundPopup/SoundMarginContainer/SoundVBoxContainer/SoundSettingsExitButton" to="." method="OnSoundSettingsExitButtonPressed"]

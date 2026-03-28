@@ -10,6 +10,7 @@ public partial class UserInterface : Control
 	private PopupPanel settings;
 	private PopupPanel savePopup;
 	private PopupPanel loadPopup;
+	private PopupPanel soundSettings; 
 	
 	public override void _Ready()
 	{
@@ -18,6 +19,7 @@ public partial class UserInterface : Control
 		settings = GetNode<PopupPanel>("SettingsPopup");
 		savePopup = GetNode<PopupPanel>("SavePopup");
 		loadPopup = GetNode<PopupPanel>("LoadPopup");
+		soundSettings = GetNode<PopupPanel>("SoundPopup");
 		
 		
 	}
@@ -54,15 +56,28 @@ public partial class UserInterface : Control
 		settings.Hide();
 	}
 
+	private void OnSettingsSoundButtonPressed()
+	{
+		settings.Hide();
+		soundSettings.Show();
+
+	}
+
 	private void OnSaveReturnToSettingsButtonPressed()
 	{
 		savePopup.Hide();
 		settings.Popup();
 	}
 
-		private void OnLoadReturnToSettingsButtonPressed()
+	private void OnLoadReturnToSettingsButtonPressed()
 	{
 		loadPopup.Hide();
+		settings.Popup();
+	}
+
+	private void OnSoundSettingsExitButtonPressed()
+	{
+		soundSettings.Hide();
 		settings.Popup();
 	}
 
@@ -89,6 +104,7 @@ public partial class UserInterface : Control
 	private void OnSettingsMainMenuButtonPressed()
 	{
 		EmitSignal(SignalName.UIAction,(int) UserInterfaceActions.MainMenu);
+		GetTree().ChangeSceneToFile("res://Scenes/StartMenu.tscn");
 	}
 
 	

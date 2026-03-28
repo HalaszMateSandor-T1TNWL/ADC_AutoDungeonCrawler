@@ -5,4 +5,8 @@ public enum UserInterfaceActions
 	ResetShop,
 	LockShop,
 	MainMenu,
+	NewGame,
+	LoadGame,
+	MainMenuSettings,
+	QuitGame,
 }

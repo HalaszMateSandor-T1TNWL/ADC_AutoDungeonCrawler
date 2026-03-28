@@ -55,9 +55,19 @@ sources/1 = SubResource("TileSetAtlasSource_6bp64")
 
 [node name="Main" type="Node2D" unique_id=2103418611]
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1035246184]
+[node name="Control" type="Control" parent="." unique_id=614406110]
+layout_mode = 3
+anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 720.0
+
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=1035246184]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_21xkr")
 expand_mode = 1
 
