@@ -482,14 +482,18 @@ layout_mode = 2
 [node name="SettingsPopup" type="PopupPanel" parent="." unique_id=615042146]
 oversampling_override = 1.0
 initial_position = 1
-size = Vector2i(600, 400)
+size = Vector2i(600, 408)
 theme_override_styles/panel = SubResource("StyleBoxFlat_356oj")
 
 [node name="SettingsMargin" type="MarginContainer" parent="SettingsPopup" unique_id=871337142]
 offset_right = 600.0
-offset_bottom = 400.0
+offset_bottom = 408.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="SettingsBox" type="VBoxContainer" parent="SettingsPopup/SettingsMargin" unique_id=796708439]
 layout_mode = 2
@@ -527,21 +531,42 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Return to Main Menu"
 
-[node name="SavePopup" type="PopupPanel" parent="." unique_id=1955252491]
+[node name="SettingsPopupExit" type="Button" parent="SettingsPopup/SettingsMargin/SettingsBox" unique_id=190377725]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Exit"
+
+[node name="LoadPopup" type="PopupPanel" parent="." unique_id=1641170063]
 oversampling_override = 1.0
 initial_position = 1
-size = Vector2i(600, 420)
+size = Vector2i(620, 502)
 theme_override_styles/panel = SubResource("StyleBoxFlat_c7bke")
 
-[node name="SaveContainer" type="MarginContainer" parent="SavePopup" unique_id=144948706]
-offset_right = 600.0
-offset_bottom = 420.0
+[node name="MarginContainer" type="MarginContainer" parent="LoadPopup" unique_id=829028572]
+offset_right = 620.0
+offset_bottom = 502.0
+size_flags_stretch_ratio = 0.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoadPopup/MarginContainer" unique_id=1511956983]
+layout_mode = 2
+
+[node name="ReturnToSettingsButton" type="Button" parent="LoadPopup/MarginContainer/VBoxContainer" unique_id=18021315]
+layout_mode = 2
+size_flags_vertical = 0
+text = "RETURN TO SETTINGS"
+
+[node name="LoadContainer" type="MarginContainer" parent="LoadPopup/MarginContainer/VBoxContainer" unique_id=1583783348]
+layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="SaveGridContainer" type="GridContainer" parent="SavePopup/SaveContainer" unique_id=2211433]
+[node name="LoadGridContainer" type="GridContainer" parent="LoadPopup/MarginContainer/VBoxContainer/LoadContainer" unique_id=996290579]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -549,73 +574,89 @@ theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 3
 
-[node name="Button" type="Button" parent="SavePopup/SaveContainer/SaveGridContainer" unique_id=1534734926]
+[node name="Button" type="Button" parent="LoadPopup/MarginContainer/VBoxContainer/LoadContainer/LoadGridContainer" unique_id=751823999]
+layout_mode = 2
+text = "Slot"
+
+[node name="Button2" type="Button" parent="LoadPopup/MarginContainer/VBoxContainer/LoadContainer/LoadGridContainer" unique_id=23126568]
 custom_minimum_size = Vector2(180, 120)
 layout_mode = 2
 text = "Slot"
 
-[node name="Button2" type="Button" parent="SavePopup/SaveContainer/SaveGridContainer" unique_id=271182926]
+[node name="Button3" type="Button" parent="LoadPopup/MarginContainer/VBoxContainer/LoadContainer/LoadGridContainer" unique_id=1180893080]
 custom_minimum_size = Vector2(180, 120)
 layout_mode = 2
 text = "Slot"
 
-[node name="Button3" type="Button" parent="SavePopup/SaveContainer/SaveGridContainer" unique_id=788036440]
+[node name="Button4" type="Button" parent="LoadPopup/MarginContainer/VBoxContainer/LoadContainer/LoadGridContainer" unique_id=1029483393]
 custom_minimum_size = Vector2(180, 120)
 layout_mode = 2
 text = "Slot"
 
-[node name="Button4" type="Button" parent="SavePopup/SaveContainer/SaveGridContainer" unique_id=204017222]
+[node name="Button5" type="Button" parent="LoadPopup/MarginContainer/VBoxContainer/LoadContainer/LoadGridContainer" unique_id=231306387]
 custom_minimum_size = Vector2(180, 120)
 layout_mode = 2
 text = "Slot"
 
-[node name="Button5" type="Button" parent="SavePopup/SaveContainer/SaveGridContainer" unique_id=292981439]
+[node name="Button6" type="Button" parent="LoadPopup/MarginContainer/VBoxContainer/LoadContainer/LoadGridContainer" unique_id=129685451]
 custom_minimum_size = Vector2(180, 120)
 layout_mode = 2
 text = "Slot"
 
-[node name="Button6" type="Button" parent="SavePopup/SaveContainer/SaveGridContainer" unique_id=1518073313]
+[node name="Button7" type="Button" parent="LoadPopup/MarginContainer/VBoxContainer/LoadContainer/LoadGridContainer" unique_id=1976254882]
 custom_minimum_size = Vector2(180, 120)
 layout_mode = 2
 text = "Slot"
 
-[node name="Button7" type="Button" parent="SavePopup/SaveContainer/SaveGridContainer" unique_id=1606475037]
+[node name="Button8" type="Button" parent="LoadPopup/MarginContainer/VBoxContainer/LoadContainer/LoadGridContainer" unique_id=1733712800]
 custom_minimum_size = Vector2(180, 120)
 layout_mode = 2
 text = "Slot"
 
-[node name="Button8" type="Button" parent="SavePopup/SaveContainer/SaveGridContainer" unique_id=1519667130]
+[node name="Button9" type="Button" parent="LoadPopup/MarginContainer/VBoxContainer/LoadContainer/LoadGridContainer" unique_id=370679204]
 custom_minimum_size = Vector2(180, 120)
 layout_mode = 2
 text = "Slot"
 
-[node name="Button9" type="Button" parent="SavePopup/SaveContainer/SaveGridContainer" unique_id=598659454]
-custom_minimum_size = Vector2(180, 120)
+[node name="LoadsLabel" type="Label" parent="LoadPopup/MarginContainer/VBoxContainer" unique_id=902271265]
 layout_mode = 2
-text = "Slot"
-
-[node name="SaveLabel" type="Label" parent="SavePopup" unique_id=1737807571]
-offset_right = 600.0
-offset_bottom = 420.0
-text = "Save"
+size_flags_vertical = 8
+text = "LOAD"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="LoadPopup" type="PopupPanel" parent="." unique_id=1012375935]
+[node name="SavePopup" type="PopupPanel" parent="." unique_id=296037654]
 oversampling_override = 1.0
 initial_position = 1
-size = Vector2i(600, 420)
+size = Vector2i(620, 502)
+visible = true
 theme_override_styles/panel = SubResource("StyleBoxFlat_c7bke")
 
-[node name="LoadContainer" type="MarginContainer" parent="LoadPopup" unique_id=2028986163]
-offset_right = 600.0
-offset_bottom = 420.0
+[node name="MarginContainer" type="MarginContainer" parent="SavePopup" unique_id=611931492]
+offset_right = 620.0
+offset_bottom = 502.0
+size_flags_stretch_ratio = 0.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SavePopup/MarginContainer" unique_id=43138853]
+layout_mode = 2
+
+[node name="ReturnToSettingsButton" type="Button" parent="SavePopup/MarginContainer/VBoxContainer" unique_id=825606395]
+layout_mode = 2
+size_flags_vertical = 0
+text = "RETURN TO SETTINGS"
+
+[node name="SaveContainer" type="MarginContainer" parent="SavePopup/MarginContainer/VBoxContainer" unique_id=1590404715]
+layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="LoadGridContainer" type="GridContainer" parent="LoadPopup/LoadContainer" unique_id=1467904334]
+[node name="SaveGridContainer" type="GridContainer" parent="SavePopup/MarginContainer/VBoxContainer/SaveContainer" unique_id=1178687877]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -623,55 +664,54 @@ theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 3
 
-[node name="Button" type="Button" parent="LoadPopup/LoadContainer/LoadGridContainer" unique_id=627044166]
+[node name="Button" type="Button" parent="SavePopup/MarginContainer/VBoxContainer/SaveContainer/SaveGridContainer" unique_id=1338765604]
+layout_mode = 2
+text = "Slot"
+
+[node name="Button2" type="Button" parent="SavePopup/MarginContainer/VBoxContainer/SaveContainer/SaveGridContainer" unique_id=921373032]
 custom_minimum_size = Vector2(180, 120)
 layout_mode = 2
 text = "Slot"
 
-[node name="Button2" type="Button" parent="LoadPopup/LoadContainer/LoadGridContainer" unique_id=326993645]
+[node name="Button3" type="Button" parent="SavePopup/MarginContainer/VBoxContainer/SaveContainer/SaveGridContainer" unique_id=1663336327]
 custom_minimum_size = Vector2(180, 120)
 layout_mode = 2
 text = "Slot"
 
-[node name="Button3" type="Button" parent="LoadPopup/LoadContainer/LoadGridContainer" unique_id=565863990]
+[node name="Button4" type="Button" parent="SavePopup/MarginContainer/VBoxContainer/SaveContainer/SaveGridContainer" unique_id=1121855080]
 custom_minimum_size = Vector2(180, 120)
 layout_mode = 2
 text = "Slot"
 
-[node name="Button4" type="Button" parent="LoadPopup/LoadContainer/LoadGridContainer" unique_id=2040581484]
+[node name="Button5" type="Button" parent="SavePopup/MarginContainer/VBoxContainer/SaveContainer/SaveGridContainer" unique_id=545792655]
 custom_minimum_size = Vector2(180, 120)
 layout_mode = 2
 text = "Slot"
 
-[node name="Button5" type="Button" parent="LoadPopup/LoadContainer/LoadGridContainer" unique_id=986745128]
+[node name="Button6" type="Button" parent="SavePopup/MarginContainer/VBoxContainer/SaveContainer/SaveGridContainer" unique_id=1759198274]
 custom_minimum_size = Vector2(180, 120)
 layout_mode = 2
 text = "Slot"
 
-[node name="Button6" type="Button" parent="LoadPopup/LoadContainer/LoadGridContainer" unique_id=945350958]
+[node name="Button7" type="Button" parent="SavePopup/MarginContainer/VBoxContainer/SaveContainer/SaveGridContainer" unique_id=58764146]
 custom_minimum_size = Vector2(180, 120)
 layout_mode = 2
 text = "Slot"
 
-[node name="Button7" type="Button" parent="LoadPopup/LoadContainer/LoadGridContainer" unique_id=2119782127]
+[node name="Button8" type="Button" parent="SavePopup/MarginContainer/VBoxContainer/SaveContainer/SaveGridContainer" unique_id=1115577397]
 custom_minimum_size = Vector2(180, 120)
 layout_mode = 2
 text = "Slot"
 
-[node name="Button8" type="Button" parent="LoadPopup/LoadContainer/LoadGridContainer" unique_id=1101846580]
+[node name="Button9" type="Button" parent="SavePopup/MarginContainer/VBoxContainer/SaveContainer/SaveGridContainer" unique_id=150640737]
 custom_minimum_size = Vector2(180, 120)
 layout_mode = 2
 text = "Slot"
 
-[node name="Button9" type="Button" parent="LoadPopup/LoadContainer/LoadGridContainer" unique_id=958304544]
-custom_minimum_size = Vector2(180, 120)
+[node name="SaveLabel" type="Label" parent="SavePopup/MarginContainer/VBoxContainer" unique_id=2048874138]
 layout_mode = 2
-text = "Slot"
-
-[node name="LoadLabel" type="Label" parent="LoadPopup" unique_id=1568965039]
-offset_right = 600.0
-offset_bottom = 420.0
-text = "Load"
+size_flags_vertical = 8
+text = "SAVE"
 horizontal_alignment = 1
 vertical_alignment = 2
 
@@ -684,3 +724,6 @@ vertical_alignment = 2
 [connection signal="pressed" from="SettingsPopup/SettingsMargin/SettingsBox/SettingsSaveButton" to="." method="OnSettingsSaveButtonPressed"]
 [connection signal="pressed" from="SettingsPopup/SettingsMargin/SettingsBox/SettingsLoadButton" to="." method="OnSettingsLoadButtonPressed"]
 [connection signal="pressed" from="SettingsPopup/SettingsMargin/SettingsBox/MainMenuButton" to="." method="OnSettingsMainMenuButtonPressed"]
+[connection signal="pressed" from="SettingsPopup/SettingsMargin/SettingsBox/SettingsPopupExit" to="." method="OnSettingsPopupExitPressed"]
+[connection signal="pressed" from="LoadPopup/MarginContainer/VBoxContainer/ReturnToSettingsButton" to="." method="OnLoadReturnToSettingsButtonPressed"]
+[connection signal="pressed" from="SavePopup/MarginContainer/VBoxContainer/ReturnToSettingsButton" to="." method="OnSaveReturnToSettingsButtonPressed"]

@@ -25,41 +25,71 @@ public partial class UserInterface : Control
 	public override void _Process(double delta)
 	{
 	}
+
 	private void OnOpenCloseShopButtonPressed()
 	{
 		shop.Popup();
 		resetShop.Popup();
 	}
+
 	private void OnSettingTexturesButtonPressed()
 	{
 		settings.Popup();
 	}
+
 	private void OnSettingsSaveButtonPressed()
 	{
 		savePopup.Popup();
+		settings.Hide();
 	}
+
 	private void OnSettingsLoadButtonPressed()
 	{
 		loadPopup.Popup();
+		settings.Hide();
 	}
+
+	private void OnSettingsPopupExitPressed()
+	{
+		settings.Hide();
+	}
+
+	private void OnSaveReturnToSettingsButtonPressed()
+	{
+		savePopup.Hide();
+		settings.Popup();
+	}
+
+		private void OnLoadReturnToSettingsButtonPressed()
+	{
+		loadPopup.Hide();
+		settings.Popup();
+	}
+
 	private void OnBuyLevelButtonAndLevelViewerPressed()
 	{
 		EmitSignal(SignalName.UIAction,(int)UserInterfaceActions.BuyLevel );
 	}
+
 	private void OnStartNextLevelButtonPressed()
 	{
 		EmitSignal(SignalName.UIAction,(int) UserInterfaceActions.StartNextLevel);
 	}
+
 	private void OnResetShopButtonPressed()
 	{
 		EmitSignal(SignalName.UIAction,(int) UserInterfaceActions.ResetShop);
 	}
+
 	private void OnLockShopButtonToggled(bool toggledOn)
 	{
 		EmitSignal(SignalName.UIAction,(int) UserInterfaceActions.LockShop);
 	}
-	private void OnSettingsMainMenuButtonPressed(){
+
+	private void OnSettingsMainMenuButtonPressed()
+	{
 		EmitSignal(SignalName.UIAction,(int) UserInterfaceActions.MainMenu);
 	}
+
 	
 }
