@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FA6BA534-F380-4FCD-B154-B4F3D9349F2F}|New Game Project.csproj|c:\\suli\\szoft.tech.gyak\\projekt\\adc_autodungeoncrawler\\test\\eyetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FA6BA534-F380-4FCD-B154-B4F3D9349F2F}|New Game Project.csproj|solutionrelative:test\\eyetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FA6BA534-F380-4FCD-B154-B4F3D9349F2F}|New Game Project.csproj|c:\\suli\\szoft.tech.gyak\\projekt\\adc_autodungeoncrawler\\test\\healthbartest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FA6BA534-F380-4FCD-B154-B4F3D9349F2F}|New Game Project.csproj|solutionrelative:test\\healthbartest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -34,11 +38,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 291,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "EyeTest.cs",
+              "DocumentMoniker": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\test\\EyeTest.cs",
+              "RelativeDocumentMoniker": "test\\EyeTest.cs",
+              "ToolTip": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\test\\EyeTest.cs",
+              "RelativeToolTip": "test\\EyeTest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-28T20:35:22.446Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "SeekerTest.cs",
               "DocumentMoniker": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\test\\SeekerTest.cs",
               "RelativeDocumentMoniker": "test\\SeekerTest.cs",
@@ -46,12 +63,11 @@
               "RelativeToolTip": "test\\SeekerTest.cs",
               "ViewState": "AgIAAGcAAAAAAAAAAAAkwIoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T19:00:34.702Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T19:00:34.702Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "CameraTest.cs",
               "DocumentMoniker": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\test\\CameraTest.cs",
               "RelativeDocumentMoniker": "test\\CameraTest.cs",
@@ -59,12 +75,11 @@
               "RelativeToolTip": "test\\CameraTest.cs",
               "ViewState": "AgIAAHEAAAAAAAAAAAAswIIAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T18:57:57.435Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T18:57:57.435Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "HealthBarTest.cs",
               "DocumentMoniker": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\test\\HealthBarTest.cs",
               "RelativeDocumentMoniker": "test\\HealthBarTest.cs",
@@ -77,7 +92,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "CameraController.cs",
               "DocumentMoniker": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\Scripts\\CameraController.cs",
               "RelativeDocumentMoniker": "Scripts\\CameraController.cs",
@@ -85,12 +100,11 @@
               "RelativeToolTip": "Scripts\\CameraController.cs",
               "ViewState": "AgIAAF4AAAAAAAAAAAAkwDcAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T18:56:56.62Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T18:56:56.62Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "WalkerGenerator.cs",
               "DocumentMoniker": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\Scripts\\WalkerGenerator.cs",
               "RelativeDocumentMoniker": "Scripts\\WalkerGenerator.cs",
@@ -102,7 +116,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "WalkerGeneratorTest.cs",
               "DocumentMoniker": "C:\\Suli\\Szoft.tech.gyak\\projekt\\ADC_AutoDungeonCrawler\\test\\WalkerGeneratorTest.cs",
               "RelativeDocumentMoniker": "test\\WalkerGeneratorTest.cs",
@@ -110,8 +124,7 @@
               "RelativeToolTip": "test\\WalkerGeneratorTest.cs",
               "ViewState": "AgIAAGwAAAAAAAAAAAAowLIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T18:14:39.391Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-23T18:14:39.391Z"
             }
           ]
         }

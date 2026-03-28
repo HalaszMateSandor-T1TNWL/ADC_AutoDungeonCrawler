@@ -31,6 +31,7 @@ public partial class Enemy : Area2D
 
 		HPChange(5);
 	}
+<<<<<<< Updated upstream
 	
 	public bool IsSpawnValid()
 	{
@@ -39,6 +40,14 @@ public partial class Enemy : Area2D
 			(bool)_tileMap.GetCellTileData(_tileMap.LocalToMap(this.GlobalPosition)).GetCustomData("Walkable") == false;
 	}
 	
+=======
+
+	public override void OnQueueForFree()
+	{
+		this.QueueFree();
+	}
+
+>>>>>>> Stashed changes
 	public void HPChange(float change)
 	{
 		CurrentHealth = MaxHealth;

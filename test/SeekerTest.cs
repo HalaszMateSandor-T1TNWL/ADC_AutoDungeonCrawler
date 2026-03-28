@@ -138,6 +138,43 @@ namespace ADC.Tests
 		}
 
 		[TestCase]
+<<<<<<< Updated upstream
+=======
+		public async Task testWhatIfTheTargetPosIsTheCurrentPos()
+		{
+			var seeker = new Seeker
+			{
+				GlobalPosition = new Vector2(10, 10)
+			};
+			var pathfinder = new Pathfinder();
+
+			seeker.AddChild(pathfinder);
+			pathfinder._parent = pathfinder.GetParent<Seeker>();
+
+			Node2D dummyTarget = new Node2D
+			{
+				GlobalPosition = new Vector2(10, 10)
+			};
+			dummyTarget.AddToGroup("enemy");
+
+			var enemyContainer = new Godot.Collections.Array<Node>
+			{
+				dummyTarget
+			};
+
+			pathfinder.AcquireTarget(enemyContainer);
+			pathfinder._PhysicsProcess(0.16528);
+
+			//testing
+			AssertThat(seeker.GlobalPosition.X).IsEqual(0);
+			AssertThat(seeker.GlobalPosition.Y).IsEqual(0);
+
+			seeker.QueueFree();
+			dummyTarget.QueueFree();
+		}
+
+		[TestCase]
+>>>>>>> Stashed changes
 		public async Task testTargetSelectionIgnoresEnemyBehindWall()
 		{
 			var tree = (SceneTree)Engine.GetMainLoop();

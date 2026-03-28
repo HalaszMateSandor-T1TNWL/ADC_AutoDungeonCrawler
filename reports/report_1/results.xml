@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<<<<<<< Updated upstream
 <testsuites id="2026-03-23" name="report_1" tests="24" failures="0" skipped="0" flaky="0" time="0.000">
 	<testsuite id="0" name="CameraTest" package="test" timestamp="2026-03-23T19:02:03" hostname="localhost" tests="6" failures="0" errors="0" skipped="0" flaky="0" time="0.117">
 		<testcase name="TestOnAddAndClearRoomsInList" classname="ADC.Tests.CameraTest" time="0.035">
 		</testcase>
 		<testcase name="TestZoomDoesNotGoBelowMinimum" classname="ADC.Tests.CameraTest" time="0.012">
+=======
+<testsuites id="2026-03-28" name="report_1" tests="25" failures="1" skipped="0" flaky="0" time="0.000">
+	<testsuite id="0" name="CameraTest" package="test" timestamp="2026-03-28T20:36:12" hostname="localhost" tests="7" failures="0" errors="0" skipped="0" flaky="0" time="0.106">
+		<testcase name="TestOnAddAndClearRoomsInList" classname="ADC.Tests.CameraTest" time="0.030">
+		</testcase>
+		<testcase name="TestZoomDoesNotGoBelowMinimum" classname="ADC.Tests.CameraTest" time="0.016">
+>>>>>>> Stashed changes
 		</testcase>
 		<testcase name="TestZoomIncreasesOnWheelUp" classname="ADC.Tests.CameraTest" time="0.000">
 		</testcase>
@@ -13,6 +21,7 @@
 		</testcase>
 		<testcase name="TestZoomDoesNotGoAboveMaximum" classname="ADC.Tests.CameraTest" time="0.000">
 		</testcase>
+<<<<<<< Updated upstream
 	</testsuite>
 	<testsuite id="1" name="HealthBarTest" package="test" timestamp="2026-03-23T19:02:03" hostname="localhost" tests="3" failures="0" errors="0" skipped="0" flaky="0" time="0.017">
 		<testcase name="TestTakeDamageDecreasesHealthAndClampsAtZero" classname="ADC.Tests.HealthBarTest" time="0.013">
@@ -42,6 +51,46 @@
 		<testcase name="TestGridCorrectDimensions" classname="ADC.Tests.WalkerGeneratorTest" time="0.010">
 		</testcase>
 		<testcase name="TestIfGenerateRoomRespectsSizeBoundaries" classname="ADC.Tests.WalkerGeneratorTest" time="0.000">
+=======
+		<testcase name="TestCameraFloat" classname="ADC.Tests.CameraTest" time="0.000">
+		</testcase>
+	</testsuite>
+	<testsuite id="1" name="EyeTest" package="test" timestamp="2026-03-28T20:36:12" hostname="localhost" tests="2" failures="0" errors="0" skipped="0" flaky="0" time="0.140">
+		<testcase name="TestGridRegistersUnitPresence" classname="ADC.Tests.EyeTest" time="0.066">
+		</testcase>
+		<testcase name="TestGridAutomaticallyClearsAndNotifiesOnUnitDeath" classname="ADC.Tests.EyeTest" time="0.072">
+		</testcase>
+	</testsuite>
+	<testsuite id="2" name="HealthBarTest" package="test" timestamp="2026-03-28T20:36:12" hostname="localhost" tests="3" failures="0" errors="0" skipped="0" flaky="0" time="0.014">
+		<testcase name="TestTakeDamageDecreasesHealthAndClampsAtZero" classname="ADC.Tests.HealthBarTest" time="0.010">
+		</testcase>
+		<testcase name="TestHealIncreasesHealthAndClampsAtMax" classname="ADC.Tests.HealthBarTest" time="0.000">
+		</testcase>
+		<testcase name="TestVisibilityLogicBasedOnHealth" classname="ADC.Tests.HealthBarTest" time="0.000">
+		</testcase>
+	</testsuite>
+	<testsuite id="3" name="SeekerTest" package="test" timestamp="2026-03-28T20:36:12" hostname="localhost" tests="5" failures="1" errors="0" skipped="0" flaky="0" time="0.084">
+		<testcase name="TestAcquireTargetLogic" classname="ADC.Tests.SeekerTest" time="0.022">
+		</testcase>
+		<testcase name="testWhatIfThereIsNoTarget" classname="ADC.Tests.SeekerTest" time="0.001">
+		</testcase>
+		<testcase name="testTargetSelectionByDistance" classname="ADC.Tests.SeekerTest" time="0.009">
+		</testcase>
+		<testcase name="testWhatIfTheTargetPosIsTheCurrentPos" classname="ADC.Tests.SeekerTest" time="0.009">
+			<failure message="FAILED: res://test/SeekerTest.cs:168" type="FAILURE">
+<![CDATA[
+Object reference not set to an instance of an object.
+]]>
+			</failure>
+		</testcase>
+		<testcase name="testTargetSelectionIgnoresEnemyBehindWall" classname="ADC.Tests.SeekerTest" time="0.035">
+		</testcase>
+	</testsuite>
+	<testsuite id="4" name="WalkerGeneratorTest" package="test" timestamp="2026-03-28T20:36:12" hostname="localhost" tests="8" failures="0" errors="0" skipped="0" flaky="0" time="0.039">
+		<testcase name="TestGridCorrectDimensions" classname="ADC.Tests.WalkerGeneratorTest" time="0.013">
+		</testcase>
+		<testcase name="TestIfGenerateRoomRespectsSizeBoundaries" classname="ADC.Tests.WalkerGeneratorTest" time="0.003">
+>>>>>>> Stashed changes
 		</testcase>
 		<testcase name="TestIfPlaceRoomMakesValidRoom" classname="ADC.Tests.WalkerGeneratorTest" time="0.002">
 		</testcase>
@@ -51,9 +100,15 @@
 		</testcase>
 		<testcase name="TestConnectRoomsCreatesFloorPathBetweenRooms" classname="ADC.Tests.WalkerGeneratorTest" time="0.001">
 		</testcase>
+<<<<<<< Updated upstream
 		<testcase name="TestPlaceRoomPlacesMultipleRoomsSuccessfully" classname="ADC.Tests.WalkerGeneratorTest" time="0.000">
 		</testcase>
 		<testcase name="TestFlushEntitiesClearsEntitiesFromGroups" classname="ADC.Tests.WalkerGeneratorTest" time="0.000">
+=======
+		<testcase name="TestPlaceRoomPlacesMultipleRoomsSuccessfully" classname="ADC.Tests.WalkerGeneratorTest" time="0.009">
+		</testcase>
+		<testcase name="TestFlushEntitiesClearsEntitiesFromGroups" classname="ADC.Tests.WalkerGeneratorTest" time="0.002">
+>>>>>>> Stashed changes
 		</testcase>
 	</testsuite>
 </testsuites>
