@@ -7,11 +7,7 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7u77a"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kyqiw"]
-size = Vector2(96, 96)
-
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=28115319]
-collision_layer = 2
 script = ExtResource("1_kyqiw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=288653415]
@@ -20,11 +16,6 @@ shape = SubResource("RectangleShape2D_7u77a")
 [node name="Character" type="Sprite2D" parent="." unique_id=1563653642]
 scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_gntrk")
-
-[node name="Area2D" type="Area2D" parent="." unique_id=1916595500]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=894029902]
-shape = SubResource("RectangleShape2D_kyqiw")
 
 [node name="SeekerHealthBar" parent="." unique_id=2040899174 instance=ExtResource("3_gntrk")]
 offset_left = -11.0
@@ -35,5 +26,3 @@ show_percentage = false
 
 [node name="Pathfinder" type="Node" parent="." unique_id=334829096]
 script = ExtResource("4_dewec")
-
-[connection signal="body_entered" from="Area2D" to="." method="OnBodyEntered"]
