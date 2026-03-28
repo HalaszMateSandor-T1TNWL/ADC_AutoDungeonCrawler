@@ -1,43 +1,23 @@
 [gd_scene format=3 uid="uid://155xx7s6y6ta"]
 
-[ext_resource type="Script" uid="uid://jiuv3q88s6yi" path="res://Scripts/WalkerGenerator.cs" id="1_kry3j"]
-[ext_resource type="Texture2D" uid="uid://b7g3oaha3sphx" path="res://Textures/Atlas.png" id="2_21xkr"]
-[ext_resource type="Script" uid="uid://c7mmr22asbq0d" path="res://Scripts/TileMapLayer.cs" id="2_jjvhh"]
-[ext_resource type="Script" uid="uid://ec6ke1v33dxp" path="res://Scripts/CameraController.cs" id="4_jjvhh"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_21xkr"]
-vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
-agent_radius = 0.0
+[ext_resource type="Texture2D" uid="uid://b7g3oaha3sphx" path="res://Textures/Atlas.png" id="1_rgh2o"]
+[ext_resource type="Script" uid="uid://c7mmr22asbq0d" path="res://Scripts/TileMapLayer.cs" id="2_pbw6q"]
+[ext_resource type="Script" uid="uid://jiuv3q88s6yi" path="res://Scripts/WalkerGenerator.cs" id="3_v1gob"]
+[ext_resource type="Script" uid="uid://ec6ke1v33dxp" path="res://Scripts/CameraController.cs" id="4_jw32o"]
+[ext_resource type="Script" uid="uid://dwnytbpoh37ty" path="res://Scripts/Eye.cs" id="4_pbw6q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6bp64"]
-texture = ExtResource("2_21xkr")
+texture = ExtResource("1_rgh2o")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
-0:0/0/terrain_set = 0
-0:0/0/terrain = 1
-0:0/0/terrains_peering_bit/right_side = 1
-0:0/0/terrains_peering_bit/bottom_right_corner = 1
-0:0/0/terrains_peering_bit/bottom_side = 1
-0:0/0/terrains_peering_bit/bottom_left_corner = 1
-0:0/0/terrains_peering_bit/left_side = 1
-0:0/0/terrains_peering_bit/top_left_corner = 1
-0:0/0/terrains_peering_bit/top_side = 1
-0:0/0/terrains_peering_bit/top_right_corner = 1
 1:0/0 = 0
-1:0/0/terrain_set = 0
-1:0/0/terrain = 0
-1:0/0/terrains_peering_bit/right_side = 0
-1:0/0/terrains_peering_bit/bottom_right_corner = 0
-1:0/0/terrains_peering_bit/bottom_side = 0
-1:0/0/terrains_peering_bit/bottom_left_corner = 0
-1:0/0/terrains_peering_bit/left_side = 0
-1:0/0/terrains_peering_bit/top_left_corner = 0
-1:0/0/terrains_peering_bit/top_side = 0
-1:0/0/terrains_peering_bit/top_right_corner = 0
-1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_21xkr")
 1:0/0/custom_data_0 = true
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_kry3j"]
 tile_size = Vector2i(32, 32)
@@ -56,7 +36,7 @@ sources/1 = SubResource("TileSetAtlasSource_6bp64")
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1359272859]
 position = Vector2(1, 0)
 tile_set = SubResource("TileSet_kry3j")
-script = ExtResource("2_jjvhh")
+script = ExtResource("2_pbw6q")
 
 [node name="Label" type="Label" parent="TileMapLayer" unique_id=1388630529]
 offset_right = 40.0
@@ -64,10 +44,13 @@ offset_bottom = 23.0
 metadata/_edit_use_anchors_ = true
 
 [node name="WalkerGenerator" type="Node" parent="." unique_id=1014205626]
-script = ExtResource("1_kry3j")
+script = ExtResource("3_v1gob")
+
+[node name="Eye" type="Node" parent="." unique_id=647695733]
+script = ExtResource("4_pbw6q")
 
 [node name="CameraController" type="Node2D" parent="." unique_id=89044127]
-script = ExtResource("4_jjvhh")
+script = ExtResource("4_jw32o")
 panningSpeed = 2.5
 
 [node name="Camera2D" type="Camera2D" parent="CameraController" unique_id=1139282717]
@@ -79,6 +62,8 @@ offset_top = -360.0
 offset_right = -471.0
 offset_bottom = -329.0
 text = "Regenerate dungeon"
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=300640385]
 
 [connection signal="AddRoomToList" from="WalkerGenerator" to="CameraController" method="OnAddRoomToList"]
 [connection signal="ClearRoomsInList" from="WalkerGenerator" to="CameraController" method="OnClearRoomsInList"]
