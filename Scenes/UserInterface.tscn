@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://3kwku2ttdfrh" path="res://ConceptArt/UI/DragonIcon.png" id="3_ug47o"]
 [ext_resource type="Texture2D" uid="uid://5xq58xjhvhr7" path="res://ConceptArt/UI/setting-lines.png" id="4_ug47o"]
 [ext_resource type="Script" uid="uid://bpnano8dv0lmj" path="res://Scripts/SoundSettings.cs" id="5_k5w2u"]
-[ext_resource type="AudioStream" uid="uid://cdqf6hxrs1kx0" path="res://Audio/Music/domartistudios-magical-wizard-school-orchestral-fantasy-488126.mp3" id="6_356oj"]
+[ext_resource type="AudioStream" uid="uid://c6u8esh2l1mfe" path="res://Audio/Music/FantasyBackgroundMusicEpic.mp3" id="6_356oj"]
 [ext_resource type="AudioStream" uid="uid://bvpuihp6grdrh" path="res://Audio/SFX/SwordSlice1.mp3" id="7_356oj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofew4"]
@@ -460,7 +460,6 @@ layout_mode = 2
 oversampling_override = 1.0
 initial_position = 1
 size = Vector2i(600, 400)
-visible = true
 theme_override_styles/panel = SubResource("StyleBoxFlat_356oj")
 
 [node name="SettingsMargin" type="MarginContainer" parent="SettingsPopup" unique_id=871337142]
@@ -691,7 +690,6 @@ vertical_alignment = 2
 oversampling_override = 1.0
 initial_position = 1
 size = Vector2i(600, 419)
-visible = true
 theme_override_styles/panel = SubResource("StyleBoxFlat_k4eo3")
 script = ExtResource("5_k5w2u")
 
