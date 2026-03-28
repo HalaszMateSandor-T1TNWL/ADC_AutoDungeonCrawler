@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b7g3oaha3sphx" path="res://Textures/Atlas.png" id="2_21xkr"]
 [ext_resource type="Script" uid="uid://c7mmr22asbq0d" path="res://Scripts/TileMapLayer.cs" id="2_jjvhh"]
 [ext_resource type="Script" uid="uid://ec6ke1v33dxp" path="res://Scripts/CameraController.cs" id="4_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://dvxdainfr70kf" path="res://Scenes/UserInterface.tscn" id="6_21xkr"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_21xkr"]
 vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
@@ -64,6 +65,7 @@ offset_right = 1280.0
 offset_bottom = 720.0
 
 [node name="ColorRect" type="ColorRect" parent="Control" unique_id=781923963]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,6 +89,12 @@ script = ExtResource("1_kry3j")
 [node name="CameraController" type="Node2D" parent="." unique_id=89044127]
 script = ExtResource("4_jjvhh")
 panningSpeed = 2.5
+
+[node name="Control" parent="CameraController" unique_id=1326013840 instance=ExtResource("6_21xkr")]
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
 
 [node name="Camera2D" type="Camera2D" parent="CameraController" unique_id=1139282717]
 process_callback = 0

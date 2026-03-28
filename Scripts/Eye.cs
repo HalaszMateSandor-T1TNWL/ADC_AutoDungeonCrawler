@@ -27,10 +27,10 @@ public partial class Eye : Node
     {
         tiles.Add(pos, unit);
         GD.Print("Unit Added: " + unit + " At: " + pos + " occupied tiles are now: " + tiles.Count);
-        unit.Connect("tree_exited", new Callable(this, MethodName.OnTreeExited));
+        unit.Connect("tree_exited", Callable.From( () => OnTreeExited(pos, unit))); // Creating a new Callable from a lambda expression 'cause you can't bind like in GDScript
     }
 
-    public void OnTreeExited(Vector2I pos, Node unit)
+    private void OnTreeExited(Vector2I pos, Node unit)
     {
         GD.Print("I works");
         if(unit.IsQueuedForDeletion())
