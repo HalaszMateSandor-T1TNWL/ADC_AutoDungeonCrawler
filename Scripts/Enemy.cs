@@ -41,13 +41,12 @@ public partial class Enemy : Entity
 		}
 	}
 
-	public void HealthGained(float amount)
-	{
-		Heal(amount);
-	}
-	public void TakeDamage(float damage)
-	{
-		CurrentHealth -= damage;
+    public bool IsSpawnValid()
+    {
+        return _astar.Region.HasPoint(_tileMap.LocalToMap(this.GlobalPosition)) == false ||
+            _tileMap.GetCellTileData(_tileMap.LocalToMap(this.GlobalPosition)) == null ||
+            (bool)_tileMap.GetCellTileData(_tileMap.LocalToMap(this.GlobalPosition)).GetCustomData("Walkable") == false;
+    }
 
 		CurrentHealth = Mathf.Clamp(CurrentHealth, 0, new Enemy().MaxHealth);
 	}
