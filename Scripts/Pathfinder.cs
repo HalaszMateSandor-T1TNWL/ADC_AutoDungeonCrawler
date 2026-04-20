@@ -82,115 +82,115 @@ public partial class Pathfinder : Node
 		{
 			SceneTree tree = GetTree();
 			Array<Node> enemyGroup = tree.GetNodesInGroup(_parent.GetGroups().Contains("enemy") ? "player" : "enemy"); //there has to be a better way, but I don't care
-			if(tree != null && enemyGroup.Count > 0)
-			{
-				targetContainer = enemyGroup;
-			}
-		}
+            if(tree != null && enemyGroup.Count > 0)
+            {
+                targetContainer = enemyGroup;
+            }
+        }
 
-		if(targetContainer != null)
-		{
-			Array<Node> targets = targetContainer;
-			Node2D bestCandidate = null;
-			int shortestDistance = int.MaxValue;
-			if(targets != null && targets.Count > 0)
-			{
-				foreach(Node target in targets)
-				{
-					int currentDistance = CalcDistance((Node2D)target);
-					if(currentDistance < shortestDistance)
-					{
-						shortestDistance = currentDistance;
-						bestCandidate = (Node2D)target;
-					}
-				}
-			}
+        if(targetContainer != null)
+        {
+            Array<Node> targets = targetContainer;
+            Node2D bestCandidate = null;
+            int shortestDistance = int.MaxValue;
+            if(targets != null && targets.Count > 0)
+            {
+                foreach(Node target in targets)
+                {
+                    int currentDistance = CalcDistance((Node2D)target);
+                    if(currentDistance < shortestDistance)
+                    {
+                        shortestDistance = currentDistance;
+                        bestCandidate = (Node2D)target;
+                    }
+                }
+            }
 
-			if(bestCandidate != null)
-			{
-				_target = bestCandidate;
-			}
-		}
-	}
+            if(bestCandidate != null)
+            {
+                _target = bestCandidate;
+            }
+        }
+    }
 
-	private int CalcDistance(Node2D target)
-	{
-		return (int)Mathf.Sqrt(Mathf.Pow(_parent.GlobalPosition.X - target.GlobalPosition.X, 2.0f) + 
-						  Mathf.Pow(_parent.GlobalPosition.Y - target.GlobalPosition.Y, 2.0f));
-	}
+    private int CalcDistance(Node2D target)
+    {
+        return (int)Mathf.Sqrt(Mathf.Pow(_parent.GlobalPosition.X - target.GlobalPosition.X, 2.0f) + 
+                          Mathf.Pow(_parent.GlobalPosition.Y - target.GlobalPosition.Y, 2.0f));
+    }
 
-	public override void _Process(double delta)
-	{
-		Array<Vector2I> idPath = [];
+    public override void _Process(double delta)
+    {
+        Array<Vector2I> idPath = [];
 
-		if(IsInstanceValid(_target) && _isMoving == false)
-		{
-			Vector2I currentAgentPosition = _tilemap.LocalToMap(_parent.GlobalPosition);
-			Vector2I targetPosition = _tilemap.LocalToMap(_target.GlobalPosition);
+        if(IsInstanceValid(_target) && _isMoving == false)
+        {
+            Vector2I currentAgentPosition = _tilemap.LocalToMap(_parent.GlobalPosition);
+            Vector2I targetPosition = _tilemap.LocalToMap(_target.GlobalPosition);
 
-			idPath = _astar.GetIdPath(currentAgentPosition, targetPosition, true).Slice(0);
-		}
-		else if(IsInstanceValid(_target) && _isMoving == true)
-		{
-			AcquireTarget();
+            idPath = _astar.GetIdPath(currentAgentPosition, targetPosition, true).Slice(0);
+        }
+        else if(IsInstanceValid(_target) && _isMoving == true)
+        {
+            AcquireTarget();
 
-			Vector2I currentAgentPosition = _tilemap.LocalToMap(_parent.GlobalPosition);
-			Vector2I targetPosition = _tilemap.LocalToMap(_target.GlobalPosition);
+            Vector2I currentAgentPosition = _tilemap.LocalToMap(_parent.GlobalPosition);
+            Vector2I targetPosition = _tilemap.LocalToMap(_target.GlobalPosition);
 
-			idPath = _astar.GetIdPath(currentAgentPosition, targetPosition);
-		}
-		else
-		{
-			AcquireTarget();
-		}
+            idPath = _astar.GetIdPath(currentAgentPosition, targetPosition);
+        }
+        else
+        {
+            AcquireTarget();
+        }
 
-		if(idPath.Count > 0)
-		{
-			idPath.Remove(idPath.Last());
-			_currentIdPath = idPath;
-		}
-	}
+        if(idPath.Count > 0)
+        {
+            idPath.Remove(idPath.Last());
+            _currentIdPath = idPath;
+        }
+    }
 
-	public void UpdatePath()
-	{
-		if(!IsInstanceValid(_target) && !_isMoving)
-			return;
-		
-		Vector2I currentAgentPosition = _tilemap.LocalToMap(_parent.GlobalPosition);
-		Vector2I targetPosition = _tilemap.LocalToMap(_target.GlobalPosition);
+    public void UpdatePath()
+    {
+        if(!IsInstanceValid(_target) && !_isMoving)
+            return;
+        
+        Vector2I currentAgentPosition = _tilemap.LocalToMap(_parent.GlobalPosition);
+        Vector2I targetPosition = _tilemap.LocalToMap(_target.GlobalPosition);
 
-		_currentIdPath = _astar.GetIdPath(currentAgentPosition, targetPosition, true).Slice(0);
-		_currentIdPath.Remove(_currentIdPath.Last());
-	}
+        _currentIdPath = _astar.GetIdPath(currentAgentPosition, targetPosition, true).Slice(0);
+        _currentIdPath.Remove(_currentIdPath.Last());
+    }
 
-	public override void _PhysicsProcess(double delta)
-	{
-		if(_currentIdPath.Count <= 0)
-			return;
+    public override void _PhysicsProcess(double delta)
+    {
+        if(_currentIdPath.Count <= 0)
+            return;
 
-		if(_isMoving == false)
-		{
-			_targetPosition = _tilemap.MapToLocal(_currentIdPath.First());
-			_isMoving = true;
-		}
-		
-		UpdatePath();
+        if(_isMoving == false)
+        {
+            _targetPosition = _tilemap.MapToLocal(_currentIdPath.First());
+            _isMoving = true;
+        }
+        
+        UpdatePath();
 
-		if(_currentIdPath.Count > _parent.attackRange)
-		{
-			_parent.GlobalPosition = _parent.GlobalPosition.MoveToward(_targetPosition, _parent.movementSpeed * (float)delta);
+        if(_currentIdPath.Count > _parent.attackRange)
+        {
+            _parent.GlobalPosition = _parent.GlobalPosition.MoveToward(_targetPosition, _parent.movementSpeed * (float)delta);
 
-			if(_parent.GlobalPosition == _targetPosition)
-			{
-				_currentIdPath.Remove(_currentIdPath.First());
+            if(_parent.GlobalPosition == _targetPosition)
+            {
+                _currentIdPath.Remove(_currentIdPath.First());
 
-				if(_currentIdPath.Count <= 0)
-					return;
-				else
-					_targetPosition = _tilemap.MapToLocal(_currentIdPath.First());
-			}
-		}
-		else
-			_isMoving = false;
-	}
+                if(_currentIdPath.Count <= 0)
+                    return;
+                else
+                    _targetPosition = _tilemap.MapToLocal(_currentIdPath.First());
+            }
+        }
+        else
+            _isMoving = false;
+    }
 }
