@@ -15,9 +15,9 @@ public partial class Enemy : Entity
 	}
 
 	public override void OnQueueForFree()
-    {
-        this.QueueFree();
-    }
+	{
+		this.QueueFree();
+	}
 
 	public void HPChange(float change)
 	{
@@ -27,29 +27,20 @@ public partial class Enemy : Entity
 			DamageTaken(change);
 		}else if(change >= 0)
 		{
-			HealthGained(change);
+			Heal(change);
 		}
 		EmitSignal(nameof(HPChanged), CurrentHealth);
 	}
 	
 	public void DamageTaken(float damage)
 	{
-		TakeDamage(damage);
+		// TakeDamage(damage);
 		if(CurrentHealth <= 0)
 		{
 			QueueFree();
 		}
 	}
 
-    public bool IsSpawnValid()
-    {
-        return _astar.Region.HasPoint(_tileMap.LocalToMap(this.GlobalPosition)) == false ||
-            _tileMap.GetCellTileData(_tileMap.LocalToMap(this.GlobalPosition)) == null ||
-            (bool)_tileMap.GetCellTileData(_tileMap.LocalToMap(this.GlobalPosition)).GetCustomData("Walkable") == false;
-    }
-
-		CurrentHealth = Mathf.Clamp(CurrentHealth, 0, new Enemy().MaxHealth);
-	}
 	public void Heal(float amount)
 	{
 		CurrentHealth += amount;
