@@ -15,9 +15,9 @@ public partial class Enemy : Entity
 	}
 
 	public override void OnQueueForFree()
-    {
-        this.QueueFree();
-    }
+	{
+		this.QueueFree();
+	}
 
 	public void HPChange(float change)
 	{
