@@ -6,82 +6,82 @@ using System.Linq;
 
 public partial class Pathfinder : Node
 {
-    [Signal] public delegate void QueueForFreeEventHandler();
+	[Signal] public delegate void QueueForFreeEventHandler();
 
-    private AStarGrid2D _astar;
-    private TileMapLayer _tilemap;
-    private Node2D _target;
-    public Node2D CurrentTarget => _target;
-    private Node2D _body = null;
+	private AStarGrid2D _astar;
+	private TileMapLayer _tilemap;
+	private Node2D _target;
+	public Node2D CurrentTarget => _target;
+	private Node2D _body = null;
 
-    public Entity _parent;
+	public Entity _parent;
 
-    private Vector2 _targetPosition;
-    private Array<Vector2I> _currentIdPath;
+	private Vector2 _targetPosition;
+	private Array<Vector2I> _currentIdPath;
 
-    private bool _isMoving;
-    private bool _isColliding;
+	private bool _isMoving;
+	private bool _isColliding;
 
-    public override void _Ready()
-    {
-        _parent = GetParent<Entity>();
-        _tilemap = GetNode<TileMapLayer>($"../../TileMapLayer");
+	public override void _Ready()
+	{
+		_parent = GetParent<Entity>();
+		_tilemap = GetNode<TileMapLayer>($"../../TileMapLayer");
 
-        _currentIdPath = new Array<Vector2I>();
-        _astar = new AStarGrid2D
-        {
-            Region = _tilemap.GetUsedRect(),
-            CellSize = new Vector2I(32,32),
-            DiagonalMode = AStarGrid2D.DiagonalModeEnum.Never
-        };
-        _astar.Update();
+		_currentIdPath = new Array<Vector2I>();
+		_astar = new AStarGrid2D
+		{
+			Region = _tilemap.GetUsedRect(),
+			CellSize = new Vector2I(32,32),
+			DiagonalMode = AStarGrid2D.DiagonalModeEnum.Never
+		};
+		_astar.Update();
 
-        QueueForFree += _parent.OnQueueForFree;
+		QueueForFree += _parent.OnQueueForFree;
 
-        if(CheckValidPlacement())
-        {
-            EmitSignal(nameof(QueueForFree));
-        }
+		if(CheckValidPlacement())
+		{
+			EmitSignal(nameof(QueueForFree));
+		}
 
-        SetTileMapData();
-    }
+		SetTileMapData();
+	}
 
-    public bool CheckValidPlacement()
-    {
-        return !_astar.Region.HasPoint(_tilemap.LocalToMap(_parent.GlobalPosition)) ||
-            _tilemap.GetCellTileData(_tilemap.LocalToMap(_parent.GlobalPosition)) == null ||
-            (bool)_tilemap.GetCellTileData(_tilemap.LocalToMap(_parent.GlobalPosition)).GetCustomData("Walkable") == false;
-    }
+	public bool CheckValidPlacement()
+	{
+		return !_astar.Region.HasPoint(_tilemap.LocalToMap(_parent.GlobalPosition)) ||
+			_tilemap.GetCellTileData(_tilemap.LocalToMap(_parent.GlobalPosition)) == null ||
+			(bool)_tilemap.GetCellTileData(_tilemap.LocalToMap(_parent.GlobalPosition)).GetCustomData("Walkable") == false;
+	}
 
-    public void SetTileMapData()
-    {
-        for(int x = 0; x < _tilemap.GetUsedRect().Size.X; x++)
-        {
-            for(int y = 0; y < _tilemap.GetUsedRect().Size.Y; y++)
-            {
-                Vector2I tilePosition = new Vector2I(
-                    x + _tilemap.GetUsedRect().Position.X,
-                    y + _tilemap.GetUsedRect().Position.Y
-                );
+	public void SetTileMapData()
+	{
+		for(int x = 0; x < _tilemap.GetUsedRect().Size.X; x++)
+		{
+			for(int y = 0; y < _tilemap.GetUsedRect().Size.Y; y++)
+			{
+				Vector2I tilePosition = new Vector2I(
+					x + _tilemap.GetUsedRect().Position.X,
+					y + _tilemap.GetUsedRect().Position.Y
+				);
 
-                TileData tileData = _tilemap.GetCellTileData(tilePosition);
+				TileData tileData = _tilemap.GetCellTileData(tilePosition);
 
-                if(tileData == null || (bool)tileData.GetCustomData("Walkable") == false)
-                {
-                    _astar.SetPointSolid(tilePosition);
-                }
-            }
-        }
-    }
+				if(tileData == null || (bool)tileData.GetCustomData("Walkable") == false)
+				{
+					_astar.SetPointSolid(tilePosition);
+				}
+			}
+		}
+	}
 
-    public void AcquireTarget(Array<Node> customTargetContainer = null)
-    {
-        Array<Node> targetContainer = customTargetContainer;
+	public void AcquireTarget(Array<Node> customTargetContainer = null)
+	{
+		Array<Node> targetContainer = customTargetContainer;
 
-        if(targetContainer == null)
-        {
-            SceneTree tree = GetTree();
-            Array<Node> enemyGroup = tree.GetNodesInGroup(_parent.GetGroups().Contains("enemy") ? "player" : "enemy"); //there has to be a better way, but I don't care
+		if(targetContainer == null)
+		{
+			SceneTree tree = GetTree();
+			Array<Node> enemyGroup = tree.GetNodesInGroup(_parent.GetGroups().Contains("enemy") ? "player" : "enemy"); //there has to be a better way, but I don't care
             if(tree != null && enemyGroup.Count > 0)
             {
                 targetContainer = enemyGroup;
