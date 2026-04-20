@@ -27,30 +27,20 @@ public partial class Enemy : Entity
 			DamageTaken(change);
 		}else if(change >= 0)
 		{
-			HealthGained(change);
+			Heal(change);
 		}
 		EmitSignal(nameof(HPChanged), CurrentHealth);
 	}
 	
 	public void DamageTaken(float damage)
 	{
-		TakeDamage(damage);
+		// TakeDamage(damage);
 		if(CurrentHealth <= 0)
 		{
 			QueueFree();
 		}
 	}
 
-	public void HealthGained(float amount)
-	{
-		Heal(amount);
-	}
-	public void TakeDamage(float damage)
-	{
-		CurrentHealth -= damage;
-
-		CurrentHealth = Mathf.Clamp(CurrentHealth, 0, new Enemy().MaxHealth);
-	}
 	public void Heal(float amount)
 	{
 		CurrentHealth += amount;
