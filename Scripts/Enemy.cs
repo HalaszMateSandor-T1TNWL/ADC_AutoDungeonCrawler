@@ -1,116 +1,37 @@
 using Godot;
 using Godot.Collections;
-using System.Linq;
 
 public partial class Seeker : CharacterBody2D
 {
-	[Export] public float moveSpeed = 1.0f;
-	[Export] public int attackRange = 0;
-	[Export] public float CurrentHealth = 100.0f;
-	[Export] public float MaxHealth = 100.0f;
-	[Export] public float damage = 2.0f;
-	
-	private AStarGrid2D _astar;
-	private TileMapLayer _tileMap;
-	private bool _isMoving;
-	private Vector2 _targetPosition;
-	
-	private Array<Vector2I> _currentIdPath;
+	[Signal] public delegate void HPChangedEventHandler(float currentHP);
 
-	[Signal] public delegate void DealDamageEventHandler(float damage);
-	
-	
-	private Node2D _target = null;
-	//needed for testing
-	public Node2D CurrentTarget => _target;
+	Array<Node> targets = [];
+	Overseer overseer;
+
+	public float MaxHealth = 100.0f;
 	
 	public override void _Ready()
 	{
-		_tileMap = GetNode<TileMapLayer>($"../TileMapLayer");
-		if(_tileMap == null)
-		{
-			GD.Print("Whoops! No tilemap for some reason!");
-			return;
-		}
+		AddToGroup("enemy");
+		pathfinding = GetNodeOrNull<Pathfinder>($"Pathfinder");
+		overseer = GetNode<Overseer>($"..");
+		HPChange(5);
+	}
+
+	public override void _Process(double delta)
+	{
 		
-		_currentIdPath = new Array<Vector2I>();
-		
-		_astar = new AStarGrid2D();
-		_astar.Region = _tileMap.GetUsedRect();
-		_astar.CellSize = new Vector2I(32, 32);
-		_astar.DiagonalMode = AStarGrid2D.DiagonalModeEnum.Never;
-		_astar.Update();
-
-		if(!_astar.Region.HasPoint(_tileMap.LocalToMap(this.GlobalPosition)) || _tileMap.GetCellTileData(_tileMap.LocalToMap(this.GlobalPosition)) == null || (bool)_tileMap.GetCellTileData(_tileMap.LocalToMap(this.GlobalPosition)).GetCustomData("Walkable") == false)
+		targets = overseer.eye.GetAllUnits();
+		if(targets.Count > 0)
 		{
-			QueueFree();
-		}
-		SetTileMapData();
-	}
-	
-	public void SetTileMapData()
-	{
-		for(int x = 0; x < _tileMap.GetUsedRect().Size.X; x++)
-		{
-			for(int y = 0; y < _tileMap.GetUsedRect().Size.Y; y++)
-			{	
-				Vector2I tilePosition = new Vector2I(
-					x + _tileMap.GetUsedRect().Position.X,
-					y + _tileMap.GetUsedRect().Position.Y
-				);
-
-				//TileData tileData = _tileMap.GetCellTileData(tilePosition);
-
-				if(_tileMap.GetCellTileData(tilePosition) == null || (bool)_tileMap.GetCellTileData(tilePosition).GetCustomData("Walkable") == false)
-				{
-					_astar.SetPointSolid(tilePosition);
-				}
-			}
-		}
-	}
-	
-	// Martin: I changed it bc thats the only way I could make the tests work
-	public void AcquireTarget(Array<Node> customTargetContainer = null)
-	{
-		Array<Node> targetContainer = customTargetContainer;
-
-		if(targetContainer == null)
-		{
-			SceneTree tree = GetTree();
-			if(tree != null && tree.GetNodesInGroup("Player").Count > 0)
-			{
-				targetContainer = tree.GetNodesInGroup("Player");
-			}
-		}
-		if(targetContainer != null)
-		{
-			Array<Node> targets = targetContainer;
-			
-			Node2D bestCandidate = null;
-			float shortestDistance = 10000000000.0f;
-			if(targets != null && targets.Count > 0)
-			{
-				foreach(Node target in targets)
-				{
-					float currentDistance = CalcDistance((Node2D)target);
-					if(currentDistance < shortestDistance)
-					{
-						shortestDistance = currentDistance;
-						bestCandidate = (Node2D)target;
-					}
-				}
-			}
-			
-			if(bestCandidate != null)
-			{
-				_target = bestCandidate;
-			}
+			Node2D _target = (Node2D)targets[0];
+			UnitNavigation.Instance.GetNextPosition(this, _target);
 		}
 	}
 
-	public float CalcDistance(Node2D target)
+	public override void OnQueueForFree()
 	{
-		return Mathf.Sqrt(Mathf.Pow(this.GlobalPosition.X - target.GlobalPosition.X, 2.0f) + Mathf.Pow(this.GlobalPosition.Y - target.GlobalPosition.Y, 2.0f));
+		QueueFree();
 	}
 
 	//for testing again
