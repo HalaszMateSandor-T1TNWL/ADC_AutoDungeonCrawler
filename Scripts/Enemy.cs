@@ -1,7 +1,7 @@
 using Godot;
 using Godot.Collections;
 
-public partial class Seeker : CharacterBody2D
+public partial class Enemy : Entity
 {
 	[Signal] public delegate void HPChangedEventHandler(float currentHP);
 
