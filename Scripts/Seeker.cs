@@ -17,6 +17,7 @@ public partial class Seeker : Entity
 	public override void _Ready()
 	{
 		AddToGroup("player");
+		pathfinding = GetNodeOrNull<Pathfinder>($"Pathfinder");
 	}
 
 	public override void OnQueueForFree()

@@ -1,14 +1,14 @@
 using Godot;
 using Godot.Collections;
-using System;
-using System.Formats.Tar;
+using Microsoft.CodeAnalysis.Emit;
 using System.Linq;
 
 public partial class Pathfinder : Node
 {
 	[Signal] public delegate void QueueForFreeEventHandler();
+	[Signal] public delegate void SetParamsEventHandler();
 
-	private AStarGrid2D _astar;
+	private AStarGrid2D _astar = null;
 	private TileMapLayer _tilemap;
 	private Node2D _target;
 	public Node2D CurrentTarget => _target;
@@ -36,21 +36,26 @@ public partial class Pathfinder : Node
 		};
 		_astar.Update();
 
+		EmitSignal(nameof(SetParams));
+
 		QueueForFree += _parent.OnQueueForFree;
 
 		if(CheckValidPlacement())
 		{
 			EmitSignal(nameof(QueueForFree));
 		}
-
+		
 		SetTileMapData();
 	}
 
 	public bool CheckValidPlacement()
 	{
-		return !_astar.Region.HasPoint(_tilemap.LocalToMap(_parent.GlobalPosition)) ||
-			_tilemap.GetCellTileData(_tilemap.LocalToMap(_parent.GlobalPosition)) == null ||
-			(bool)_tilemap.GetCellTileData(_tilemap.LocalToMap(_parent.GlobalPosition)).GetCustomData("Walkable") == false;
+		if(_astar != null)
+			return !_astar.Region.HasPoint(_tilemap.LocalToMap(_parent.GlobalPosition)) ||
+				_tilemap.GetCellTileData(_tilemap.LocalToMap(_parent.GlobalPosition)) == null ||
+				(bool)_tilemap.GetCellTileData(_tilemap.LocalToMap(_parent.GlobalPosition)).GetCustomData("Walkable") == false;
+		else
+			return true;
 	}
 
 	public void SetTileMapData()

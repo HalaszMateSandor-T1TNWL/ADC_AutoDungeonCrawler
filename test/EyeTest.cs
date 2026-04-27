@@ -12,7 +12,7 @@ namespace ADC.Tests
 		public void TestGridRegistersUnitPresence()
 		{
 			var eye = new Eye();
-			var dummyUnit = new Node();
+			var dummyUnit = new Entity();
 			var targetPosition = new Vector2I(3, 3);
 
 			eye.AddUnit(dummyUnit, targetPosition);
@@ -34,7 +34,7 @@ namespace ADC.Tests
 			var eye = new Eye();
 			root.AddChild(eye);
 
-			var dummyUnit = new Node();
+			var dummyUnit = new Entity();
 			root.AddChild(dummyUnit);
 
 			var targetPosition = new Vector2I(5, 5);
