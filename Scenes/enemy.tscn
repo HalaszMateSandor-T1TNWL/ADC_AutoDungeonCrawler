@@ -1,31 +1,25 @@
-[gd_scene format=3 uid="uid://cohiqpndtgam"]
+[gd_scene format=3 uid="uid://cqx6lg8un6mt3"]
 
-[ext_resource type="Script" uid="uid://k0k8sg5ktqjs" path="res://Scripts/Enemy.cs" id="1_kpr8r"]
-[ext_resource type="Texture2D" uid="uid://c0r6y7vxwf170" path="res://ConceptArt/Sorcerer.png" id="2_1exfc"]
-[ext_resource type="PackedScene" uid="uid://dfof51i28i8qr" path="res://Scenes/EnemyHealthBar.tscn" id="3_mo1ky"]
-[ext_resource type="Script" uid="uid://ui7ygyh44m85" path="res://Scripts/Pathfinder.cs" id="4_6bs3c"]
+[ext_resource type="PackedScene" uid="uid://cqx6lg8un6mt3" path="res://Scenes/enemy.tscn" id="1_qi2p4"]
+[ext_resource type="Texture2D" uid="uid://c0r6y7vxwf170" path="res://ConceptArt/Sorcerer.png" id="2_iifgy"]
+[ext_resource type="PackedScene" uid="uid://dfof51i28i8qr" path="res://Scenes/EnemyHealthBar.tscn" id="3_epg4t"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hghv2"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3yqyl"]
 size = Vector2(16, 14)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=730258447]
-collision_mask = 2
-script = ExtResource("1_kpr8r")
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1072354784]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=824110784]
-shape = SubResource("RectangleShape2D_hghv2")
+[node name="Area2D" parent="." unique_id=1217826392 instance=ExtResource("1_qi2p4")]
 
-[node name="Sorcerer" type="Sprite2D" parent="." unique_id=1648175540]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=2138770558]
+shape = SubResource("RectangleShape2D_3yqyl")
+
+[node name="Sorcerer2" type="Sprite2D" parent="Area2D" unique_id=656634722]
 scale = Vector2(0.05, 0.05)
-texture = ExtResource("2_1exfc")
-region_enabled = true
-region_rect = Rect2(24, 0, 281, 256)
+texture = ExtResource("2_iifgy")
 
-[node name="EnemyHealthBar" parent="." unique_id=1211753225 instance=ExtResource("3_mo1ky")]
+[node name="EnemyHealthBar2" parent="Area2D" unique_id=1211753225 instance=ExtResource("3_epg4t")]
 offset_left = -13.0
 offset_top = 8.0
 offset_right = 14.0
-offset_bottom = 14.0
-
-[node name="Pathfinder" type="Node" parent="." unique_id=607512107]
-script = ExtResource("4_6bs3c")
+offset_bottom = 15.0
