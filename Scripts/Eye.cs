@@ -102,7 +102,6 @@ public partial class Eye : Node
 	
 	private void OnTreeExited(Vector2I pos, Node unit)
 	{
-		GD.Print("I works");
 		if(unit.IsQueuedForDeletion())
 		{
 			tiles[pos] = null;
@@ -110,5 +109,4 @@ public partial class Eye : Node
 			EmitSignal(nameof(GridChanged));
 		}
 	}
-
 }
