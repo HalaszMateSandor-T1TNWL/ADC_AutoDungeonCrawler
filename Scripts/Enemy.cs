@@ -1,22 +1,37 @@
 using Godot;
-using System;
+using Godot.Collections;
 
 public partial class Enemy : Entity
 {
 	[Signal] public delegate void HPChangedEventHandler(float currentHP);
-	
+
+	Array<Node> targets = [];
+	Overseer overseer;
+
 	public float MaxHealth = 100.0f;
 	
 	public override void _Ready()
 	{
 		AddToGroup("enemy");
-
+		pathfinding = GetNodeOrNull<Pathfinder>($"Pathfinder");
+		overseer = GetNode<Overseer>($"..");
 		HPChange(5);
+	}
+
+	public override void _Process(double delta)
+	{
+		
+		targets = overseer.eye.GetAllUnits();
+		if(targets.Count > 0)
+		{
+			Node2D _target = (Node2D)targets[0];
+			UnitNavigation.Instance.GetNextPosition(this, _target);
+		}
 	}
 
 	public override void OnQueueForFree()
 	{
-		this.QueueFree();
+		QueueFree();
 	}
 
 	public void HPChange(float change)

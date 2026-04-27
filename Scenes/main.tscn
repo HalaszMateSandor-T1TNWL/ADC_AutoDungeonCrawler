@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://155xx7s6y6ta"]
 
+[ext_resource type="Script" uid="uid://dag6g4twlku2f" path="res://Scripts/Overseer.cs" id="1_6bp64"]
 [ext_resource type="Script" uid="uid://dwnytbpoh37ty" path="res://Scripts/Eye.cs" id="1_21xkr"]
 [ext_resource type="Script" uid="uid://jiuv3q88s6yi" path="res://Scripts/WalkerGenerator.cs" id="1_kry3j"]
 [ext_resource type="Texture2D" uid="uid://b7g3oaha3sphx" path="res://Textures/Atlas.png" id="2_21xkr"]
 [ext_resource type="Script" uid="uid://c7mmr22asbq0d" path="res://Scripts/TileMapLayer.cs" id="2_jjvhh"]
 [ext_resource type="Script" uid="uid://ec6ke1v33dxp" path="res://Scripts/CameraController.cs" id="4_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://dvxdainfr70kf" path="res://Scenes/UserInterface.tscn" id="5_kry3j"]
+[ext_resource type="Script" uid="uid://dehf7o36kkhv4" path="res://Scripts/UnitNavigationDebug.cs" id="8_344ge"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_21xkr"]
 vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
@@ -54,6 +56,7 @@ custom_data_layer_0/type = 1
 sources/1 = SubResource("TileSetAtlasSource_6bp64")
 
 [node name="Main" type="Node2D" unique_id=2103418611]
+script = ExtResource("1_6bp64")
 
 [node name="Eye" type="Node" parent="." unique_id=672392145]
 script = ExtResource("1_21xkr")
@@ -95,6 +98,12 @@ offset_top = -360.0
 offset_right = -471.0
 offset_bottom = -329.0
 text = "Regenerate dungeon"
+
+[node name="UnitNavigationDebug" type="Node2D" parent="." unique_id=1401484425 node_paths=PackedStringArray("tileMap")]
+script = ExtResource("8_344ge")
+colorArray = Array[Color]([Color(0.7058824, 0.4627451, 0, 1), Color(0.49803922, 0.8901961, 0.60784316, 1), Color(0.2296142, 0.58054185, 0.44234797, 1), Color(0.18308249, 0.08689275, 0.0885383, 1), Color(1, 1, 1, 1)])
+color = Color(1, 0, 1, 0.7647059)
+tileMap = NodePath("../TileMapLayer")
 
 [connection signal="AddRoomToList" from="WalkerGenerator" to="CameraController" method="OnAddRoomToList"]
 [connection signal="ClearRoomsInList" from="WalkerGenerator" to="CameraController" method="OnClearRoomsInList"]
