@@ -4,4 +4,9 @@ public enum UserInterfaceActions
 	StartNextLevel,
 	ResetShop,
 	LockShop,
+	MainMenu,
+	NewGame,
+	LoadGame,
+	MainMenuSettings,
+	QuitGame,
 }
