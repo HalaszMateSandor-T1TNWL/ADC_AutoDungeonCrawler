@@ -4,8 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_gntrk"]
 [ext_resource type="PackedScene" uid="uid://d3sc0ttc2ado8" path="res://Scenes/SeekerHealthBar.tscn" id="3_gntrk"]
 [ext_resource type="Script" uid="uid://ui7ygyh44m85" path="res://Scripts/Pathfinder.cs" id="4_dewec"]
+[ext_resource type="Script" uid="uid://ee6h7hlp2bln" path="res://Scripts/Attack.cs" id="5_5ixxa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7u77a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ixxa"]
+bg_color = Color(0.9019608, 0, 0.16862746, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nn08x"]
+bg_color = Color(0, 0.80784315, 0, 1)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=28115319]
 script = ExtResource("1_kyqiw")
@@ -22,7 +29,12 @@ offset_left = -11.0
 offset_top = 11.0
 offset_right = 11.0
 offset_bottom = 17.0
+theme_override_styles/background = SubResource("StyleBoxFlat_5ixxa")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nn08x")
 show_percentage = false
 
 [node name="Pathfinder" type="Node" parent="." unique_id=334829096]
 script = ExtResource("4_dewec")
+
+[node name="Attack" type="Node" parent="." unique_id=1965199541]
+script = ExtResource("5_5ixxa")

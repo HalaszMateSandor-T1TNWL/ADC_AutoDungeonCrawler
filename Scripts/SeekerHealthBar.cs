@@ -3,48 +3,22 @@ using System;
 
 public partial class SeekerHealthBar : ProgressBar
 {
-	[Export] public float MaxHealth = 100.0f;
-	public float CurrentHealth;
-	public CharacterBody2D Current;
-
-
-	// Called when the node enters the scene tree for the first time.
+	private Seeker _seeker;
+	
 	public override void _Ready()
 	{	
-		Current = GetNode<CharacterBody2D>($"..");
-		
-		CurrentHealth = new Seeker().CurrentHealth;
+		_seeker = GetNode<Seeker>($"..");
+		MaxValue = _seeker.maxHealth;
+		Value = _seeker.CurrentHealth;
+		Visible = false;
 
-		this.MaxValue = MaxHealth;
-		UpdateHealthBar();
+		_seeker.HPChanged += OnHPChanged;
 	}
 
-	public void TakeDamage(float damage)
+	public void OnHPChanged(float currentHP)
 	{
-		CurrentHealth -= damage;
-		CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
-
-		UpdateHealthBar();
+		GD.Print($"Health bar received: {currentHP}");
+		Value = currentHP;
+		Visible = (currentHP > 0 && currentHP < _seeker.maxHealth);
 	}
-
-	public void Heal(float amount)
-	{
-		CurrentHealth += amount;
-		CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
-
-		UpdateHealthBar();
-	}
-
-	public void UpdateHealthBar()
-	{
-		this.Value = CurrentHealth;
-		this.Visible = (CurrentHealth > 0 && CurrentHealth < MaxHealth);
-	}
-
-	public void OnDamageTaken(float damage)
-	{
-		TakeDamage(damage);	
-	}
-
-	//MILF : Man I Love Frogs
 }

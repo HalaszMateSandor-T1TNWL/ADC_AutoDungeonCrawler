@@ -1,23 +1,31 @@
+using System.Collections;
 using Godot;
 using Godot.Collections;
 
 public partial class Enemy : Entity
 {
-	[Signal] public delegate void HPChangedEventHandler(float currentHP);
+
 
 	Array<Node> targets = [];
 	Overseer overseer;
-
-	public float MaxHealth = 100.0f;
 	
 	public override void _Ready()
 	{
 		AddToGroup("enemy");
 		pathfinding = GetNodeOrNull<Pathfinder>($"Pathfinder");
 		overseer = GetNode<Overseer>($"..");
-		HPChange(5);
+		movementSpeed = 100.0f;
+		maxHealth = 100.0f;
+		CurrentHealth = maxHealth;
+		damage = 1.0f;
 	}
 
+	public override void TakeDamage(float damage)
+	{
+		base.TakeDamage(damage);
+		GD.Print($"HP: {CurrentHealth}");
+		EmitSignal(nameof(HPChanged), CurrentHealth);
+	}
 	public override void _Process(double delta)
 	{
 		
@@ -34,31 +42,8 @@ public partial class Enemy : Entity
 		QueueFree();
 	}
 
-	public void HPChange(float change)
+	protected override void OnDeath()
 	{
-		CurrentHealth = MaxHealth;
-		if(change < 0)
-		{
-			DamageTaken(change);
-		}else if(change >= 0)
-		{
-			Heal(change);
-		}
-		EmitSignal(nameof(HPChanged), CurrentHealth);
-	}
-	
-	public void DamageTaken(float damage)
-	{
-		// TakeDamage(damage);
-		if(CurrentHealth <= 0)
-		{
-			QueueFree();
-		}
-	}
-
-	public void Heal(float amount)
-	{
-		CurrentHealth += amount;
-		CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
-	}
+		QueueFree();
+}
 }

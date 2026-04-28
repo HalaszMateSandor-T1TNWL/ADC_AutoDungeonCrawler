@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c0r6y7vxwf170" path="res://ConceptArt/Sorcerer.png" id="2_1exfc"]
 [ext_resource type="PackedScene" uid="uid://dfof51i28i8qr" path="res://Scenes/EnemyHealthBar.tscn" id="3_mo1ky"]
 [ext_resource type="Script" uid="uid://ui7ygyh44m85" path="res://Scripts/Pathfinder.cs" id="4_6bs3c"]
+[ext_resource type="Script" uid="uid://ee6h7hlp2bln" path="res://Scripts/Attack.cs" id="5_0830c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hghv2"]
 size = Vector2(16, 14)
@@ -29,3 +30,6 @@ offset_bottom = 14.0
 
 [node name="Pathfinder" type="Node" parent="." unique_id=607512107]
 script = ExtResource("4_6bs3c")
+
+[node name="Attack" type="Node" parent="." unique_id=296313870]
+script = ExtResource("5_0830c")

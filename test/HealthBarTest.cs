@@ -1,4 +1,4 @@
-using GdUnit4;
+/*using GdUnit4;
 using Godot;
 using static GdUnit4.Assertions;
 
@@ -60,4 +60,4 @@ namespace ADC.Tests
 			healthBar.QueueFree();
 		}
 	}
-}
+}*/

@@ -3,28 +3,23 @@ using System;
 
 public partial class EnemyHealthBar : ProgressBar
 {
-	public Enemy enemy;
-	public float CurrentHealth;
+	private Enemy _enemy;
 
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{	
-		enemy = new Enemy();
-		enemy.HPChanged += OnEnemyHPChanged;
-	}
-	public void UpdateHealthBar()
-	{
-		this.Value = CurrentHealth;
-		this.Visible = CurrentHealth > 0 && enemy.MaxHealth != CurrentHealth;
+		_enemy = GetNode<Enemy>($"..");
+		MaxValue = _enemy.maxHealth;
+		Value = _enemy.CurrentHealth;
+		Visible = false;
+
+		_enemy.HPChanged += OnEnemyHPChanged;
 	}
 
 	public void OnEnemyHPChanged(float currentHP)
 	{
-		CurrentHealth = currentHP;
-		UpdateHealthBar();
+		GD.Print($"Health bar received: {currentHP}");
+		Value = currentHP;
+		Visible = (currentHP > 0 && currentHP < _enemy.maxHealth);
 	}
-
-	
-
 	//MILF : Man I Love Frogs
 }

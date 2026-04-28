@@ -17,7 +17,7 @@ public partial class Pathfinder : Node
 	public Entity _parent;
 
 	private Vector2 _targetPosition;
-	private Array<Vector2I> _currentIdPath;
+	public Array<Vector2I> _currentIdPath;
 
 	private bool _isMoving;
 	private bool _isColliding;
