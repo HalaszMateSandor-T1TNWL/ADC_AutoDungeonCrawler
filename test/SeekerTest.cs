@@ -1,10 +1,8 @@
 using GdUnit4;
 using Godot;
-using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using static GdUnit4.Assertions;
-using System.IO;
 
 namespace ADC.Tests
 {
@@ -18,8 +16,9 @@ namespace ADC.Tests
 			//establishing the test field 
 			var seeker = new Seeker();
 			var pathfinder = new Pathfinder();
+
 			seeker.AddChild(pathfinder);
-			pathfinder._parent = pathfinder.GetParent<Seeker>();
+			pathfinder._parent = seeker;
 
 			var enemyContainer = new Godot.Collections.Array<Node>();
 			var actualEnemy = new Node2D();
@@ -34,7 +33,7 @@ namespace ADC.Tests
 			AssertThat(pathfinder.CurrentTarget).IsEqual(actualEnemy);
 
 			seeker.QueueFree();
-			foreach(Node node in enemyContainer)
+			foreach (Node node in enemyContainer)
 			{
 				node.QueueFree();
 			}
@@ -53,7 +52,7 @@ namespace ADC.Tests
 			AssertThat(pathfinder.CurrentTarget).IsNull();
 
 			pathfinder.QueueFree();
-			foreach(Node node in enemyContainer)
+			foreach (Node node in enemyContainer)
 			{
 				node.QueueFree();
 			}
@@ -68,7 +67,7 @@ namespace ADC.Tests
 			var pathfinder = new Pathfinder();
 
 			seeker.AddChild(pathfinder);
-			pathfinder._parent = pathfinder.GetParent<Seeker>();
+			pathfinder._parent = seeker;
 
 			pathfinder._parent.GlobalPosition = new Vector2(0, 0);
 
@@ -86,7 +85,7 @@ namespace ADC.Tests
 			var reachableEnemy = new Node2D
 			{
 				GlobalPosition = new Vector2(50, 0),
-				Name = "Reachable"	
+				Name = "Reachable"
 			};
 			reachableEnemy.AddToGroup("enemy");
 			enemyContainer.Add(reachableEnemy);
@@ -97,14 +96,14 @@ namespace ADC.Tests
 			AssertThat(pathfinder.CurrentTarget).IsNotEqual(unreachableEnemy);
 
 			seeker.QueueFree();
-			foreach(Node node in enemyContainer)
+			foreach (Node node in enemyContainer)
 			{
 				node.QueueFree();
 			}
 		}
 
 		[TestCase]
-		public async Task testWhatIfTheTargetPosIsTheCurrentPos()
+		public void testWhatIfTheTargetPosIsTheCurrentPos()
 		{
 			var seeker = new Seeker
 			{
@@ -113,25 +112,25 @@ namespace ADC.Tests
 			var pathfinder = new Pathfinder();
 
 			seeker.AddChild(pathfinder);
-			pathfinder._parent = pathfinder.GetParent<Seeker>();
+			pathfinder._parent = seeker;
 
 			Node2D dummyTarget = new Node2D
-            {
+			{
 				GlobalPosition = new Vector2(10, 10)
 			};
 			dummyTarget.AddToGroup("enemy");
 
 			var enemyContainer = new Godot.Collections.Array<Node>
-            {
-                dummyTarget
-            };
+			{
+				dummyTarget
+			};
 
 			pathfinder.AcquireTarget(enemyContainer);
-			pathfinder._PhysicsProcess(0.16528);
 
 			//testing
-			AssertThat(seeker.GlobalPosition.X).IsEqual(0);
-			AssertThat(seeker.GlobalPosition.Y).IsEqual(0);
+			AssertThat(pathfinder.CurrentTarget).IsEqual(dummyTarget);
+			AssertThat(seeker.GlobalPosition.X).IsEqual(10);
+			AssertThat(seeker.GlobalPosition.Y).IsEqual(10);
 
 			seeker.QueueFree();
 			dummyTarget.QueueFree();
@@ -142,11 +141,12 @@ namespace ADC.Tests
 		{
 			var tree = (SceneTree)Engine.GetMainLoop();
 			var testRoot = new Node2D();
-			tree.Root.AddChild(testRoot);
+			tree.Root.CallDeferred(Node.MethodName.AddChild, testRoot);
+			await tree.ToSignal(tree, SceneTree.SignalName.ProcessFrame);
 
 			List<List<int>> grid = new List<List<int>>();
 			var tilemap = new TileMapLayer();
-			for(int x = 0; x < 1; x++)
+			for (int x = 0; x < 1; x++)
 			{
 				grid.Add(new List<int>());
 				for (int y = 0; y < 99; y++)
@@ -161,49 +161,47 @@ namespace ADC.Tests
 				{
 					Vector2I tiles = new Vector2I(x, y);
 
-					if(y == 50)
+					if (y == 50)
 					{
-						tilemap.SetCell(tiles, 1, new Vector2I(0,0));
+						tilemap.SetCell(tiles, 1, new Vector2I(0, 0));
 					}
 					else
 					{
-						tilemap.SetCell(tiles, 1, new Vector2I(1,0));
+						tilemap.SetCell(tiles, 1, new Vector2I(1, 0));
 					}
-				
+
 				}
 			}
 
 			testRoot.AddChild(tilemap);
-	
+
 			var seeker = new Seeker();
 			var pathfinder = new Pathfinder();
 
 			seeker.AddChild(pathfinder);
-			pathfinder._parent = pathfinder.GetParent<Seeker>();
+			pathfinder._parent = seeker;
 
 			pathfinder._parent.GlobalPosition = new Vector2(0, 0);
-			testRoot.AddChild(pathfinder);
+			testRoot.AddChild(seeker);
 
 			var enemyContainer = new Godot.Collections.Array<Node>();
 
 			var enemyBehindWall = new Node2D
 			{
-				GlobalPosition = new Vector2(100, 0)	
+				GlobalPosition = new Vector2(100, 0)
 			};
 			enemyBehindWall.AddToGroup("enemy");
 			enemyContainer.Add(enemyBehindWall);
 
 			//wait a frame so godot can register the wall and the CollisionShape
 			await tree.ToSignal(tree, SceneTree.SignalName.PhysicsFrame);
+			await tree.ToSignal(tree, SceneTree.SignalName.PhysicsFrame);
 
 			pathfinder.AcquireTarget(enemyContainer);
-			
-			await tree.ToSignal(tree, SceneTree.SignalName.PhysicsFrame);
 
 			AssertThat(pathfinder._parent.GlobalPosition).IsBetween(new Vector2(0, 0), new Vector2(50, 0));
 
 			testRoot.QueueFree();
 		}
-
 	}
 }
