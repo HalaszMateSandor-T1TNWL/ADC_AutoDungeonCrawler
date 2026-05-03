@@ -17,7 +17,6 @@ public partial class Attack : Node
 		_cooldownTimer.OneShot = true;
 		AddChild(_cooldownTimer);
 		_cooldownTimer.Timeout += OnCooldownFisished;
-		
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -27,9 +26,7 @@ public partial class Attack : Node
 		if (!IsInstanceValid(_pathfinder.CurrentTarget))
 			return;
 
-		Entity parent = GetParent<Entity>();
-
-		if (_pathfinder._currentIdPath.Count <= parent.attackRange)
+		if (_pathfinder._currentIdPath.Count <= _parent.attackRange)
 		{
 			PerformAttack();
 		}

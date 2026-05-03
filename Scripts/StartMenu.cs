@@ -5,9 +5,13 @@ public partial class StartMenu : Control
 {
 	[Signal]
 	public delegate void MainMenuActionEventHandler();
+
+	private PopupPanel settings;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		settings = GetNode<PopupPanel>("SettingsPopup");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,6 +32,7 @@ public partial class StartMenu : Control
 
 	public void OnSettingsButtonPressed()
 	{
+		settings.Popup();
 		EmitSignal(SignalName.MainMenuAction,(int) UserInterfaceActions.MainMenuSettings);
 	}
 

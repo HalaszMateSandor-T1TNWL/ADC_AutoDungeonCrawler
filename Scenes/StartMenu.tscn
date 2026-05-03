@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://uufeji0pc23q" path="res://Scripts/StartMenu.cs" id="1_xtte2"]
 [ext_resource type="Texture2D" uid="uid://bd5ntc0a1hppq" path="res://ConceptArt/UI/MainMenuBackGround.jpg" id="2_dl0pg"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xtte2"]
+bg_color = Color(0.48235294, 0.14509805, 0.28235295, 1)
+
 [node name="StartMenu" type="Control" unique_id=73939202]
 layout_mode = 3
 anchors_preset = 15
@@ -58,6 +61,58 @@ text = "Settings"
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Quit"
+
+[node name="SettingsPopup" type="PopupPanel" parent="." unique_id=1816063456]
+oversampling_override = 1.0
+initial_position = 1
+size = Vector2i(600, 400)
+theme_override_styles/panel = SubResource("StyleBoxFlat_xtte2")
+
+[node name="SettingsMargin" type="MarginContainer" parent="SettingsPopup" unique_id=104966588]
+offset_right = 600.0
+offset_bottom = 400.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="SettingsBox" type="VBoxContainer" parent="SettingsPopup/SettingsMargin" unique_id=388578883]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="SettingsMainLabel" type="Label" parent="SettingsPopup/SettingsMargin/SettingsBox" unique_id=1846948825]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15686275, 0.047058824, 0.105882354, 1)
+theme_override_font_sizes/font_size = 40
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="SettingsSoundButton" type="Button" parent="SettingsPopup/SettingsMargin/SettingsBox" unique_id=305042077]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Sound"
+
+[node name="SettingsSaveButton" type="Button" parent="SettingsPopup/SettingsMargin/SettingsBox" unique_id=78650856]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "SAVE"
+
+[node name="SettingsLoadButton" type="Button" parent="SettingsPopup/SettingsMargin/SettingsBox" unique_id=1703664394]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "		LOAD"
+
+[node name="MainMenuButton" type="Button" parent="SettingsPopup/SettingsMargin/SettingsBox" unique_id=449539399]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Return to Main Menu"
+
+[node name="SettingsPopupExit" type="Button" parent="SettingsPopup/SettingsMargin/SettingsBox" unique_id=514345721]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Exit"
 
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="OnNewGameButtonPressed"]
 [connection signal="pressed" from="VBoxContainer/LoadGameButton" to="." method="OnLoadGameButtonPressed"]

@@ -5,9 +5,6 @@ using System.Linq;
 
 public partial class Seeker : Entity
 {
-
-	
-	
 	public override void _Ready()
 	{
 		AddToGroup("player");

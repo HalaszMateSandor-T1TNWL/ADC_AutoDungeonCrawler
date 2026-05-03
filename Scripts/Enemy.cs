@@ -4,8 +4,6 @@ using Godot.Collections;
 
 public partial class Enemy : Entity
 {
-
-
 	Array<Node> targets = [];
 	Overseer overseer;
 	
@@ -28,7 +26,6 @@ public partial class Enemy : Entity
 	}
 	public override void _Process(double delta)
 	{
-		
 		targets = overseer.eye.GetAllUnits();
 		if(targets.Count > 0)
 		{
