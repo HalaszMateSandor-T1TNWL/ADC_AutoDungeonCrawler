@@ -33,7 +33,7 @@ namespace ADC.Tests
             attacker.AddChild(attack);
 
             attack._Ready();
-            attack._PhysicsProcess(0.1f);
+            attack._PhysicsProcess(0.1);
 
             AssertThat(target.CurrentHealth).IsEqual(85.0f);
 
@@ -71,7 +71,7 @@ namespace ADC.Tests
             attacker.AddChild(attack);
 
             attack._Ready();
-            attack._PhysicsProcess(0.1f);
+            attack._PhysicsProcess(0.1);
 
             AssertThat(target.CurrentHealth).IsEqual(100.0f);
 
@@ -105,10 +105,10 @@ namespace ADC.Tests
 
             attack._Ready();
 
-            attack._PhysicsProcess(0.1f);
+            attack._PhysicsProcess(0.1);
 
-            attack._PhysicsProcess(0.1f);
-            attack._PhysicsProcess(0.1f);
+            attack._PhysicsProcess(0.1);
+            attack._PhysicsProcess(0.1);
 
             AssertThat(target.CurrentHealth).IsEqual(90.0f);
 
@@ -192,7 +192,7 @@ namespace ADC.Tests
             attacker.AddChild(attack);
 
             attack._Ready();
-            attack._PhysicsProcess(0.1f);
+            attack._PhysicsProcess(0.1);
 
             AssertThat(friendlyTarget.CurrentHealth).IsEqual(100.0f);
 
