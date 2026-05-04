@@ -18,7 +18,8 @@ public partial class EnemyHealthBar : ProgressBar
 	public void OnEnemyHPChanged(float currentHP)
 	{
 		GD.Print($"Health bar received: {currentHP}");
-		SetValueNoSignal(currentHP);
+		MaxValue = _enemy.maxHealth;
+		Value = currentHP;
 		Visible = (currentHP > 0 && currentHP < _enemy.maxHealth);
 	}
 	//MILF : Man I Love Frogs
